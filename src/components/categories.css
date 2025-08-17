@@ -1,0 +1,29 @@
+.pooh-image{
+    width: 90%;
+    height: 250px;
+    /* background-color: #641E16; */
+    border-radius: 10px 55px;
+    overflow: hidden;
+    margin: 20px;
+    box-shadow: 10px 10px 12px 0px rgba(0, 0, 0, 0.27);
+    -webkit-box-shadow: 10px 10px 12px 0px rgba(0, 0, 0, 0.27);
+    -moz-box-shadow: 10px 10px 12px 0px rgba(0, 0, 0, 0.27);
+
+}
+.category{
+    text-align: center;
+padding: 20px 20px;
+}
+.category img{
+    width:210px;
+   margin: 5px;
+}
+.category p{
+    font-size: small;
+}
+.square{
+    padding: 10px;
+}
+.square:hover{
+    box-shadow: 5px 5px 8px -1px #000000;
+}
