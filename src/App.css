@@ -313,18 +313,36 @@
 
 .aaa{
   width:80%;
+<<<<<<< HEAD
   padding:10px;
   border:solid 1px #641E16;
   border-radius: 3px;
   margin:25px 0;
   color:#641E16;
+=======
+  padding:20px;
+  /* border:solid 1px black; */
+  margin:25px auto;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius:10px;
+>>>>>>> 7cf6cb520fb111322b17f6d2627daab6793cf10e
 }
 .aaa .row{
   margin:5px 0;
 }
 .bbb{
   color:#641E16 !important;
+<<<<<<< HEAD
 }
 .button{
   border-color: #641E16;
 }
+=======
+  width:100%;
+  padding:0 5px;
+}
+.error {
+  color: red;
+  font-size: 14px;
+}
+>>>>>>> 7cf6cb520fb111322b17f6d2627daab6793cf10e
