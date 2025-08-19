@@ -26,6 +26,9 @@ import Gender from './components/Gender';
 import Pooh from './components/Pooh';
 import Register from './components/Register';
 import AddProduct from './components/AddProduct';
+import Register2 from './components/Register2';
+import Login from './components/Login';
+import Address from './components/Address';
 
 
 function App() {
@@ -57,7 +60,10 @@ function App() {
         <Route path="/pooh" element={<Pooh />} />
         <Route path="/register" element={<Register />} />
         <Route path="/addProduct" element={<AddProduct />} />
-
+        <Route path="/register2" element={<Register2 />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/address" element={<Address />} />
+      
 
         <Route path='*' element={<Home />} />
         <Route path="/footer" element={<Header />} />

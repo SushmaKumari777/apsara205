@@ -32,7 +32,7 @@ const AddProduct = () => {
             <Container>
                 <Row>
                     <Col>
-                        <h1>Registration</h1>
+                        <h1>Add Product</h1>
                         <Formik
                             initialValues={{
                                 productName: '',
@@ -64,21 +64,6 @@ const AddProduct = () => {
                                             </Col>
                                         </Row>
                                         <Row>
-                                            <Col>Product-Category</Col>
-                                            <Col>
-                                                <Field name="productCategory" as="select">
-                                                    <option value="">Choose category</option>
-                                                    <option value="green">Naina</option>
-                                                    <option value="blue">Geet</option>
-                                                </Field>
-                                                {errors.productCategory && touched.productCategory ? (
-                                                    <div>{errors.productCategory}</div>
-                                                ) : null}
-                                            </Col>
-                                        </Row>
-
-
-                                        <Row>
                                             <Col>
                                                 <div id="my-radio-group">Gender</div>
 
@@ -97,6 +82,40 @@ const AddProduct = () => {
                                                 </div>
                                             </Col>
                                         </Row>
+                                        <Row>
+                                            <Col>Product-Category</Col>
+                                            <Col>
+                                                <Field name="productCategory" as="select">
+                                                    <option value="">Choose category</option>
+                                                    <option value="half-sleeves">Half-Sleeves</option>
+                                                    <option value="full-sleeves">Full-Sleeves</option>
+                                                </Field>
+                                                {errors.productCategory && touched.productCategory ? (
+                                                    <div>{errors.productCategory}</div>
+                                                ) : null}
+                                            </Col>
+                                        </Row>
+                                        <Row>
+                                            <Col>Product-Subcategory</Col>
+                                            <Col>
+                                                <Field name="productCategory" as="select">
+                                                    <option value="">Choose Subcategory</option>
+                                                    <option value="pooh">Pooh</option>
+                                                    <option value="naina">Naina</option>
+                                                    <option value="geet">Geet</option>
+                                                    <option value="aisha">Aisha</option>
+                                                    <option value="half-style">Half-style</option>
+                                                    <option value="desi-formals">Desi-formals</option>
+                                                    <option value="desi-formals">Sanskari-drips</option>
+                                                </Field>
+                                                {errors.productCategory && touched.productCategory ? (
+                                                    <div>{errors.productCategory}</div>
+                                                ) : null}
+                                            </Col>
+                                        </Row>
+
+
+                                       
                                         <Row>
                                             <Col>Description</Col>
                                             <Col>
@@ -162,8 +181,17 @@ const AddProduct = () => {
                                             </Col>
                                         </Row>
                                         <Row>
+                                            <Col>Available Stock/Quantity</Col>
                                             <Col>
-                                                <button type="submit">Add Product</button>
+                                                <Field name="stock" className='bbb' />
+                                                {errors.stock && touched.stock ? (
+                                                    <div>{errors.stock}</div>
+                                                ) : null}
+                                            </Col>
+                                        </Row>
+                                        <Row>
+                                            <Col>
+                                                <button type="submit" className='btn'>Add Product</button>
                                             </Col>
                                         </Row>
                                     </div>
