@@ -10,8 +10,9 @@ const SignupSchema = Yup.object().shape({
         .min(2, 'Minimum too charecter required')
         .max(50, 'Too Long!')
         .required('Required'),
-    productCategory: Yup.string().required('Required'),
     gender: Yup.string().required('Required'),
+    productCategory: Yup.string().required('Required'),
+    productsubCategory: Yup.string().required('Required'),
     description: Yup.string().required('Required'),
     price: Yup.number()
         .positive('Price must be positive')
@@ -20,29 +21,31 @@ const SignupSchema = Yup.object().shape({
         .required('Required'),
     occasion: Yup.string().required('Required'),
     discount: Yup.number()
-    .positive('Discount must be positive')
-    .required('Required'),
-    
+        .positive('Discount must be positive')
+        .required('Required'),
+
 
 
 });
 const AddProduct = () => {
     return (
         <div>
-            <Container>
+            <Container className='bbb'>
                 <Row>
                     <Col>
                         <h1>Add Product</h1>
                         <Formik
                             initialValues={{
                                 productName: '',
-                                productCategory: '',
                                 gender: '',
+                                productCategory: '',
+                                productsubCategory: '',
+                                discription: '',
                                 price: '',
                                 material: '',
                                 occasion: '',
                                 discount: '',
-                                discription: ''
+
                             }}
                             validationSchema={SignupSchema}
                             onSubmit={values => {
@@ -55,20 +58,22 @@ const AddProduct = () => {
                                 <Form>
                                     <div className='aaa'>
                                         <Row>
-                                            <Col>Product Name</Col>
-                                            <Col>
+                                            <Col md={3}>Product Name</Col>
+                                            <Col md={9}>
                                                 <Field name="productName" className='bbb' />
+                                                <div className='error'>
                                                 {errors.productName && touched.productName ? (
                                                     <div>{errors.productName}</div>
                                                 ) : null}
+                                                </div>
                                             </Col>
                                         </Row>
                                         <Row>
-                                            <Col>
+                                            <Col md={3}>
                                                 <div id="my-radio-group">Gender</div>
 
                                             </Col>
-                                            <Col>
+                                            <Col md={9}>
                                                 <div role="group" aria-labelledby="my-radio-group">
                                                     <label>
                                                         <Field type="radio" name="gender" value="Women" />
@@ -83,22 +88,22 @@ const AddProduct = () => {
                                             </Col>
                                         </Row>
                                         <Row>
-                                            <Col>Product-Category</Col>
-                                            <Col>
-                                                <Field name="productCategory" as="select">
+                                            <Col md={3}>Product-Category</Col>
+                                            <Col md={9}>
+                                                <Field name="productCategory" as="select" className='bbb'>
                                                     <option value="">Choose category</option>
                                                     <option value="half-sleeves">Half-Sleeves</option>
                                                     <option value="full-sleeves">Full-Sleeves</option>
                                                 </Field>
                                                 {errors.productCategory && touched.productCategory ? (
-                                                    <div>{errors.productCategory}</div>
+                                                    <div className='error'>{errors.productCategory}</div>
                                                 ) : null}
                                             </Col>
                                         </Row>
                                         <Row>
-                                            <Col>Product-Subcategory</Col>
-                                            <Col>
-                                                <Field name="productCategory" as="select">
+                                            <Col md={3}>Product-Subcategory</Col>
+                                            <Col md={9}>
+                                                <Field name="productsubCategory" as="select" className='bbb'>
                                                     <option value="">Choose Subcategory</option>
                                                     <option value="pooh">Pooh</option>
                                                     <option value="naina">Naina</option>
@@ -108,17 +113,17 @@ const AddProduct = () => {
                                                     <option value="desi-formals">Desi-formals</option>
                                                     <option value="desi-formals">Sanskari-drips</option>
                                                 </Field>
-                                                {errors.productCategory && touched.productCategory ? (
-                                                    <div>{errors.productCategory}</div>
+                                                {errors.productsubCategory && touched.productsubCategory ? (
+                                                    <div className='error'>{errors.productsubCategory}</div>
                                                 ) : null}
                                             </Col>
                                         </Row>
 
 
-                                       
+
                                         <Row>
-                                            <Col>Description</Col>
-                                            <Col>
+                                            <Col md={3}>Description</Col>
+                                            <Col md={9}>
                                                 <div>
                                                     {/* <label htmlFor="description">Description</label> */}
                                                     <Field as="textarea" id="description" name="description" />
@@ -127,21 +132,21 @@ const AddProduct = () => {
                                             </Col>
                                         </Row>
                                         <Row>
-                                            <Col>Price</Col>
-                                            <Col>
+                                            <Col md={3}>Price</Col>
+                                            <Col md={9}>
                                                 <Field name="price" className='bbb' />
                                                 {errors.price && touched.price ? (
-                                                    <div>{errors.price}</div>
+                                                    <div className='error'>{errors.price}</div>
                                                 ) : null}
                                             </Col>
                                         </Row>
                                         <Row>
-                                            <Col>
+                                            <Col md={3}>
                                                 <div id="my-radio-group">Material</div>
 
                                             </Col>
-                                            <Col>
-                                                <div role="group" aria-labelledby="my-radio-group">
+                                            <Col md={9}>
+                                                <div role="group" aria-labelledby="my-radio-group" className='bbb'>
                                                     <label>
                                                         <Field type="radio" name="material" value="cotton" />
                                                         Cotton
@@ -159,36 +164,28 @@ const AddProduct = () => {
                                             </Col>
                                         </Row>
                                         <Row>
-                                            <Col>Occasion</Col>
-                                            <Col>
-                                                <Field name="occasion" as="select">
+                                            <Col md={3}>Occasion</Col>
+                                            <Col md={9}>
+                                                <Field name="occasion" as="select" className='bbb'>
                                                     <option value="">Choose occasion</option>
                                                     <option value="office">Office Wear</option>
                                                     <option value="festive">Festive Wear</option>
                                                 </Field>
                                                 {errors.occasion && touched.occasion ? (
-                                                    <div>{errors.occasion}</div>
+                                                    <div className='erroe'>{errors.occasion}</div>
                                                 ) : null}
                                             </Col>
                                         </Row>
                                         <Row>
-                                            <Col>Discount</Col>
-                                            <Col>
+                                            <Col md={3}>Discount</Col>
+                                            <Col md={9}>
                                                 <Field name="discount" className='bbb' />
                                                 {errors.discount && touched.discount ? (
-                                                    <div>{errors.discount}</div>
+                                                    <div className='error'>{errors.discount}</div>
                                                 ) : null}
                                             </Col>
                                         </Row>
-                                        <Row>
-                                            <Col>Available Stock/Quantity</Col>
-                                            <Col>
-                                                <Field name="stock" className='bbb' />
-                                                {errors.stock && touched.stock ? (
-                                                    <div>{errors.stock}</div>
-                                                ) : null}
-                                            </Col>
-                                        </Row>
+
                                         <Row>
                                             <Col>
                                                 <button type="submit" className='btn'>Add Product</button>

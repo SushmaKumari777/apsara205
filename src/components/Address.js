@@ -53,7 +53,12 @@ const Address = () => {
             <Container>
                 <Row>
                     <Col>
-                        <h1>Delevery</h1>
+                    <Row>
+                        <Col className='bbb'>  
+                        <h1>Delivery</h1>
+                        </Col>
+                    </Row>
+                      
                         <Formik
                             initialValues={{
                                 name: '',
@@ -78,89 +83,89 @@ const Address = () => {
                                 <Form>
                                     <div className='aaa'>
                                         <Row>
-                                            <Col>Name</Col>
-                                            <Col>
+                                            <Col md={3}>Name</Col>
+                                            <Col md={9}>
                                                 <Field name="name" className='bbb' />
                                                 {errors.name && touched.name ? (
-                                                    <div>{errors.name}</div>
+                                                    <div className='error'>{errors.name}</div>
                                                 ) : null}
                                             </Col>
                                         </Row>
 
 
                                         <Row>
-                                            <Col>City</Col>
-                                            <Col>
-                                                <Field name="city" type="text" />
-                                                {errors.city && touched.city ? <div>{errors.city}</div> : null}
+                                            <Col md={3}>City</Col>
+                                            <Col  md={9}>
+                                                <Field name="city" type="text"  className='bbb'/>
+                                                {errors.city && touched.city ? <div className='error'>{errors.city}</div> : null}
                                             </Col>
                                         </Row>
                                         <Row>
-                                            <Col>State</Col>
-                                            <Col>
-                                                <Field name="state" type="text" />
-                                                {errors.state && touched.state ? <div>{errors.state}</div> : null}
+                                            <Col md={3}>State</Col>
+                                            <Col  md={9}>
+                                                <Field name="state" type="text"  className='bbb'/>
+                                                {errors.state && touched.state ? <div className='error'>{errors.state}</div> : null}
                                             </Col>
                                         </Row>
                                         <Row>
-                                            <Col>Pincode</Col>
-                                            <Col>
-                                                <Field name="pincode" type="pincode" />
-                                                {errors.pincode && touched.pincode ? <div>{errors.pincode}</div> : null}
+                                            <Col md={3}>Pincode</Col>
+                                            <Col  md={9}>
+                                                <Field name="pincode" type="pincode"  className='bbb'/>
+                                                {errors.pincode && touched.pincode ? <div className='error'>{errors.pincode}</div> : null}
                                             </Col>
                                         </Row>
                                         <Row>
-                                            <Col>Address</Col>
-                                            <Col>
-                                                <Field name="address" type="text" />
-                                                {errors.address && touched.address ? <div>{errors.address}</div> : null}
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>House/Flat no.</Col>
-                                            <Col>
-                                                <Field name="house" type="text" />
-                                                {errors.house && touched.house ? <div>{errors.house}</div> : null}
-                                            </Col>
-                                        </Row>
-                                        <Row>
-                                            <Col>Street/Locality</Col>
-                                            <Col>
-                                                <Field name="street" type="text" />
-                                                {errors.street && touched.street ? <div>{errors.street}</div> : null}
+                                            <Col md={3}>Address</Col>
+                                            <Col  md={9}>
+                                                <Field name="address" type="text" className='bbb'/>
+                                                {errors.address && touched.address ? <div className='error'>{errors.address}</div> : null}
                                             </Col>
                                         </Row>
 
                                         <Row>
-                                            <Col>Email Id</Col>
-                                            <Col>
-                                                <Field name="email" type="email" />
-                                                {errors.email && touched.email ? <div>{errors.email}</div> : null}
+                                            <Col md={3}>House/Flat no.</Col>
+                                            <Col  md={9}>
+                                                <Field name="house" type="text"  className='bbb'/>
+                                                {errors.house && touched.house ? <div className='error'>{errors.house}</div> : null}
+                                            </Col>
+                                        </Row>
+                                        <Row>
+                                            <Col md={3}>Street/Locality</Col>
+                                            <Col  md={9}>
+                                                <Field name="street" type="text"  className='bbb'/>
+                                                {errors.street && touched.street ? <div className='error'>{errors.street}</div> : null}
+                                            </Col>
+                                        </Row>
+
+                                        <Row>
+                                            <Col md={3}>Email Id</Col>
+                                            <Col  md={9}>
+                                                <Field name="email" type="email"  className='bbb'/>
+                                                {errors.email && touched.email ? <div className='error'>{errors.email}</div> : null}
                                             </Col>
                                         </Row>
 
 
                                         <Row>
-                                            <Col>Mobile</Col>
-                                            <Col>
-                                                <Field name="mobile" type="pincode" />
-                                                {errors.mobile && touched.mobile ? <div>{errors.mobile}</div> : null}
+                                            <Col md={3}>Mobile</Col>
+                                            <Col  md={9}>
+                                                <Field name="mobile" type="pincode"  className='bbb'/>
+                                                {errors.mobile && touched.mobile ? <div className='error'>{errors.mobile}</div> : null}
                                             </Col>
                                         </Row>
                                         <Row>
-                                            <Col>Alternate Phone(Optional)</Col>
-                                            <Col>
-                                                <Field name="alternatePhone" type="text" />
+                                            <Col md={3}>Alternate Phone(Optional)</Col>
+                                            <Col  md={9}>
+                                                <Field name="alternatePhone" type="text" className='bbb'/>
                                                 {errors.alternatePhone && touched.alternatePhone ? <div>{errors.mobile}</div> : null}
                                             </Col>
                                         </Row>
                                         <Row>
-                                            <Col>
+                                            <Col md={3}>
                                                 <div id="my-radio-group">Address Type</div>
                                             </Col>
-                                            <Col>
-                                                <div role="group" aria-labelledby="my-radio-group">
+                                            <Col  md={9}>
+                                                <div role="group" aria-labelledby="my-radio-group" className='bbb'> 
                                                     <label>
                                                         <Field type="radio" name="addressType" value="home" />
                                                         Home

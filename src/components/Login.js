@@ -20,7 +20,11 @@ const Login = () => {
             <Container>
                 <Row>
                     <Col>
-                        <h1>Registration</h1>
+                       <Row>
+                        <Col className='bbb'>
+                        <h1>Sign in</h1>
+                        </Col>
+                       </Row>
                         <Formik
                             initialValues={{
                                 email: '',
@@ -36,26 +40,23 @@ const Login = () => {
                                 <Form>
                                     <div className='aaa'>
                                         <Row>
-                                            <Col>Email Id</Col>
-                                            <Col>
-                                                <Field name="email" type="email" />
-                                                {errors.email && touched.email ? <div>{errors.email}</div> : null}
+                                            <Col md={3}>Email Id</Col>
+                                            <Col md={9}>
+                                                <Field name="email" type="email" className='bbb' />
+                                                {errors.email && touched.email ? <div className='error'>{errors.email}</div> : null}
                                             </Col>
                                         </Row>
 
                                         <Row>
-                                            <Col>Password</Col>
-                                            <Col>
-                                                <Field name="password" type="password" />
-                                                {errors.password && touched.password ? <div>{errors.password}</div> : null}
+                                            <Col md={3}>Password</Col>
+                                            <Col md={9}>
+                                                <Field name="password" type="password"  className='bbb'/>
+                                                {errors.password && touched.password ? <div className='error'>{errors.password}</div> : null}
                                             </Col>
                                         </Row>
-
-
-
                                         <Row>
                                             <Col>
-                                                <button type="submit" className='btn'>Submit</button>
+                                                <button type="submit" className='btn'>Continue</button>
                                             </Col>
                                         </Row>
                                     </div>

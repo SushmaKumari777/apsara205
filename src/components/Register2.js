@@ -5,6 +5,9 @@ import * as Yup from 'yup';
 import '../App.css'
 
 const SignupSchema = Yup.object().shape({
+    mobile: Yup.string()
+        .matches(/^[0-9]{10}$/, 'Invalid mobile number') // only 10 digits allowed
+        .required('Required'),
     email: Yup.string()
         .email('Invalid email')
         .required('Required'),
@@ -12,24 +15,23 @@ const SignupSchema = Yup.object().shape({
     password: Yup.string()
         .min(8, 'Password must be at least 8 characters')
         .required('Required'),
-
-    mobile: Yup.string()
-        .matches(/^[0-9]{10}$/, 'Invalid mobile number') // only 10 digits allowed
-        .required('Required'),
 });
 const Register2 = () => {
     return (
         <div>
-
             <Container>
                 <Row>
                     <Col>
-                        <h1>Registration</h1>
+               <Row>
+                <Col className='bbb'>
+                <h1>Registration</h1>
+                </Col>
+               </Row>
                         <Formik
                             initialValues={{
+                                mobile: '',
                                 email: '',
                                 password: '',
-                                mobile: '',
                             }}
                             validationSchema={SignupSchema}
                             onSubmit={values => {
@@ -40,29 +42,27 @@ const Register2 = () => {
                                 <Form>
                                     <div className='aaa'>
                                         <Row>
-                                            <Col>Email Id</Col>
-                                            <Col>
-                                                <Field name="email" type="email" />
-                                                {errors.email && touched.email ? <div>{errors.email}</div> : null}
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>Password</Col>
-                                            <Col>
-                                                <Field name="password" type="password" />
-                                                {errors.password && touched.password ? <div>{errors.password}</div> : null}
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>Mobile</Col>
-                                            <Col>
+                                            <Col md={3}>Mobile</Col>
+                                            <Col md={9}>
                                                 <Field name="mobile" type="text" />
-                                                {errors.mobile && touched.mobile ? <div>{errors.mobile}</div> : null}
+                                                {errors.mobile && touched.mobile ? <div className='error'>{errors.mobile}</div> : null}
+                                            </Col>
+                                        </Row>
+                                        <Row>
+                                            <Col md={3}>Email Id</Col>
+                                            <Col md={9}>
+                                                <Field name="email" type="email" />
+                                                {errors.email && touched.email ? <div className='error'>{errors.email}</div> : null}
                                             </Col>
                                         </Row>
 
+                                        <Row>
+                                            <Col md={3}>Password</Col>
+                                            <Col md={9}>
+                                                <Field name="password" type="password" />
+                                                {errors.password && touched.password ? <div className='error'>{errors.password}</div> : null}
+                                            </Col>
+                                        </Row>
                                         <Row>
                                             <Col>
                                                 <button type="submit" className='btn'>Submit</button>

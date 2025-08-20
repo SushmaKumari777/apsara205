@@ -5,15 +5,13 @@ import Header from './components/Header';
 import Home from './components/Home';
 import { Route, Routes } from 'react-router';
 import Naina from './components/Naina';
-import Aisa from './components/Aisa';
 import Halfstyle from './components/Halfstyle';
 import Sanskari from './components/Sanskari';
-import Allm from './components/Allm';
+// import Allm from './components/Allm';
 import Jsr from './components/Jsr';
 import Footer from './components/Footer';
 import Strapkurti from './components/Strapkurti';
 // import Addtocart from './components/Addtocart';
-import Signin from './components/Signin';
 import Vrinda from './components/Vrinda';
 import ViewProduct from './components/ViewProduct';
 // import BuyNow from './components/BuyNow';
@@ -40,14 +38,12 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/naina" element={<Naina />} />
-        <Route path="/aisa" element={<Aisa />} />
         <Route path="/halfstyle" element={<Halfstyle />} />
         <Route path="/sanskari" element={<Sanskari />} />
-        <Route path="/allm" element={<Allm />} />
+        {/* <Route path="/allm" element={<Allm />} /> */}
         <Route path="/jsr" element={<Jsr />} />
         <Route path="/strapkurti" element={<Strapkurti />} />
         {/* <Route path="/addtocart/:productId" element={<Addtocart />} /> */}
-        <Route path="/signin" element={<Signin />} />
         <Route path="/vrinda" element={<Vrinda />} />
         <Route path="/viewProduct/:productId" element={<ViewProduct />} />
         {/* <Route path="/buyNow" element={<BuyNow />} /> */}
