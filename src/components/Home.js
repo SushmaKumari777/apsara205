@@ -10,10 +10,10 @@ import { Container, Row, Col, Card } from 'react-bootstrap'
 // import m2 from '../images/m2.jpg'
 // import m3 from '../images/m3.webp'
 // import m4 from '../images/m4.webp'
-// import pooh from '../images/pooh.webp'
-// import naina from '../images/naina.webp'
-// import geet from '../images/geet.webp'
-// import aisa from '../images/aisa.webp'
+import pooh from '../images/pooh.webp'
+import naina from '../images/naina.webp'
+import geet from '../images/geet.webp'
+import aisa from '../images/aisa.webp'
 // import halfstyle from '../images/half style.webp'
 // import desi from '../images/desi.webp'
 // import sanskari from '../images/sanskari.webp'
@@ -1185,16 +1185,16 @@ const Home = () => {
             data.map((pooh) => {
               return (
 
-                <Col md={3} >
+                <Col xs={6} md={3} >
                   <div className='square'>
-                    
-                  <Link to={'/buy/' + pooh.title}>                  
+
+                    <Link to={'/buy/' + pooh.title}>
                       <img src={pooh.images[1]} />
-                       <p>{pooh.title}</p>
-                          <p>Rs.{pooh.price1}</p>
-                        <Button variant="primary">Choose Option</Button>
-                     </Link>
-                     </div>
+                      <p>{pooh.title}</p>
+                      <h6>Rs.{pooh.price1}</h6>
+                      <Button variant="primary">Choose Option</Button>
+                    </Link>
+                  </div>
                 </Col>
 
               )
@@ -1209,26 +1209,27 @@ const Home = () => {
           {
             mens.map((men) => {
               return (
-                <Col md={3}>
-                  <Link to={'/buy/' + men.id}>
-                    <Card style={{ width: '18rem' }}>
-                      <Card.Img src={men.images} />
-                      <Card.Body>
-                        <Card.Title>{men.title}</Card.Title>
-                        <Card.Text>
-                          <p>Rs.{men.price1}</p>
-                        </Card.Text>
-                        <Button variant="primary">Choose Option</Button>
-                      </Card.Body>
-                    </Card>
-                  </Link>
+                <Col xs={6} md={3}>
+                  <div className='square'>
+                    <Link to={'/buy/' + men.id}>
+                      {/* <Card style={{ width: '18rem' }}> */}
+                      <img src={men.images} />
+                      <p>{men.title}</p>
+                      <h6>Rs.{men.price1}</h6>
+                      <Button variant="primary">Choose Option</Button>
+                    </Link>
+                  </div>
+
                 </Col>
               )
             }
             )
           }
         </Row>
+      
       </section>
+     
+     
       {/* <section className='womencollections' >
         <Row>
           {
@@ -1400,7 +1401,7 @@ const Home = () => {
         </Container>
       </section> */}
 
-      {/* <section className='womencollections'>
+      <section className='womencollections'>
         <Container>
           <Row>
             <Col>
@@ -1411,31 +1412,31 @@ const Home = () => {
             <Col md={3}>
               <div className='productc'>
                 <img src={pooh} alt='' />
-                <p><Link to="/pooh">Pooh</Link></p>
+                <p>Sleeve-less-kurti</p>
               </div>
             </Col>
             <Col md={3}>
               <div className='productc'>
                 <img src={naina} alt='' />
-                <p><Link to="/naina">Naina</Link></p>
+                <p> FullSleeve-kurti</p>
               </div>
             </Col>
             <Col md={3}>
               <div className='productc'>
                 <img src={geet} alt='' />
-                <p><Link to="/geet">Geet</Link></p>
+                <p>Bestseller</p>
               </div>
             </Col>
             <Col md={3}>
               <div className='productc'>
                 <img src={aisa} alt='' />
-                <p><Link to="/aisa">Aisa</Link></p>
+                <p>New-launch</p>
               </div>
             </Col>
           </Row>
 
         </Container>
-      </section> */}
+      </section>
       {/* <section className='mencollections'>
         <Container>
           <Row>
