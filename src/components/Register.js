@@ -3,13 +3,17 @@ import { Col, Container, Row, Button } from 'react-bootstrap'
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import '../App.css'
+import InputMask from 'react-input-mask';
 
 const SignupSchema = Yup.object().shape({
 
+    // mobile: Yup.string()
+    //     .required('Mobile number is required')
+    //     .matches(/^[6-9]\d{9}$/, 'Enter a valid 10 Digit Mobile Number'),
+    // .required('Required'),
     mobile: Yup.string()
-        .required('Mobile number is required')
         .matches(/^[6-9]\d{9}$/, 'Enter a valid 10 Digit Mobile Number')
-        .required('Required'),
+        .required("Required"),
     email: Yup.string().email('Invalid email').required('Required'),
     password: Yup.string()
         .min(6, 'Minimum Six charecter required')
@@ -45,7 +49,9 @@ const Register = () => {
                                         <Row>
                                             <Col md={3}>Mobile</Col>
                                             <Col md={9}>
-                                                <Field name="mobile" className='bbb' />
+                                                {/* <Field name="mobile" className='bbb' /> */}
+                                                <InputMask mask="9999999999" maskChar={null} name="mobile" className='bbb' />
+
                                                 <div className="error">
                                                     {errors.mobile && touched.mobile ? (
                                                         <div>{errors.mobile}</div>

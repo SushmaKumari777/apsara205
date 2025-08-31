@@ -5,46 +5,46 @@ import * as Yup from 'yup';
 import '../App.css'
 
 const SignupSchema = Yup.object().shape({
-    // name: Yup.string()
-    // //   .min(2, 'Name must be at least 2 characters')
-    // //   .max(50, 'Too Long!')
-    //   .required('Name is required'),
+    name: Yup.string()
+    //   .min(2, 'Name must be at least 2 characters')
+    //   .max(50, 'Too Long!')
+      .required('Name is required'),
   
-    // city: Yup.string()
-    //   .required('City is required'),
+    city: Yup.string()
+      .required('City is required'),
   
-    // state: Yup.string()
-    //   .required('State is required'),
+    state: Yup.string()
+      .required('State is required'),
   
-    // pincode: Yup.number()
-    //   .matches(/^[0-9]{6}$/, 'Invalid Pincode (must be 6 digits)')
-    //   .required('Pincode is required'),
+    pincode: Yup.string()
+      .matches(/^[1-9]{5}$/, 'Invalid Pincode (must be 6 digits)')
+      .required('Pincode is required'),
   
-    // address: Yup.string()
-    // //   .min(5, 'Address is too short')
-    //   .required('Address is required'),
+    address: Yup.string()
+    //   .min(5, 'Address is too short')
+      .required('Address is required'),
   
-    // house: Yup.number()
-    //   .required('House/Flat no. is required'),
+    house: Yup.number()
+      .required('House/Flat no. is required'),
   
-    // street: Yup.string()
-    //   .required('Street/Locality is required'),
+    street: Yup.string()
+      .required('Street/Locality is required'),
   
-    // email: Yup.string()
-    //   .email('Invalid email')
-    //   .required('Email is required'),
+    email: Yup.string()
+      .email('Invalid email')
+      .required('Email is required'),
   
-    // mobile: Yup.number()
-    //   .matches(/^[0-9]{10}$/, 'Invalid mobile number')
-    //   .required('Mobile number is required'),
+    mobile: Yup.string()
+      .matches(/^[0-9]{10}$/, 'Invalid mobile number')
+      .required('Mobile number is required'),
   
-    // alternatePhone: Yup.number()
-    //   .matches(/^[0-9]{10}$/, 'Invalid alternate number')
-    //   .notRequired(),
+    alternatePhone: Yup.string()
+      .matches(/^[0-9]{10}$/, 'Invalid alternate number')
+      .notRequired(),
   
-    // addressType: Yup.string()
-    //   .oneOf(['home', 'office'], 'Select address type')
-    //   .required('Address type is required'),
+    addressType: Yup.string()
+      .oneOf(['home', 'office'], 'Select address type')
+      .required('Address type is required'),
   });
 
 const Address = () => {

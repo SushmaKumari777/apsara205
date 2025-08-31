@@ -5,30 +5,13 @@ const Buy = () => {
   const { productId } = useParams();
 
   return (
-    <div>
-      {/* <h1> {productId}</h1> */}
-      {/* <h2>{productId}</h2> */}
-      {/* <p>₹{productTitle}</p>
-      <p>{productDescription}</p> */}
+    <div>   
+  <section>
 
-      {/* <section>
         <Container>
           <Row>
-            {
-              products.map((product) => {
-                <Col>
-                  <img src={product.images} alt='' />
-               
-                </Col>
-              }
-
-              )
-            }
-          </Row>
-        </Container>
-      </section> */}
-      <section>
-        <Row>
+            <Col>
+            <Row>
         
             <Col>
             <img src=''/>
@@ -65,6 +48,9 @@ const Buy = () => {
               <Button>Buy Now</Button>
               </Col>
               </Row>
+            </Col>
+          </Row>
+        </Container>
       </section>
 
 
