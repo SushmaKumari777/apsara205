@@ -1,39 +1,30 @@
 import React from 'react'
 import '../App.css'
-
-import { Container, Row, Col, Card } from 'react-bootstrap'
-// import wm1 from '../images/wm1.webp'
-// import wm2 from '../images/wm2.webp'
-// import wm3 from '../images/wm3.webp'
-// import wm4 from '../images/wm4.webp'
-// import m1 from '../images/m1.jpg'
-// import m2 from '../images/m2.jpg'
-// import m3 from '../images/m3.webp'
-// import m4 from '../images/m4.webp'
+import { Container, Row, Col } from 'react-bootstrap'
 import pooh from '../images/pooh.webp'
 import naina from '../images/naina.webp'
 import geet from '../images/geet.webp'
 import aisa from '../images/aisa.webp'
-// import halfstyle from '../images/half style.webp'
-// import desi from '../images/desi.webp'
-// import sanskari from '../images/sanskari.webp'
-// import all from '../images/allrounder.webp'
+import halfstyle from '../images/half style.webp'
+import desi from '../images/desi.webp'
+import sanskari from '../images/sanskari.webp'
+import all from '../images/allrounder.webp'
 
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router'
-
-import Carousel from 'react-bootstrap/Carousel';
-import slide1 from '../images/desi.webp'
+// import Carousel from 'react-bootstrap/Carousel';
+// import slide1 from '../images/desi.webp'
 import video from '../images/menuvideo.mp4'
+import Menu from './Menu'
+import { BsFillArrowRightCircleFill } from "react-icons/bs";
+import { IoIosArrowRoundForward } from "react-icons/io";
 
+import { FaCircleArrowRight } from "react-icons/fa6";
 // import ExampleCarouselImage from 'components/ExampleCarouselImage';
 // import Carousel from 'react-bootstrap/Carousel';
 // import ExampleCarouselImage from '../images/aisa.webp';
+// import { FaBeer } from "react-icons/fa";
 
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import { faSearch, faTag } from '@fortawesome/free-solid-svg-icons';
 const Home = () => {
   // -------------------Women section------------------------
   const data = [
@@ -1127,280 +1118,67 @@ const Home = () => {
 
   return (
     <div>
-
+      {/* ---------------------menu section-------------------------- */}
       <div className="video-section">
         <video autoPlay loop muted className="background-video">
           <source src={video} type="video/mp4" />
-          Your browser does not support HTML5 video.
+          {/* Your browser does not support HTML5 video. */}
         </video>
-        <section className='navbar'>
-
+        <section>
           <Row>
             <Col>
-              <Navbar expand="lg">
-
-                <Navbar.Brand href="#home"><b> APSARA</b></Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
-                  <Nav className="me-auto">
-                    <Nav.Link href="#home"><Link to="/home">Home</Link></Nav.Link>
-
-                    <Nav.Link><Link to="/jsr">JSR</Link></Nav.Link>
-                    <Nav.Link><Link to="/example">New</Link></Nav.Link>
-                    <Nav.Link><Link to="/cart">Cart</Link></Nav.Link>
-
-
-                    <NavDropdown title="Women" id="basic-nav-dropdown">
-                      <NavDropdown.Item ><Link to="/category/pooh">Pooh</Link></NavDropdown.Item>
-                      <NavDropdown.Item ><Link to="/category/naina">Naina</Link></NavDropdown.Item>
-                      <NavDropdown.Item><Link to="/category/geet">geet</Link></NavDropdown.Item>
-                      <NavDropdown.Item><Link to="/gender/women">All Women</Link></NavDropdown.Item>
-
-
-                    </NavDropdown>
-                    <NavDropdown title="Men" id="basic-nav-dropdown">
-                      <NavDropdown.Item ><Link to="/category/halfStyle">Half Style Street Look</Link></NavDropdown.Item>
-                      <NavDropdown.Item ><Link to="/category/desiformal">Desi Formal</Link></NavDropdown.Item>
-                      <NavDropdown.Item><Link to="/category/Sanskari">Sanskari</Link></NavDropdown.Item>
-                      <NavDropdown.Item><Link to="/gender/men">All Men</Link></NavDropdown.Item>
-                    </NavDropdown>
-
-                    {/* <Nav.Link><FontAwesomeIcon icon={faSearch} /></Nav.Link> */}
-                    {/* <Nav.Link><FontAwesomeIcon icon={fa-user-o} /></Nav.Link> */}
-
-                  </Nav>
-                </Navbar.Collapse>
-
-              </Navbar>
-
+              <Menu></Menu>
             </Col>
-
           </Row>
         </section>
       </div>
+      {/* ----------------------latest arrrival women section-------------------------- */}
       <section className='latestw'>
         <Row>
-          <h2>Latest Arrivals</h2>
+          <h1>Latest Arrivals</h1>
           {
             data.map((pooh) => {
               return (
-
                 <Col xs={6} md={3} >
                   <div className='square'>
-
-                    <Link to={'/buy/' + pooh.title}>
+                    <Link to={'/buy/' + pooh.title + pooh.price1}>
                       <img src={pooh.images[1]} />
                       <p>{pooh.title}</p>
                       <h6>Rs.{pooh.price1}</h6>
-                      <Button variant="primary">Choose Option</Button>
+                      <Button className="btn">Choose Option</Button>
                     </Link>
                   </div>
                 </Col>
-
               )
             }
             )
           }
         </Row>
       </section>
+      {/* ---------------------latest arrivals men section-------------------------------- */}
       <section className='latestm'>
         <Row>
-          <h2>Latest Arrivals</h2>
+          <h1>Latest Arrivals</h1>
           {
             mens.map((men) => {
               return (
                 <Col xs={6} md={3}>
                   <div className='square'>
-                    <Link to={'/buy/' + men.id}>
-                      {/* <Card style={{ width: '18rem' }}> */}
+                    <Link to={'/buy/' + men.id}>                    
                       <img src={men.images} />
                       <p>{men.title}</p>
                       <h6>Rs.{men.price1}</h6>
-                      <Button variant="primary">Choose Option</Button>
+                      <Button className=''>Choose Option</Button>
                     </Link>
                   </div>
-
                 </Col>
               )
             }
             )
           }
         </Row>
-      
       </section>
-     
-     
-      {/* <section className='womencollections' >
-        <Row>
-          {
-            collections.map((women) => {
-              return (
-                <Col md={3}>
-                  <img src={women.photo} />
-                  <p>{women.title}</p>
-                </Col>
-
-              )
-            }
-            )
-          }
-        </Row>
-      </section> */}
-
-
-      {/* ------------------------Latest Arrivals Women Section----------------------- */}
-      {/* <section>
-        <Container>
-          <Row>
-            <Col>
-              <video width="100%" height="100%" autoPlay muted loop>
-                <source src={video} type="video/mp4" />
-              </video>
-            </Col>
-          </Row>
-        </Container>
-      </section>
-      <Row>
-        <Col>
-          <video width="100%" height="100%" autoPlay muted loop>
-            <source src={video} type="video/mp4" />
-          </video>
-        </Col>
-      </Row>
-      <section className='latestw'>
-        <Container>
-          <Row>
-            <Col>
-              <h2>Latest Arrivals</h2>
-            </Col>
-          </Row>
-          <Row>
-            <Col md={3}>
-              <div className='product'>
-                <img src={wm1} alt='' />
-                <p><b>Rs. 599.00</b></p>
-                <Button className='btn'><Link to="/strapkurti">Choose Button</Link></Button>
-              </div>
-            </Col>
-            <Col md={3}>
-              <div className='product'>
-                <img src={wm2} alt='' />
-                <p><b>Rs. 599.00</b></p>
-
-              </div>
-            </Col>
-            <Col md={3}>
-              <div className='product'>
-                <img src={wm3} alt='' />
-                <p><b>Rs. 599.00</b></p>
-
-              </div>
-            </Col>
-            <Col md={3}>
-              <div className='product'>
-                <img src={wm4} alt='' />
-                <p><b>Rs. 599.00</b></p>
-
-              </div>
-            </Col>
-            <Col md={3}>
-              <div className='product'>
-                <img src={wm4} alt='' />
-                <p><b>Rs. 599.00</b></p>
-
-              </div>
-            </Col>
-            <Col md={3}>
-              <div className='product'>
-                <img src={wm3} alt='' />
-                <p><b>Rs. 599.00</b></p>
-
-              </div>
-            </Col>
-            <Col md={3}>
-              <div className='product'>
-                <img src={wm2} alt='' />
-                <p><b>Rs. 599.00</b></p>
-
-              </div>
-            </Col>
-            <Col md={3}>
-              <div className='product'>
-                <img src={wm1} alt='' />
-                <p><b>Rs. 599.00</b></p>
-                <Button className='btn'>Choose Option</Button>
-              </div>
-            </Col>
-          </Row>
-        </Container>
-      </section> */}
-      {/*------ -------- Latest Arrivals Men Section-----------------*/}
-      {/* <section className='latestm'>
-        <Container>
-          <Row>
-            <Col>
-              <h2>Latest Arrivals</h2>
-            </Col>
-          </Row>
-          <Row>
-            <Col md={3}>
-              <div className='product'>
-                <img src={m1} alt='' />
-                <p><b>Rs. 799.00</b></p>
-              </div>
-            </Col>
-            <Col md={3}>
-              <div className='product'>
-                <img src={m2} alt='' />
-                <p><b>Rs. 799.00</b></p>
-
-              </div>
-            </Col>
-            <Col md={3}>
-              <div className='product'>
-                <img src={m3} alt='' />
-                <p><b>Rs. 799.00</b></p>
-
-              </div>
-            </Col>
-            <Col md={3}>
-              <div className='product'>
-                <img src={m4} alt='' />
-                <p><b>Rs. 799.00</b></p>
-
-              </div>
-            </Col>
-            <Col md={3}>
-              <div className='product'>
-                <img src={m4} alt='' />
-                <p><b>Rs. 799.00</b></p>
-
-              </div>
-            </Col>
-            <Col md={3}>
-              <div className='product'>
-                <img src={m3} alt='' />
-                <p><b>Rs. 799.00</b></p>
-
-              </div>
-            </Col>
-            <Col md={3}>
-              <div className='product'>
-                <img src={m2} alt='' />
-                <p><b>Rs. 799.00</b></p>
-
-              </div>
-            </Col>
-            <Col md={3}>
-              <div className='product'>
-                <img src={m1} alt='' />
-                <p><b>Rs. 799.00</b></p>
-              </div>
-            </Col>
-          </Row>
-        </Container>
-      </section> */}
-
+      {/* ------------------------------Women collections------------------------------ */}
       <section className='womencollections'>
         <Container>
           <Row>
@@ -1410,34 +1188,38 @@ const Home = () => {
           </Row>
           <Row>
             <Col md={3}>
-              <div className='productc'>
+              <div className='women-collection'>
                 <img src={pooh} alt='' />
-                <p>Sleeve-less-kurti</p>
               </div>
+              <p>Sleve-less-kurti <FaCircleArrowRight /></p>
+
             </Col>
             <Col md={3}>
-              <div className='productc'>
+              <div className='women-collection'>
                 <img src={naina} alt='' />
-                <p> FullSleeve-kurti</p>
               </div>
+              <p> FullSleeves kurti <FaCircleArrowRight /></p>
+
             </Col>
             <Col md={3}>
-              <div className='productc'>
+              <div className='women-collection'>
                 <img src={geet} alt='' />
-                <p>Bestseller</p>
               </div>
+              <p>Our Best Sellers <FaCircleArrowRight /></p>
+
             </Col>
             <Col md={3}>
-              <div className='productc'>
+              <div className='women-collection'>
                 <img src={aisa} alt='' />
-                <p>New-launch</p>
               </div>
+              <p>New launches <FaCircleArrowRight /></p>
             </Col>
           </Row>
-
         </Container>
       </section>
-      {/* <section className='mencollections'>
+      {/* ---------------------Men colllections------------------- */}
+
+      <section className='mencollections'>
         <Container>
           <Row>
             <Col>
@@ -1446,40 +1228,34 @@ const Home = () => {
           </Row>
           <Row>
             <Col md={3}>
-              <div className='productc' >
-
+              <div className='men-collection' >
                 <img src={halfstyle} alt='' />
-                <p><Link to="/halfstyle">Half Style Street Look</Link></p>
-
-
               </div>
+              <p>Half Shirts <FaCircleArrowRight /></p>
             </Col>
 
             <Col md={3}>
-              <div className='productc'>
+              <div className='men-collection'>
                 <img src={desi} alt='' />
-                <p><Link to="/desi">The Desi Formals</Link></p>
-
-
               </div>
+              <p>Full Shirts <FaCircleArrowRight /></p>
             </Col>
             <Col md={3}>
-              <div className='productc'>
+              <div className='men-collection'>
                 <img src={sanskari} alt='' />
-                <p><Link to="/sanskari">The Sanskari drips</Link></p>
-
               </div>
+              <p>The Sanskari drips <FaCircleArrowRight /></p>
             </Col>
             <Col md={3}>
-              <div className='productc'>
+              <div className='men-collection'>
                 <img src={all} alt='' />
-                <p><Link to="/allm">All Collections</Link></p>
-
               </div>
+              <p>All Collections <FaCircleArrowRight /></p>
             </Col>
           </Row>
         </Container>
-      </section> */}
+      </section>
+
       {/* <section className='slidearea'>
         <Container>
           <Row>

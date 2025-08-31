@@ -1,12 +1,8 @@
 import React from 'react'
-import { Container, Row, Col, Link, Card, Button } from 'react-bootstrap'
+import { Container, Row, Col, Button } from 'react-bootstrap'
 import { useParams } from 'react-router'
-import './categories.css'
-import Menu from './Menu'
-
-const Category = () => {
-  const { categoryName } = useParams();
-  console.log(categoryName)
+const Buy = () => {
+  const { productId } = useParams();
   const products = [
     {
       "id": 1,
@@ -1309,7 +1305,7 @@ const Category = () => {
         "naina103.webp",
         "naina104.webp",
 
-       
+
 
       ],
       "reviews": [
@@ -1382,7 +1378,7 @@ const Category = () => {
         "naina203.webp",
         "naina204.webp",
 
-       
+
 
       ],
       "reviews": [
@@ -1455,7 +1451,7 @@ const Category = () => {
         "naina303.webp",
         "naina304.webp",
 
-       
+
 
       ],
       "reviews": [
@@ -1559,48 +1555,65 @@ const Category = () => {
   ]
   return (
     <div>
-      <section >
+      {/* <h1> {productId}</h1> */}
+
+      <section>
         <Container>
           <Row>
-            <Col>
-            <Menu></Menu>
-            </Col>
-            <Col>
-            <div class="pooh-image">
-                      <img src= "pooh.webp" alt="" />
-                   </div>
-            </Col>
-          </Row>
-          <Row >
             {
-              // condition ? true part : false part
-              // products ?
-              products.filter((category) => category.category === categoryName).map((product) => {
-                return (
-          
-
-                  <Col md={3} className='category'>
-                    <div className='box'>
-                    <img src={"/" + product.images[0]} alt='' />
-                    <p>{product.title}</p>
-                    <p>Rs.{product.price1}</p>
-                    <Button className='btn'>Choose Option</Button>
-                    </div>
-                  </Col>
-                 
-                )
-
+              products.map((product) => {
+                <Col>
+                  <img src={product.images} alt='' />
+               
+                </Col>
               }
 
               )
-              //  :
-              //     "data not available"
             }
           </Row>
         </Container>
       </section>
+      <section>
+        <Row>
+        
+            
+            <Col>
+              <p>{productId}</p>
+              <p>Rs.</p>
+              <p>Size Chart</p>
+              <p>Size :</p>
+              <Row>
+                <Col md={2}> 
+                  <p>XS</p>
+                </Col>
+                <Col md={2}>
+                  <p>S</p>
+                </Col>
+                <Col md={2}>
+                  <p>M</p>
+                </Col>
+                <Col md={2}>
+                  <p>L</p>
+                </Col>
+                <Col md={2}>
+                  <p>XL</p>
+                </Col>
+                <Col md={2}>
+                  <p>XXL</p>
+                </Col>
+              </Row>
+              <p>Quantity:</p>
+              <Button>Add To Cart</Button>
+              <br></br>
+              <br></br>
+              <Button>Buy Now</Button>
+              </Col>
+              </Row>
+      </section>
+
+
     </div>
   )
 }
 
-export default Category
+export default Buy

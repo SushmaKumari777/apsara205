@@ -1,13 +1,13 @@
 .pooh-image{
-    width: 90%;
-    height: 250px;
+     width: 90%;
+   /* height: 250px;
     /* background-color: #641E16; */
-    border-radius: 10px 55px;
+    /* border-radius: 10px 55px;
     overflow: hidden;
     margin: 20px;
     box-shadow: 10px 10px 12px 0px rgba(0, 0, 0, 0.27);
     -webkit-box-shadow: 10px 10px 12px 0px rgba(0, 0, 0, 0.27);
-    -moz-box-shadow: 10px 10px 12px 0px rgba(0, 0, 0, 0.27);
+    -moz-box-shadow: 10px 10px 12px 0px rgba(0, 0, 0, 0.27); */
 
 }
 .category{
@@ -21,9 +21,14 @@ padding: 20px 20px;
 .category p{
     font-size: small;
 }
-.square{
-    padding: 10px;
+.box{
+    padding: 20px;
 }
-.square:hover{
-    box-shadow: 5px 5px 8px -1px #000000;
+.box:hover{
+    /* box-shadow: 5px 5px 8px -1px #000000; */
+}
+.btn{
+    width:30%;
+    color:white !important;
+    background-color:  #641E16 !important;
 }

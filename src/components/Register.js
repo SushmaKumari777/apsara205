@@ -5,16 +5,16 @@ import * as Yup from 'yup';
 import '../App.css'
 
 const SignupSchema = Yup.object().shape({
-   
+
     mobile: Yup.string()
         .required('Mobile number is required')
         .matches(/^[6-9]\d{9}$/, 'Enter a valid 10 Digit Mobile Number')
         .required('Required'),
     email: Yup.string().email('Invalid email').required('Required'),
     password: Yup.string()
-    .min(6, 'Minimum Six charecter required')
-    .max(50, 'Too Long!')
-    .required('Required'),
+        .min(6, 'Minimum Six charecter required')
+        .max(50, 'Too Long!')
+        .required('Required'),
 });
 const Register = () => {
     return (
@@ -22,13 +22,13 @@ const Register = () => {
             <Container>
                 <Row>
                     <Col>
-                      <Row>
-                        <Col className='bbb'>
-                        <h1>Registration</h1>
-                        </Col>
-                      </Row>
+                        <Row>
+                            <Col className='bbb'>
+                                <h1>Registration</h1>
+                            </Col>
+                        </Row>
                         <Formik
-                            initialValues={{                             
+                            initialValues={{
                                 mobile: '',
                                 email: '',
                                 password: '',

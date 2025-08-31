@@ -1581,7 +1581,7 @@ const Category = () => {
                   <Link to={'/buy/' + product.title}>
                   <Col md={3} className='category'>
                     <div className='square'>
-                    <img src={"/" + product.images[0]} alt='' />
+                    <img src={"/" + product.images} alt='' />
                     <p>{product.title}</p>
                     <p>Rs.{product.price1}</p>
                     <Button variant="primary">Choose Option</Button>

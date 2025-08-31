@@ -55,7 +55,7 @@ const Address = () => {
                     <Col>
                     <Row>
                         <Col className='bbb'>  
-                        <h1>Delivery</h1>
+                        <h1>Delivery Address</h1>
                         </Col>
                     </Row>
                       

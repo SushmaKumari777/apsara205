@@ -1,6 +1,8 @@
 import React from 'react'
 import { Container, Row, Col, Link, Card, Button } from 'react-bootstrap'
 import { useParams } from 'react-router'
+import Menu from './Menu'
+
 import './gender.css'
 const Gender = () => {
   const { idealFor } = useParams();
@@ -1046,18 +1048,26 @@ const Gender = () => {
   ]
   return (
     <div>
-      <section>
+           <section>
+          <Row>
+            <Col>
+              <Menu></Menu>
+            </Col>
+          </Row>
+        </section>
+      <section className='gender'>
         <Container>
           <Row>
             {
               products.filter((category) => category.idealFor === idealFor).map((product) => {
                 return (
-                  <Col md={3} className='gender'>
+                  <Col md={3}>
+                    <div className='box'>
                     <img src={"/" + product.images[0]} alt='' />
-                    <h5>{product.title}</h5>
+                    <h6>{product.title}</h6>
                     <p>Rs.{product.price1}</p>
-                    <Button variant="primary">Choose Option</Button>
-
+                    <Button className='btn'>Choose Option</Button>
+                    </div>
                   </Col>
                 )
               }

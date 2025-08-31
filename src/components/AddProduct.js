@@ -2,12 +2,14 @@ import React from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-import '../App.css'
+import './addProduct.css'
 import Gender from './Gender';
+import Menu from './Menu'
+
 
 const SignupSchema = Yup.object().shape({
     productName: Yup.string()
-        .min(2, 'Minimum too charecter required')
+        .min(3, 'Minimum three charecter required')
         .max(50, 'Too Long!')
         .required('Required'),
     gender: Yup.string().required('Required'),
@@ -27,12 +29,69 @@ const SignupSchema = Yup.object().shape({
 
 
 });
+const categories = [
+    {
+        "id": "1",
+        "categoryName": "Full-sleeves"
+    },
+    {
+        "id": "2",
+        "categoryName": "Half-sleeves"
+    }
+
+]
+const subcategories = [
+    {
+        "id": "1",
+        "subcategoryName": "Pooh"
+    },
+    {
+        "id": "2",
+        "subcategoryName": "Naina"
+    },
+    {
+        "id": "3",
+        "subcategoryName": "Geet"
+    },
+    {
+        "id": "4",
+        "subcategoryName": "Aisha"
+    },
+    {
+        "id": "5",
+        "subcategoryName": "Half-style"
+    },
+    {
+        "id": "6",
+        "subcategoryName": "Desi-formal"
+    },
+    {
+        "id": "7",
+        "subcategoryName": "Sanskari-drips"
+    },
+
+]
+const occasions = [
+    {
+        "id": "1",
+        "occasionName": "Office-wear"
+    },
+    {
+        "id": "2",
+        "occasionName": "Festive-wear"
+    }
+
+
+]
 const AddProduct = () => {
     return (
         <div>
-            <Container className='bbb'>
+            <Container>
                 <Row>
-                    <Col>
+                    <Col>  <Menu></Menu> </Col>
+                </Row>
+                <Row>
+                    <Col className='heading'>
                         <h1>Add Product</h1>
                         <Formik
                             initialValues={{
@@ -58,26 +117,28 @@ const AddProduct = () => {
                                 <Form>
                                     <div className='aaa'>
                                         <Row>
-                                            <Col md={3}>Product Name</Col>
-                                            <Col md={9}>
-                                                <Field name="productName" className='bbb' />
+                                            <Col md={3}  >
+                                                <b>Product Name</b>
+                                            </Col>
+                                            <Col md={9}  >
+                                                <Field name="productName" placeholder=" Enter Name" className='bbb' />
                                                 <div className='error'>
-                                                {errors.productName && touched.productName ? (
-                                                    <div>{errors.productName}</div>
-                                                ) : null}
+                                                    {errors.productName && touched.productName ? (
+                                                        <div>{errors.productName}</div>
+                                                    ) : null}
                                                 </div>
                                             </Col>
                                         </Row>
                                         <Row>
-                                            <Col md={3}>
-                                                <div id="my-radio-group">Gender</div>
+                                            <Col md={3} >
+                                                <div id="my-radio-group"><b>Gender</b></div>
 
                                             </Col>
-                                            <Col md={9}>
+                                            <Col md={9}  >
                                                 <div role="group" aria-labelledby="my-radio-group">
                                                     <label>
                                                         <Field type="radio" name="gender" value="Women" />
-                                                        Women
+                                                        Woemn
                                                     </label>
                                                     <label>
                                                         <Field type="radio" name="gender" value="Men" />
@@ -88,12 +149,25 @@ const AddProduct = () => {
                                             </Col>
                                         </Row>
                                         <Row>
-                                            <Col md={3}>Product-Category</Col>
+                                            <Col md={3}  >
+                                                <b>Product-Category</b
+                                                ></Col>
                                             <Col md={9}>
-                                                <Field name="productCategory" as="select" className='bbb'>
+                                                <Field name="productCategory" as="select" className='bbb' >
                                                     <option value="">Choose category</option>
-                                                    <option value="half-sleeves">Half-Sleeves</option>
-                                                    <option value="full-sleeves">Full-Sleeves</option>
+                                                    {/* <option value="half-sleeves">Half-Sleeves</option> */}
+                                                    {/* <option value="full-sleeves">Full-Sleeves</option> */}
+                                                    {
+                                                        categories.map((category) => {
+                                                            return (
+                                                                <option value={category.id}>{category.categoryName}</option>
+
+                                                            )
+
+                                                        }
+
+                                                        )
+                                                    }
                                                 </Field>
                                                 {errors.productCategory && touched.productCategory ? (
                                                     <div className='error'>{errors.productCategory}</div>
@@ -101,17 +175,30 @@ const AddProduct = () => {
                                             </Col>
                                         </Row>
                                         <Row>
-                                            <Col md={3}>Product-Subcategory</Col>
+                                            <Col md={3} >
+                                                <b>Product-Subcategory</b>
+                                            </Col>
                                             <Col md={9}>
                                                 <Field name="productsubCategory" as="select" className='bbb'>
                                                     <option value="">Choose Subcategory</option>
-                                                    <option value="pooh">Pooh</option>
+                                                    {/* <option value="pooh">Pooh</option>
                                                     <option value="naina">Naina</option>
                                                     <option value="geet">Geet</option>
                                                     <option value="aisha">Aisha</option>
                                                     <option value="half-style">Half-style</option>
                                                     <option value="desi-formals">Desi-formals</option>
-                                                    <option value="desi-formals">Sanskari-drips</option>
+                                                    <option value="desi-formals">Sanskari-drips</option> */}
+                                                    {
+                                                        subcategories.map((category) => {
+                                                            return (
+                                                                <option value={category.id}>{category.subcategoryName}</option>
+
+                                                            )
+
+                                                        }
+
+                                                        )
+                                                    }
                                                 </Field>
                                                 {errors.productsubCategory && touched.productsubCategory ? (
                                                     <div className='error'>{errors.productsubCategory}</div>
@@ -122,31 +209,33 @@ const AddProduct = () => {
 
 
                                         <Row>
-                                            <Col md={3}>Description</Col>
-                                            <Col md={9}>
+                                            <Col md={3} >
+                                                <b>Description</b>
+                                            </Col>
+                                            <Col md={9} >
                                                 <div>
                                                     {/* <label htmlFor="description">Description</label> */}
-                                                    <Field as="textarea" id="description" name="description" />
+                                                    <Field as="textarea" id="description" name="description" className="bbb" />
                                                     {/* <ErrorMessage name="description" component="div" className="error-message" /> */}
                                                 </div>
                                             </Col>
                                         </Row>
                                         <Row>
-                                            <Col md={3}>Price</Col>
-                                            <Col md={9}>
-                                                <Field name="price" className='bbb' />
+                                            <Col md={3} ><b>Price</b></Col>
+                                            <Col md={9}  >
+                                                <Field name="price" className="bbb" placeholder=" Enter Price"/>
                                                 {errors.price && touched.price ? (
                                                     <div className='error'>{errors.price}</div>
                                                 ) : null}
                                             </Col>
                                         </Row>
                                         <Row>
-                                            <Col md={3}>
-                                                <div id="my-radio-group">Material</div>
+                                            <Col md={3} >
+                                                <div id="my-radio-group"><b>Material</b></div>
 
                                             </Col>
-                                            <Col md={9}>
-                                                <div role="group" aria-labelledby="my-radio-group" className='bbb'>
+                                            <Col md={9} >
+                                                <div role="group" aria-labelledby="my-radio-group" >
                                                     <label>
                                                         <Field type="radio" name="material" value="cotton" />
                                                         Cotton
@@ -164,12 +253,23 @@ const AddProduct = () => {
                                             </Col>
                                         </Row>
                                         <Row>
-                                            <Col md={3}>Occasion</Col>
+                                            <Col md={3}><b>Occasion</b></Col>
                                             <Col md={9}>
                                                 <Field name="occasion" as="select" className='bbb'>
                                                     <option value="">Choose occasion</option>
-                                                    <option value="office">Office Wear</option>
-                                                    <option value="festive">Festive Wear</option>
+                                                    {/* <option value="office">Office Wear</option>
+                                                    <option value="festive">Festive Wear</option> */}
+                                                    {
+                                                        occasions.map((category) => {
+                                                            return (
+                                                                <option value={category.id}>{category.occasionName}</option>
+
+                                                            )
+
+                                                        }
+
+                                                        )
+                                                    }
                                                 </Field>
                                                 {errors.occasion && touched.occasion ? (
                                                     <div className='erroe'>{errors.occasion}</div>
@@ -177,9 +277,9 @@ const AddProduct = () => {
                                             </Col>
                                         </Row>
                                         <Row>
-                                            <Col md={3}>Discount</Col>
+                                            <Col md={3}><b>Discount</b></Col>
                                             <Col md={9}>
-                                                <Field name="discount" className='bbb' />
+                                                <Field name="discount" className='bbb' placeholder=" Enter Discount" />
                                                 {errors.discount && touched.discount ? (
                                                     <div className='error'>{errors.discount}</div>
                                                 ) : null}
@@ -187,7 +287,7 @@ const AddProduct = () => {
                                         </Row>
 
                                         <Row>
-                                            <Col>
+                                            <Col className="d-flex justify-content-center">
                                                 <button type="submit" className='btn'>Add Product</button>
                                             </Col>
                                         </Row>

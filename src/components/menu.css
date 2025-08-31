@@ -1,0 +1,30 @@
+/* .navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px 40px;
+    display: flex;
+    align-items: center;
+    color: white;
+    z-index: 2;
+    position: fixed;
+    top: 0;
+    color: white;
+    padding: 30px 40px;
+    z-index: 1000;
+  } */
+   .navbar{
+    display: flex;
+   }
+  .navbar a {
+    color: #641E16;
+    text-decoration: none;
+  }
+  .icons-nav .nav-link {
+    font-size: 20px;   
+    margin-left: 12px; 
+    color: #5a2a2a;  
+  }
+ 
+ 
