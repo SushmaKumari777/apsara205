@@ -1,0 +1,44 @@
+ 
+  .heading h1 {
+    text-align: center;
+    padding: 15px;
+  }
+  
+.background {
+    width: 80%;
+    padding: 10px;
+    border: solid 1px #641E16;
+    border-radius: 3px;
+    /* margin:25px 0; */
+    color: #641E16;
+    padding: 20px;
+    /* border:solid 1px black; */
+    margin: 10px auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 10px;
+  }
+  
+  .background .row {
+    margin: 10px 0;
+  }
+  
+  .boxes {
+    color: #641E16 !important;
+    
+  
+  }
+ 
+  .button {
+    color:white;
+    background-color: #641E16;
+    border-color: #641E16;
+    width:30%;
+    text-align: center;
+    align-items: center;
+  }
+  
+  
+  .error {
+    color: red;
+    font-size: 14px;
+  }

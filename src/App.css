@@ -137,18 +137,17 @@
 }
 
 .btn {
-  width: 100%;
-
-  color: #641E16 !important;
-  background-color: #ffffff !important;
-  border-color: #641E16 !important;
-  padding: 8px 16px !important;
+  /* width: 100%; */
+  color: #641E16;
+  background-color: #ffffff ;
+  border-color: #641E16 ;
+  padding: 8px 16px ;
 }
 
 .btn:hover {
-  color: #ffffff !important;
-  background-color: #641E16 !important;
-  border-color: #641E16 !important;
+  color: #ffffff ;
+  background-color: #641E16 ;
+  border-color: #641E16;
 }
 
 /* ----------------women collections------------------ */
@@ -334,7 +333,7 @@
   font-size: 14px;
 }
 
-
+/* 
 .button {
-  width: 100%;
-}
+  width: 50%;
+} */

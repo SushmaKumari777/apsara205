@@ -1125,11 +1125,13 @@ const Home = () => {
           {/* Your browser does not support HTML5 video. */}
         </video>
         <section>
-          <Row>
+        <Container>
+        <Row>
             <Col>
               <Menu></Menu>
             </Col>
           </Row>
+        </Container>
         </section>
       </div>
       {/* ----------------------latest arrrival women section-------------------------- */}
