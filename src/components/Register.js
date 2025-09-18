@@ -13,12 +13,12 @@ const SignupSchema = Yup.object().shape({
     // .required('Required'),
     mobile: Yup.string()
         .matches(/^[6-9]\d{9}$/, 'Enter a valid 10 Digit Mobile Number')
-        .required("Required"),
-    email: Yup.string().email('Invalid email').required('Required'),
+        .required("Mobile No Required"),
+    email: Yup.string().email('Invalid email').required('E-Mail Id Required'),
     password: Yup.string()
         .min(6, 'Minimum Six charecter required')
-        .max(50, 'Too Long!')
-        .required('Required'),
+        .max(50, 'Maximum 50 charecter required')
+        .required('Password Required'),
 });
 const Register = () => {
     return (
