@@ -1,12 +1,11 @@
-.aaa {
+/* .aaa {
     width: 80%;
     padding: 10px;
     border: solid 2px;
     border-radius: 20px;
-    /* margin:25px 0; */
+    
     color: #641E16;
     padding: 20px;
-    /* border:solid 1px black; */
     margin: 10px auto;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
    
@@ -33,15 +32,6 @@
     text-shadow: -1px -1px 5px rgba(0, 0, 0, 0.6);
   }
   
-  .button {
-    /* border-color: #641E16; */
-
-  }
-  .btn{
-    /* width:50%; */
-  /* margin-top: 50px; */
-
-  }
  
 
   .error {
@@ -50,4 +40,4 @@
   }
 .option{
     color: #641E16;
-}
+} */

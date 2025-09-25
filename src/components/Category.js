@@ -1309,7 +1309,7 @@ const Category = () => {
         "naina103.webp",
         "naina104.webp",
 
-       
+
 
       ],
       "reviews": [
@@ -1382,7 +1382,7 @@ const Category = () => {
         "naina203.webp",
         "naina204.webp",
 
-       
+
 
       ],
       "reviews": [
@@ -1455,7 +1455,7 @@ const Category = () => {
         "naina303.webp",
         "naina304.webp",
 
-       
+
 
       ],
       "reviews": [
@@ -1563,12 +1563,12 @@ const Category = () => {
         <Container>
           <Row>
             <Col>
-            <Menu></Menu>
+              <Menu></Menu>
             </Col>
             <Col>
-            <div class="pooh-image">
-                      <img src= "pooh.webp" alt="" />
-                   </div>
+              <div class="pooh-image">
+                <img src="pooh.webp" alt="" />
+              </div>
             </Col>
           </Row>
           <Row >
@@ -1577,17 +1577,17 @@ const Category = () => {
               // products ?
               products.filter((category) => category.category === categoryName).map((product) => {
                 return (
-          
+
 
                   <Col md={3} className='category'>
                     <div className='box'>
-                    <img src={"/" + product.images[0]} alt='' />
-                    <p>{product.title}</p>
-                    <p>Rs.{product.price1}</p>
-                    <Button className='btn'>Choose Option</Button>
+                      <img src={"/" + product.images[0]} alt='' />
+                      <p>{product.title}</p>
+                      <p>Rs.{product.price1}</p>
+                      <Button className='btn'>Choose Option</Button>
                     </div>
                   </Col>
-                 
+
                 )
 
               }

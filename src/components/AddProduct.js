@@ -223,7 +223,7 @@ const AddProduct = () => {
                                         <Row>
                                             <Col md={3} ><b>Price</b></Col>
                                             <Col md={9}  >
-                                                <Field name="price" className="bbb" placeholder=" Enter Price"/>
+                                                <Field name="price" className="bbb" placeholder=" Enter Price" />
                                                 {errors.price && touched.price ? (
                                                     <div className='error'>{errors.price}</div>
                                                 ) : null}
