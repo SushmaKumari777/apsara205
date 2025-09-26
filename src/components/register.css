@@ -2,10 +2,11 @@
   .heading h1 {
     text-align: center;
     padding: 15px;
+    color: #641E16;
   }
   
 .background {
-    width: 80%;
+    width: 60%;
     padding: 10px;
     border: solid 1px #641E16;
     border-radius: 3px;
@@ -22,17 +23,17 @@
     margin: 10px 0;
   }
   
-  .boxes {
+  /* .boxes {
     color: #641E16 !important;
     
   
-  }
+  } */
  
   .button {
     color:white;
     background-color: #641E16;
     border-color: #641E16;
-    width:30%;
+    width:40%;
     text-align: center;
     align-items: center;
   }

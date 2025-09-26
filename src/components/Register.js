@@ -4,6 +4,7 @@ import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import './register.css'
 import InputMask from 'react-input-mask';
+import Menu from './Menu'
 
 const SignupSchema = Yup.object().shape({
 
@@ -12,8 +13,10 @@ const SignupSchema = Yup.object().shape({
     //     .matches(/^[6-9]\d{9}$/, 'Enter a valid 10 Digit Mobile Number'),
     // .required('Required'),
     mobile: Yup.string()
-        .matches(/^[6-9]\d{9}$/, 'Enter a valid 10 Digit Mobile Number')
-        .required("Mobile No Required"),
+        // .matches(/^[6-9]\d{9}$/, 'Enter a valid 10 Digit Mobile Number')
+        // .required("Mobile No Required"),
+        .matches(/^[0-9]{10}$/, 'Invalid mobile number')
+        .required('Mobile number is required'),
     email: Yup.string().email('Invalid email').required('E-Mail Id Required'),
     password: Yup.string()
         .min(6, 'Minimum Six charecter required')
@@ -26,6 +29,12 @@ const Register = () => {
             <section>
                 <Container>
                     <Row>
+                        <Col>
+                            <Menu></Menu>
+                        </Col>
+                    </Row>
+                    <Row>
+
                         <Col>
                             <Row>
                                 <Col className='heading'>
