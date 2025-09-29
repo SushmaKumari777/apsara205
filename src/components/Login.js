@@ -1,73 +1,120 @@
-import React from 'react'
-import { Col, Container, Row } from 'react-bootstrap'
-import { Formik, Form, Field } from 'formik';
-import * as Yup from 'yup';
-import '../App.css'
+import React, { useState, useEffect } from "react";
+import { Container, Row, Col } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, Navigate } from "react-router-dom";
+import { Formik, Field, Form } from "formik";
+import * as Yup from "yup";
 
-const SignupSchema = Yup.object().shape({
-    email: Yup.string()
-        .email('Invalid email')
-        .required('Required'),
+import { login } from "../slices/auth";
+import { clearMessage } from "../slices/message";
 
-    password: Yup.string()
-        .min(8, 'Password must be at least 8 characters')
-        .required('Required'),
+
+const LoginSchema = Yup.object().shape({
+  username: Yup.string()
+    .matches(/^[6-9]\d{9}$/, 'Enter a valid 10-digit mobile number')
+    .required('Mobile number is required'),
+  password: Yup.string()
+    .min(8, 'Password must be at least 8 characters')
+    .required('Password is required'),
 });
 
 const Login = () => {
-    return (
-        <div>
-            <Container>
-                <Row>
-                    <Col>
-                       <Row>
-                        <Col className='bbb'>
-                        <h1>Sign in</h1>
-                        </Col>
-                       </Row>
-                        <Formik
-                            initialValues={{
-                                email: '',
-                                password: '',
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-                            }}
-                            validationSchema={SignupSchema}
-                            onSubmit={values => {
-                                console.log(values);
-                            }}
-                        >
-                            {({ errors, touched }) => (
-                                <Form>
-                                    <div className='aaa'>
-                                        <Row>
-                                            <Col md={3}>Email Id</Col>
-                                            <Col md={9}>
-                                                <Field name="email" type="email" className='bbb' />
-                                                {errors.email && touched.email ? <div className='error'>{errors.email}</div> : null}
-                                            </Col>
-                                        </Row>
+  const [loading, setLoading] = useState(false);
+  const { isLoggedIn } = useSelector((state) => state.auth);
+  const { message } = useSelector((state) => state.message);
 
-                                        <Row>
-                                            <Col md={3}>Password</Col>
-                                            <Col md={9}>
-                                                <Field name="password" type="password"  className='bbb'/>
-                                                {errors.password && touched.password ? <div className='error'>{errors.password}</div> : null}
-                                            </Col>
-                                        </Row>
-                                        <Row>
-                                            <Col>
-                                                <button type="submit" className='btn'>Continue</button>
-                                            </Col>
-                                        </Row>
-                                    </div>
-                                </Form>
-                            )}
-                        </Formik>
-                    </Col>
+  useEffect(() => {
+    dispatch(clearMessage());
+  }, [dispatch]);
+
+  const handleLogin = (formValue) => {
+    const { username, password } = formValue;
+    setLoading(true);
+
+    dispatch(login({ username, password }))
+      .unwrap()
+      .then(() => {
+        navigate("/home");
+      })
+      .catch(() => {
+        setLoading(false);
+      });
+  };
+
+  if (isLoggedIn) {
+    return <Navigate to="/home" />;
+  }
+
+  return (
+    <div>
+      <Container>
+        <Row>
+          <Col className="text-center my-4">
+            <h1>Sign In</h1>
+          </Col>
+        </Row>
+
+        {message && (
+          <Row>
+            <Col>
+              <div className="alert alert-danger text-center">{message}</div>
+            </Col>
+          </Row>
+        )}
+
+        <Formik
+          initialValues={{ username: '', password: '' }}
+          validationSchema={LoginSchema}
+          onSubmit={handleLogin}
+        >
+          {({ errors, touched }) => (
+            <Form>
+              <div className="form-container p-4 border rounded shadow-sm">
+                <Row className="mb-3">
+                  <Col md={3}><b>Mobile</b></Col>
+                  <Col md={9}>
+                    <Field name="username" className="form-control" />
+                    {errors.username && touched.username && (
+                      <div className="error">{errors.username}</div>
+                    )}
+                  </Col>
                 </Row>
-            </Container>
-        </div>
-    )
-}
 
-export default Login
+                <Row className="mb-3">
+                  <Col md={3}><b>Password</b></Col>
+                  <Col md={9}>
+                    <Field
+                      name="password"
+                      type="password"
+                      className="form-control"
+                    />
+                    {errors.password && touched.password && (
+                      <div className="error">{errors.password}</div>
+                    )}
+                  </Col>
+                </Row>
+
+                <Row>
+                  <Col className="text-center">
+                    <button
+                      type="submit"
+                      className="btn btn-primary"
+                      disabled={loading}
+                    >
+                      {loading ? 'Please wait...' : 'Continue'}
+                    </button>
+                  </Col>
+                </Row>
+              </div>
+            </Form>
+          )}
+        </Formik>
+      </Container>
+    </div>
+  );
+};
+
+export default Login;

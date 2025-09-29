@@ -21,6 +21,7 @@ import Register2 from './components/Register2';
 import Login from './components/Login';
 import Address from './components/Address';
 import Wishlist from './components/Wishlist';
+import Account from './components/Account';
 
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/address" element={<Address />} />
         <Route path="/wishlist" element={<Wishlist />} />
+        <Route path="/account" element={<Account />} />
       
 
 
