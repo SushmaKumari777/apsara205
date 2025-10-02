@@ -107,10 +107,44 @@ const AddProduct = () => {
 
                             }}
                             validationSchema={SignupSchema}
-                            onSubmit={values => {
-                                // same shape as initial values
-                                console.log(values);
+                            // onSubmit={values => {
+                            //     // same shape as initial values
+                            //     console.log(values);
+                            // }}
+                            onSubmit={async (values, { resetForm }) => {
+                                const formData = new FormData();
+                            
+                                // ✅ Append userId from Redux store
+                                formData.append("userId", currentUser.id);
+                            
+                                // ✅ Append other form fields
+                                Object.keys(values).forEach((key) => {
+                                    formData.append(key, values[key]);
+                                });
+                            
+                                // ✅ Append image files
+                                for (let i = 0; i < selectedImages.length; i++) {
+                                    formData.append("images", selectedImages[i]);
+                                }
+                            
+                                try {
+                                    const res = await axios.post("http://localhost:8090/api/ssproducts", formData, {
+                                        headers: {
+                                            "Content-Type": "multipart/form-data"
+                                        }
+                                    });
+                                    console.log("Upload success:", res.data);
+                                    alert("Product added successfully!");
+                                    resetForm();
+                                    setSelectedImages([]);
+                                } catch (err) {
+                                    console.error("Upload failed:", err);
+                                    alert("Failed to add product");
+                                }
                             }}
+                            
+
+
                         >
 
                             {({ errors, touched }) => (
@@ -272,7 +306,7 @@ const AddProduct = () => {
                                                     }
                                                 </Field>
                                                 {errors.occasion && touched.occasion ? (
-                                                    <div className='erroe'>{errors.occasion}</div>
+                                                    <div className='error'>{errors.occasion}</div>
                                                 ) : null}
                                             </Col>
                                         </Row>

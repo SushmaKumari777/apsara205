@@ -19,10 +19,10 @@ import logo from "../images/logo4.png";
 
 import { useDispatch } from 'react-redux';
 const Menu = () => {
-     const dispatch = useDispatch();
-    const { user: currentUser } = useSelector((state) => state.auth);
-    console.log(currentUser);
-    const handleLogout = () => {
+  const dispatch = useDispatch();
+  const { user: currentUser } = useSelector((state) => state.auth);
+  console.log(currentUser);
+  const handleLogout = () => {
     dispatch(logout());
     // navigate('/login'); // Redirect to login page
     window.location.reload();
@@ -85,16 +85,16 @@ const Menu = () => {
               <Nav.Link>
                 <FontAwesomeIcon icon={faSearch} />
               </Nav.Link>
-              
 
-               {
-                currentUser && currentUser.id!==""? 
-                    <Nav.Link as={Link} to="/account">
-                <FontAwesomeIcon icon={faUser} />
-              </Nav.Link>
-                : <Nav.Link as={Link} to="/login">
-                <FontAwesomeIcon icon={faUser} />
-              </Nav.Link>
+
+              {
+                currentUser && currentUser.id !== "" ?
+                  <Nav.Link as={Link} to="/account">
+                    <FontAwesomeIcon icon={faUser} />
+                  </Nav.Link>
+                  : <Nav.Link as={Link} to="/login">
+                    <FontAwesomeIcon icon={faUser} />
+                  </Nav.Link>
               }
               {/* <Nav.Link><FontAwesomeIcon icon={faHeart} /></Nav.Link> */}
               <Nav.Link>
@@ -103,11 +103,11 @@ const Menu = () => {
               <Nav.Link>
                 <FontAwesomeIcon icon={faCartShopping} />
               </Nav.Link>
-              
+
               {
-                currentUser && currentUser.id!==""? <Nav.Link onClick={handleLogout}>
-                <FontAwesomeIcon icon={faSignOut} />
-              </Nav.Link> : ""
+                currentUser && currentUser.id !== "" ? <Nav.Link onClick={handleLogout}>
+                  <FontAwesomeIcon icon={faSignOut} />
+                </Nav.Link> : ""
               }
             </Nav>
           </Navbar.Collapse>
