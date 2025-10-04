@@ -138,17 +138,17 @@
 
 .btn {
   /* width: 100%; */
-  color: #641E16;
-  background-color: #ffffff ;
-  border-color: #641E16 ;
+  /* color: #641E16; */
+  background-color: #641E16;
+  /* border-color: #641E16 ; */
   padding: 8px 16px ;
 }
 
-.btn:hover {
+/* .btn:hover {
   color: #ffffff ;
   background-color: #641E16 ;
   border-color: #641E16;
-}
+} */
 
 /* ----------------women collections------------------ */
 .womencollections h2 {

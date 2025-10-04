@@ -3,6 +3,8 @@ import { Container, Row, Col, Link, Card, Button } from 'react-bootstrap'
 import { useParams } from 'react-router'
 import './categories.css'
 import Menu from './Menu'
+import { FaHeart } from "react-icons/fa";
+
 
 const Category = () => {
   const { categoryName } = useParams();
@@ -1581,6 +1583,7 @@ const Category = () => {
 
                   <Col md={3} className='category'>
                     <div className='box'>
+                    {/* <FaHeart className="corner-icon" />  */}
                       <img src={"/" + product.images[0]} alt='' />
                       <p>{product.title}</p>
                       <p>Rs.{product.price1}</p>

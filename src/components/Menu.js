@@ -76,9 +76,9 @@ const Menu = () => {
               <Nav.Link>
                 <Link to="contactUs">Contact us</Link>
               </Nav.Link>
-              <Nav.Link>
+              {/* <Nav.Link>
                 <Link to="wishlist">Wishlist</Link>
-              </Nav.Link>
+              </Nav.Link> */}
               {/* <Nav.Link><Link to="Our story">Our story</Link></Nav.Link> */}
             </Nav>
             <Nav className="ms-auto icons-nav">

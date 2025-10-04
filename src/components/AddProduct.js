@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap'
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import './addProduct.css'
-import Gender from './Gender';
 import Menu from './Menu'
+import axios from 'axios';
+
+import { Navigate } from 'react-router-dom';
+import { useSelector } from "react-redux";
 
 
 const SignupSchema = Yup.object().shape({
@@ -12,21 +15,19 @@ const SignupSchema = Yup.object().shape({
         .min(3, 'Minimum three charecter required')
         .max(50, 'Too Long!')
         .required('Required'),
-    gender: Yup.string().required('Required'),
     productCategory: Yup.string().required('Required'),
-    productsubCategory: Yup.string().required('Required'),
-    description: Yup.string().required('Required'),
-    price: Yup.number()
+    productSubCategory: Yup.string().required('Required'),
+    productPrice: Yup.number()
         .positive('Price must be positive')
         .required('Required'),
-    material: Yup.string()
-        .required('Required'),
-    occasion: Yup.string().required('Required'),
-    discount: Yup.number()
+    productGender: Yup.string().required('Required'),
+    ProductOccasion: Yup.string().required('Required'),
+    productDiscount: Yup.number()
         .positive('Discount must be positive')
         .required('Required'),
-
-
+    productMaterial: Yup.string()
+        .required('Required'),
+    productDescription: Yup.string().required('Required'),
 
 });
 const categories = [
@@ -84,6 +85,17 @@ const occasions = [
 
 ]
 const AddProduct = () => {
+    const [selectedImages, setSelectedImages] = useState([]);
+
+    const handleFileChange = (e) => {
+        setSelectedImages(e.target.files);
+    };
+    const { user: currentUser } = useSelector((state) => state.auth);
+    console.log(currentUser)
+    if (!currentUser) {
+        return <Navigate to="/login" />;
+    }
+
     return (
         <div>
             <Container>
@@ -96,15 +108,14 @@ const AddProduct = () => {
                         <Formik
                             initialValues={{
                                 productName: '',
-                                gender: '',
                                 productCategory: '',
-                                productsubCategory: '',
-                                discription: '',
-                                price: '',
-                                material: '',
-                                occasion: '',
-                                discount: '',
-
+                                productSubCategory: '',
+                                productPrice: '',
+                                productGender: '',
+                                ProductOccasion: '',
+                                productDiscount: '',
+                                productMaterial: '',
+                                productDescription: '',
                             }}
                             validationSchema={SignupSchema}
                             // onSubmit={values => {
@@ -113,20 +124,20 @@ const AddProduct = () => {
                             // }}
                             onSubmit={async (values, { resetForm }) => {
                                 const formData = new FormData();
-                            
+
                                 // ✅ Append userId from Redux store
                                 formData.append("userId", currentUser.id);
-                            
+
                                 // ✅ Append other form fields
                                 Object.keys(values).forEach((key) => {
                                     formData.append(key, values[key]);
                                 });
-                            
+
                                 // ✅ Append image files
                                 for (let i = 0; i < selectedImages.length; i++) {
                                     formData.append("images", selectedImages[i]);
                                 }
-                            
+
                                 try {
                                     const res = await axios.post("http://localhost:8090/api/ssproducts", formData, {
                                         headers: {
@@ -142,9 +153,6 @@ const AddProduct = () => {
                                     alert("Failed to add product");
                                 }
                             }}
-                            
-
-
                         >
 
                             {({ errors, touched }) => (
@@ -319,6 +327,24 @@ const AddProduct = () => {
                                                 ) : null}
                                             </Col>
                                         </Row>
+
+
+                                        <Row>
+                                            <Col>Upload Images</Col>
+                                            <Col>
+                                                <input
+                                                    type="file"
+                                                    multiple
+                                                    accept="image/*"
+                                                    onChange={handleFileChange}
+                                                />
+                                                {selectedImages.length > 0 && (
+                                                    <div>{selectedImages.length} image(s) selected</div>
+                                                )}
+                                            </Col>
+                                        </Row>
+
+
 
                                         <Row>
                                             <Col className="d-flex justify-content-center">

@@ -21,6 +21,10 @@ import Login from './components/Login';
 import Address from './components/Address';
 import Wishlist from './components/Wishlist';
 import Account from './components/Account';
+import AdminProduct from './components/AdminProduct';
+import AdminOrders from './components/AdminOrders';
+import AddCategory from './components/AddCategory';
+import AdminDashboard from './components/AdminDashboard';
 
 
 function App() {
@@ -47,6 +51,10 @@ function App() {
         <Route path="/address" element={<Address />} />
         <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/account" element={<Account />} />
+        <Route path="/adminDashboard" element={<AdminDashboard />} />
+        <Route path="/adminProduct" element={<AdminProduct />} />
+        <Route path="/adminOrders" element={<AdminOrders />} />
+        <Route path="/addCategory" element={<AddCategory />} />
       
 
 

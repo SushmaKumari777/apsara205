@@ -7,10 +7,12 @@ import * as Yup from "yup";
 
 import { login } from "../slices/auth";
 import { clearMessage } from "../slices/message";
+import { FaRegUserCircle } from "react-icons/fa";
+import "./login.css";
 
 
 const LoginSchema = Yup.object().shape({
-  username: Yup.string()
+  mobile: Yup.string()
     .matches(/^[6-9]\d{9}$/, 'Enter a valid 10-digit mobile number')
     .required('Mobile number is required'),
   password: Yup.string()
@@ -31,10 +33,10 @@ const Login = () => {
   }, [dispatch]);
 
   const handleLogin = (formValue) => {
-    const { username, password } = formValue;
+    const { mobile, password } = formValue;
     setLoading(true);
 
-    dispatch(login({ username, password }))
+    dispatch(login({ mobile, password }))
       .unwrap()
       .then(() => {
         navigate("/home");
@@ -49,11 +51,16 @@ const Login = () => {
   }
 
   return (
-    <div>
+    <div className="background">
       <Container>
         <Row>
-          <Col className="text-center my-4">
-            <h1>Sign In</h1>
+          <Col className="text-center my-2">
+            <FaRegUserCircle className="login-icon"  />
+          </Col>
+        </Row>
+        <Row>
+          <Col className="text-center my-1">
+            <h1>Login</h1>
           </Col>
         </Row>
 
@@ -66,44 +73,55 @@ const Login = () => {
         )}
 
         <Formik
-          initialValues={{ username: '', password: '' }}
+          initialValues={{ mobile: '', password: '' }}
           validationSchema={LoginSchema}
           onSubmit={handleLogin}
         >
           {({ errors, touched }) => (
             <Form>
-              <div className="form-container p-4 border rounded shadow-sm">
+              <div>
+                <Row>
+                  <Col>
+                <b>  Mobile</b>
+                  </Col>
+                </Row>
                 <Row className="mb-3">
-                  <Col md={3}><b>Mobile</b></Col>
-                  <Col md={9}>
-                    <Field name="username" className="form-control" />
-                    {errors.username && touched.username && (
-                      <div className="error">{errors.username}</div>
+                  {/* <Col md={3}><b>Mobile</b></Col> */}
+                  <Col >
+                    <Field name="mobile" className="form-control" placeholder="Enter Mobile number" />
+                    {errors.mobile && touched.mobile && (
+                      <div className="error">{errors.mobile}</div>
                     )}
                   </Col>
                 </Row>
-
+                <Row>
+                  <Col>
+                <b>Password</b>
+                  </Col>
+                </Row>
                 <Row className="mb-3">
-                  <Col md={3}><b>Password</b></Col>
-                  <Col md={9}>
+                  {/* <Col md={3}><b>Password</b></Col> */}
+                  <Col>
                     <Field
                       name="password"
                       type="password"
                       className="form-control"
+                      placeholder="Enter Password"
                     />
                     {errors.password && touched.password && (
                       <div className="error">{errors.password}</div>
                     )}
                   </Col>
-                </Row>
-
+                  </Row>
                 <Row>
                   <Col className="text-center">
                     <button
+
                       type="submit"
                       className="btn btn-primary"
                       disabled={loading}
                     >
+
                       {loading ? 'Please wait...' : 'Continue'}
                     </button>
                   </Col>

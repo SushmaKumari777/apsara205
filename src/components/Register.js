@@ -3,13 +3,17 @@ import { Col, Container, Row, Button } from "react-bootstrap";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import "./register.css";
-import InputMask from "react-input-mask";
 import Menu from "./Menu";
 import { register } from "../slices/auth";
 import { clearMessage } from "../slices/message";
 import { useDispatch, useSelector } from "react-redux";
 
 const SignupSchema = Yup.object().shape({
+  username: Yup.string()
+    .matches(/^[a-zA-Z0-9_]+$/, "Only letters, numbers and underscores allowed")
+    .min(3, "Username must be at least 3 characters")
+    .max(20, "Username must be less than 20 characters")
+    .required("Username is required"),
   mobile: Yup.string()
     .matches(/^[6-9]\d{9}$/, "Enter a valid 10 Digit Mobile No. ")
     .required("Mobile No. is Mandetory!"),
@@ -29,11 +33,11 @@ const Register = () => {
     dispatch(clearMessage());
   }, [dispatch]);
   const handleRegister = (formValue) => {
-    const { mobile, email, password } = formValue;
+    const { username, mobile, email, password } = formValue;
 
     setSuccessful(false);
 
-    dispatch(register({ mobile, email, password }))
+    dispatch(register({ username, mobile, email, password }))
       .unwrap()
       .then(() => {
         setSuccessful(true);
@@ -55,11 +59,12 @@ const Register = () => {
             <Col>
               <Row>
                 <Col className="heading">
-                  <h1>Registration</h1>
+                  <h1>Create Account</h1>
                 </Col>
               </Row>
               <Formik
                 initialValues={{
+                  username: "",
                   mobile: "",
                   email: "",
                   password: "",
@@ -75,11 +80,14 @@ const Register = () => {
                   <Form>
                     <div className="background">
                       <Row>
-                        <Col md={3}>
-                          <b>Mobile</b>
+                      <Col>
+                          <b>Username</b>
                         </Col>
-                        <Col md={9}>
-                          <Field name="mobile" className="bbb" />
+                      </Row>
+                      <Row>
+                       
+                        <Col>
+                          <Field name="username" className="bbb" placeholder="Enter Full Name" />
                           {/*<InputMask mask="9999999999" maskChar={null} name="mobile" className='boxes' /> */}
 
                           <div className="error">
@@ -90,10 +98,31 @@ const Register = () => {
                         </Col>
                       </Row>
                       <Row>
-                        <Col md={3}>
-                          <b>Email Id</b>
+                      <Col>
+                          <b>Mobile</b>
                         </Col>
-                        <Col md={9}>
+                      </Row>
+                      <Row>
+                        
+                        <Col>
+                          <Field name="mobile" className="bbb" />
+                          {/*<InputMask mask="9999999999" maskChar={null} name="mobile" className='boxes' /> */}
+
+                          <div className="error">
+                            {errors.mobile && touched.mobile ? (
+                              <div>{errors.mobile}</div>
+                            ) : null}
+                          </div>
+                        </Col>
+                      </Row>
+                      <Row>
+                      <Col>
+                          <b>Email Address</b>
+                        </Col>
+                      </Row>
+                      <Row>
+                       
+                        <Col>
                           <Field name="email" type="email" className="boxes" />
                           <div className="error">
                             {errors.email && touched.email ? (
@@ -103,14 +132,18 @@ const Register = () => {
                         </Col>
                       </Row>
                       <Row>
-                        <Col md={3}>
+                      <Col>
                           <b>Password</b>
                         </Col>
-                        <Col md={9}>
+                      </Row>
+                      <Row>
+                        
+                        <Col>
                           <Field
                             name="password"
                             type="password"
                             className="boxes"
+
                           />
                           <div className="error">
                             {errors.password && touched.password ? (
@@ -121,41 +154,61 @@ const Register = () => {
                       </Row>
                       <Row>
                         <Col>
-                          <Button
-                            className="button"
-                            type="submit"
-                            align-items
-                            center
-                          >
-                            Submit
-                          </Button>
+                          <b>Confirm Password</b>
                         </Col>
                       </Row>
-                    </div>
+                    
+                    <Row className="mb-3">
+                      {/* <Col md={3}><b>Password</b></Col> */}
+                      <Col>
+                        <Field
+                          name="password"
+                          type="password"
+                          className="form-control"
+                          placeholder="Enter Password"
+                        />
+                        {errors.password && touched.password && (
+                          <div className="error">{errors.password}</div>
+                        )}
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col>
+                        <Button
+                          className="button"
+                          type="submit"
+                          align-items
+                          center
+                        >
+                          Sign up
+                        </Button>
+                      </Col>
+                    </Row>
+                  </div>
                   </Form>
                 )}
-              </Formik>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              {message && (
-                <div className="form-group">
-                  <div
-                    className={
-                      successful ? "alert alert-success" : "alert alert-danger"
-                    }
-                    role="alert"
-                  >
-                    {message}
-                  </div>
+            </Formik>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            {message && (
+              <div className="form-group">
+                <div
+                  className={
+                    successful ? "alert alert-success" : "alert alert-danger"
+                  }
+                  role="alert"
+                >
+                  {message}
                 </div>
-              )}
-            </Col>
-          </Row>
-        </Container>
-      </section>
-    </div>
+              </div>
+            )}
+          </Col>
+        </Row>
+      </Container>
+    </section>
+    </div >
   );
 };
 
