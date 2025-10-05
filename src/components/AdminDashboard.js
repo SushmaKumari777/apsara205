@@ -1,10 +1,10 @@
 import React from 'react'
-import { Link } from "react-router";
+import { Link } from 'react-router'
 
 const AdminDashboard = () => {
   return (
     <div>
-      <p><Link to="addCategory">AddCategory</Link> </p>
+      <p><Link to = {'/AddCategory'} >Add Category</Link></p>
     </div>
   )
 }

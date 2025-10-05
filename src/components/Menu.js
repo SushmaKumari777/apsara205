@@ -105,7 +105,8 @@ const Menu = () => {
               </Nav.Link>
 
               {
-                currentUser && currentUser.id !== "" ? <Nav.Link onClick={handleLogout}>
+                currentUser && currentUser.id !== "" ?
+                 <Nav.Link onClick={handleLogout}>
                   <FontAwesomeIcon icon={faSignOut} />
                 </Nav.Link> : ""
               }

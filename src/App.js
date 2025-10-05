@@ -25,6 +25,7 @@ import AdminProduct from './components/AdminProduct';
 import AdminOrders from './components/AdminOrders';
 import AddCategory from './components/AddCategory';
 import AdminDashboard from './components/AdminDashboard';
+import Orders from './components/Orders';
 
 
 function App() {
@@ -55,6 +56,7 @@ function App() {
         <Route path="/adminProduct" element={<AdminProduct />} />
         <Route path="/adminOrders" element={<AdminOrders />} />
         <Route path="/addCategory" element={<AddCategory />} />
+        <Route path="/orders" element={<Orders />} />
       
 
 

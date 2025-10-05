@@ -9,11 +9,11 @@ import { clearMessage } from "../slices/message";
 import { useDispatch, useSelector } from "react-redux";
 
 const SignupSchema = Yup.object().shape({
-  username: Yup.string()
-    .matches(/^[a-zA-Z0-9_]+$/, "Only letters, numbers and underscores allowed")
-    .min(3, "Username must be at least 3 characters")
-    .max(20, "Username must be less than 20 characters")
-    .required("Username is required"),
+  // username: Yup.string()
+  //   .matches(/^[a-zA-Z0-9_]+$/, "Only letters, numbers and underscores allowed")
+  //   .min(3, "Username must be at least 3 characters")
+  //   .max(20, "Username must be less than 20 characters")
+  //   .required("Username is required"),
   mobile: Yup.string()
     .matches(/^[6-9]\d{9}$/, "Enter a valid 10 Digit Mobile No. ")
     .required("Mobile No. is Mandetory!"),
@@ -33,11 +33,11 @@ const Register = () => {
     dispatch(clearMessage());
   }, [dispatch]);
   const handleRegister = (formValue) => {
-    const { username, mobile, email, password } = formValue;
+    const { mobile, email, password } = formValue;
 
     setSuccessful(false);
 
-    dispatch(register({ username, mobile, email, password }))
+    dispatch(register({ mobile, email, password }))
       .unwrap()
       .then(() => {
         setSuccessful(true);
@@ -64,7 +64,7 @@ const Register = () => {
               </Row>
               <Formik
                 initialValues={{
-                  username: "",
+                  // username: "",
                   mobile: "",
                   email: "",
                   password: "",
@@ -79,7 +79,7 @@ const Register = () => {
                 {({ errors, touched }) => (
                   <Form>
                     <div className="background">
-                      <Row>
+                      {/* <Row>
                       <Col>
                           <b>Username</b>
                         </Col>
@@ -88,15 +88,13 @@ const Register = () => {
                        
                         <Col>
                           <Field name="username" className="bbb" placeholder="Enter Full Name" />
-                          {/*<InputMask mask="9999999999" maskChar={null} name="mobile" className='boxes' /> */}
-
                           <div className="error">
                             {errors.username && touched.username ? (
                               <div>{errors.username}</div>
                             ) : null}
                           </div>
                         </Col>
-                      </Row>
+                      </Row> */}
                       <Row>
                       <Col>
                           <b>Mobile</b>
@@ -152,14 +150,13 @@ const Register = () => {
                           </div>
                         </Col>
                       </Row>
-                      <Row>
+                      {/* <Row>
                         <Col>
                           <b>Confirm Password</b>
                         </Col>
                       </Row>
                     
                     <Row className="mb-3">
-                      {/* <Col md={3}><b>Password</b></Col> */}
                       <Col>
                         <Field
                           name="password"
@@ -171,7 +168,7 @@ const Register = () => {
                           <div className="error">{errors.password}</div>
                         )}
                       </Col>
-                    </Row>
+                    </Row> */}
                     <Row>
                       <Col>
                         <Button

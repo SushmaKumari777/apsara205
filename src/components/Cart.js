@@ -5,7 +5,13 @@ const Cart = () => {
 
     return (
         <div>
-            <section>
+            
+            <Container>
+                <Row>
+
+                </Row>
+            </Container>
+            {/* <section>
                 <Container>
                     <Row>
                         <Col>
@@ -45,7 +51,7 @@ const Cart = () => {
                         </Col>
                     </Row>
                 </Container>
-            </section>
+            </section> */}
 
         </div>
     )
