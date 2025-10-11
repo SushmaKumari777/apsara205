@@ -85,7 +85,6 @@ const Register = () => {
                         </Col>
                       </Row>
                       <Row>
-                       
                         <Col>
                           <Field name="username" className="bbb" placeholder="Enter Full Name" />
                           <div className="error">

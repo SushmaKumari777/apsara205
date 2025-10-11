@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./menu.css";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -6,7 +6,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import { Link } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from "@fortawesome/free-regular-svg-icons";
+import { faHome, faUser } from "@fortawesome/free-regular-svg-icons";
 import { faCartShopping, faSignOut } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
@@ -16,8 +16,12 @@ import { useSelector } from "react-redux";
 // import logo from '..logo1.png'
 import logo from "../images/logo4.png";
 // import logo from 'public/images/logo.png'
+import { RiHome2Line } from "react-icons/ri";
 
 import { useDispatch } from 'react-redux';
+import { FaSearch } from "react-icons/fa";
+import { CiSearch } from "react-icons/ci";
+
 const Menu = () => {
   const dispatch = useDispatch();
   const { user: currentUser } = useSelector((state) => state.auth);
@@ -27,9 +31,11 @@ const Menu = () => {
     // navigate('/login'); // Redirect to login page
     window.location.reload();
   };
+  const [searchTerm, setSearchTerm] = useState("");
 
   return (
     <div>
+      <div></div>
       <Navbar expand="lg">
         <Container fluid>
           <Navbar.Brand href="#home" className="brand">
@@ -40,7 +46,7 @@ const Menu = () => {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link href="#home">
-                <Link to="/home">Home</Link>
+                <Link to="/home"><RiHome2Line /> Home</Link>
               </Nav.Link>
               {/* <Nav.Link><Link to="/jsr">JSR</Link></Nav.Link> */}
               {/* <Nav.Link><Link to="/example">New</Link></Nav.Link> */}
@@ -56,6 +62,9 @@ const Menu = () => {
                   <Link to="/category/geet">geet</Link>
                 </NavDropdown.Item>
                 <NavDropdown.Item>
+                  <Link to="/category/aisha">Aisha</Link>
+                </NavDropdown.Item>
+                <NavDropdown.Item>
                   <Link to="/gender/women">All Women</Link>
                 </NavDropdown.Item>
               </NavDropdown>
@@ -64,17 +73,20 @@ const Menu = () => {
                   <Link to="/category/halfStyle">Half Style Street Look</Link>
                 </NavDropdown.Item>
                 <NavDropdown.Item>
-                  <Link to="/category/desiformal">Desi Formal</Link>
+                  <Link to="/category/desiformal">Desi Formals</Link>
                 </NavDropdown.Item>
                 <NavDropdown.Item>
-                  <Link to="/category/Sanskari">Sanskari</Link>
+                  <Link to="/category/Sanskari">Sanskari Drips</Link>
+                </NavDropdown.Item>
+                <NavDropdown.Item>
+                  <Link to="/category/allRounder">All Rounder</Link>
                 </NavDropdown.Item>
                 <NavDropdown.Item>
                   <Link to="/gender/men">All Men</Link>
                 </NavDropdown.Item>
               </NavDropdown>
               <Nav.Link>
-                <Link to="contactUs">Contact us</Link>
+                <Link to="/contact">Contact us</Link>
               </Nav.Link>
               {/* <Nav.Link>
                 <Link to="wishlist">Wishlist</Link>
@@ -82,8 +94,35 @@ const Menu = () => {
               {/* <Nav.Link><Link to="Our story">Our story</Link></Nav.Link> */}
             </Nav>
             <Nav className="ms-auto icons-nav">
-              <Nav.Link>
-                <FontAwesomeIcon icon={faSearch} />
+              <Nav.Link >
+                <div style={{ position: "relative", width: "250px" }}>
+                  {/* <FaSearch */}
+                  <CiSearch
+                    style={{
+                      position: "absolute",
+                      left: "12px",
+                      top: "50%",
+                      transform: "translateY(-50%)",
+                      color: "gray",
+                      fontSize: "18px",
+                    }}
+                  />
+                  <input
+                    type="text"
+                    placeholder="Search for Products....."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    style={{
+                      width: "100%",
+                      padding: "5px 5px 5px 35px",
+                      borderRadius: "5px",
+                      border: "1px solid #F0F5FF",
+                      backgroundColor: "#F0F5FF",
+                      outline: "none",
+                      fontSize: "15px",
+                    }}
+                  />
+                </div>
               </Nav.Link>
 
 
@@ -97,18 +136,18 @@ const Menu = () => {
                   </Nav.Link>
               }
               {/* <Nav.Link><FontAwesomeIcon icon={faHeart} /></Nav.Link> */}
-              <Nav.Link>
+              <Nav.Link as={Link} to="/wishlist">
                 <FontAwesomeIcon icon={faHeartRegular} />
               </Nav.Link>
-              <Nav.Link>
+              <Nav.Link as={Link} to="/cart"> 
                 <FontAwesomeIcon icon={faCartShopping} />
               </Nav.Link>
 
               {
                 currentUser && currentUser.id !== "" ?
-                 <Nav.Link onClick={handleLogout}>
-                  <FontAwesomeIcon icon={faSignOut} />
-                </Nav.Link> : ""
+                  <Nav.Link onClick={handleLogout}>
+                    <FontAwesomeIcon icon={faSignOut} />
+                  </Nav.Link> : ""
               }
             </Nav>
           </Navbar.Collapse>

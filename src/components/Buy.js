@@ -3,7 +3,10 @@ import { Container, Row, Col, Button } from 'react-bootstrap'
 import { useParams } from 'react-router'
 const Buy = () => {
   const { productId } = useParams();
-
+  
+function clickHandler(){
+  console.log("add to cart");
+}
   return (
     <div>   
   <section>
@@ -42,7 +45,7 @@ const Buy = () => {
                 </Col>
               </Row> */}
               <p>Quantity:</p>
-              <Button>Add To Cart</Button>
+              <Button onClick={clickHandler}>Add To Cart</Button>
               <br></br>
               <br></br>
               <Button>Buy Now</Button>

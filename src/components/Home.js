@@ -24,6 +24,8 @@ import { FaCircleArrowRight } from "react-icons/fa6";
 // import Carousel from 'react-bootstrap/Carousel';
 // import ExampleCarouselImage from '../images/aisa.webp';
 // import { FaBeer } from "react-icons/fa";
+// import { FaHeart, FaRegHeart } from "react-icons/fa";
+import { IoIosHeartEmpty } from "react-icons/io";
 
 const Home = () => {
   // -------------------Women section------------------------
@@ -1125,13 +1127,13 @@ const Home = () => {
           {/* Your browser does not support HTML5 video. */}
         </video>
         <section>
-        <Container>
-        <Row>
-            <Col>
-              <Menu></Menu>
-            </Col>
-          </Row>
-        </Container>
+          <Container>
+            <Row>
+              <Col>
+                <Menu></Menu>
+              </Col>
+            </Row>
+          </Container>
         </section>
       </div>
       {/* ----------------------latest arrrival women section-------------------------- */}
@@ -1144,10 +1146,11 @@ const Home = () => {
                 <Col xs={6} md={3} >
                   <div className='square'>
                     <Link to={'/buy/' + pooh.title + pooh.price1}>
+                      <IoIosHeartEmpty className='wishlist' />
                       <img src={pooh.images[1]} />
                       <p>{pooh.title}</p>
                       <h6>Rs.{pooh.price1}</h6>
-                      <Button className="btn">Choose Option</Button>
+                      <Button className="button">Add to Cart</Button>
                     </Link>
                   </div>
                 </Col>
@@ -1166,11 +1169,12 @@ const Home = () => {
               return (
                 <Col xs={6} md={3}>
                   <div className='square'>
-                    <Link to={'/buy/' + men.id}>                    
+                    <Link to={'/buy/' + men.id}>
+                      <IoIosHeartEmpty className='wishlist' />
                       <img src={men.images} />
                       <p>{men.title}</p>
                       <h6>Rs.{men.price1}</h6>
-                      <Button className=''>Choose Option</Button>
+                      <Button className='button' > Add to Cart</Button>
                     </Link>
                   </div>
                 </Col>

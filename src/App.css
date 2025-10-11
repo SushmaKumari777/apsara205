@@ -8,9 +8,10 @@
 
 }
 
+/* 
 .toparea p {
   margin: 0;
-}
+} */
 
 .video-section {
   position: relative;
@@ -77,9 +78,18 @@
 }
 
 /* -----------------------------products latest arrivals-----------------------  */
+.wishlist {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  color: gray;
+  cursor: pointer;
+}
+
 .square {
   width: 220px;
-  height: 430px;
+  height: 400px;
   padding: 20px;
   margin: 10px;
   display: flex;
@@ -88,6 +98,9 @@
   border-radius: 8px;
   display: flex;
   background-color: #ffffff;
+  position: relative;
+  /* keep this */
+  text-align: center;
 }
 
 .square img {
@@ -135,20 +148,6 @@
   overflow: hidden;
 
 }
-
-.btn {
-  /* width: 100%; */
-  /* color: #641E16; */
-  background-color: #641E16;
-  /* border-color: #641E16 ; */
-  padding: 8px 16px ;
-}
-
-/* .btn:hover {
-  color: #ffffff ;
-  background-color: #641E16 ;
-  border-color: #641E16;
-} */
 
 /* ----------------women collections------------------ */
 .womencollections h2 {
@@ -309,9 +308,7 @@
 }
 
 .bbb {
-
   color: #641E16 !important;
-
 }
 
 .bbb h1 {
@@ -320,20 +317,38 @@
   text-shadow: -1px -1px 5px rgba(0, 0, 0, 0.6);
 }
 
-/* .button {
-  border-color: #641E16;
-  width:100%;
-} */
-
-/* width:100%;
-  padding:0 5px;
-} */
 .error {
   color: red;
+ 
   font-size: 14px;
 }
 
-/* 
 .button {
-  width: 50%;
-} */
+  /* width: 100%; */
+  color: #641E16 !important;
+  background-color: #ffffff !important;
+  border-color: #641E16 !important;
+}
+/* --------------------DASHBOARD-------------------------------------- */
+
+
+.dashboard{
+  padding: 20px;
+}
+.front{
+  width: 100%;
+  text-align: center;
+border:#641E16 solid 1px;
+border-radius: 10px;
+
+}
+.sidebar{
+  width: 100%;
+  border:#641E16 solid 1px ;
+  border-radius: 5px;
+
+
+}
+.sidebar ul{
+  list-style: none;
+}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, Navigate } from "react-router-dom";
 import { Formik, Field, Form } from "formik";
@@ -9,6 +9,7 @@ import { login } from "../slices/auth";
 import { clearMessage } from "../slices/message";
 import { FaRegUserCircle } from "react-icons/fa";
 import "./login.css";
+import Menu from "./Menu";
 
 
 const LoginSchema = Yup.object().shape({
@@ -19,6 +20,7 @@ const LoginSchema = Yup.object().shape({
     .min(8, 'Password must be at least 8 characters')
     .required('Password is required'),
 });
+
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -50,87 +52,99 @@ const Login = () => {
     return <Navigate to="/home" />;
   }
 
-  return (
-    <div className="background">
-      <Container>
-        <Row>
-          <Col className="text-center my-2">
-            <FaRegUserCircle className="login-icon"  />
-          </Col>
-        </Row>
-        <Row>
-          <Col className="text-center my-1">
-            <h1>Login</h1>
-          </Col>
-        </Row>
 
-        {message && (
+
+  return (
+    <div>
+      <Row>
+        <Col>
+          <Menu></Menu>
+        </Col>
+      </Row>
+
+      <div className="background">
+
+        <Container>
+
           <Row>
-            <Col>
-              <div className="alert alert-danger text-center">{message}</div>
+            <Col className="text-center my-2">
+              <FaRegUserCircle className="login-icon" />
             </Col>
           </Row>
-        )}
+          <Row>
+            <Col className="text-center my-1">
+              <h1>Login</h1>
+            </Col>
+          </Row>
 
-        <Formik
-          initialValues={{ mobile: '', password: '' }}
-          validationSchema={LoginSchema}
-          onSubmit={handleLogin}
-        >
-          {({ errors, touched }) => (
-            <Form>
-              <div>
-                <Row>
-                  <Col>
-                <b>  Mobile</b>
-                  </Col>
-                </Row>
-                <Row className="mb-3">
-                  {/* <Col md={3}><b>Mobile</b></Col> */}
-                  <Col >
-                    <Field name="mobile" className="form-control" placeholder="Enter Mobile number" />
-                    {errors.mobile && touched.mobile && (
-                      <div className="error">{errors.mobile}</div>
-                    )}
-                  </Col>
-                </Row>
-                <Row>
-                  <Col>
-                <b>Password</b>
-                  </Col>
-                </Row>
-                <Row className="mb-3">
-                  {/* <Col md={3}><b>Password</b></Col> */}
-                  <Col>
-                    <Field
-                      name="password"
-                      type="password"
-                      className="form-control"
-                      placeholder="Enter Password"
-                    />
-                    {errors.password && touched.password && (
-                      <div className="error">{errors.password}</div>
-                    )}
-                  </Col>
-                  </Row>
-                <Row>
-                  <Col className="text-center">
-                    <button
-
-                      type="submit"
-                      className="btn btn-primary"
-                      disabled={loading}
-                    >
-
-                      {loading ? 'Please wait...' : 'Continue'}
-                    </button>
-                  </Col>
-                </Row>
-              </div>
-            </Form>
+          {message && (
+            <Row>
+              <Col>
+                <div className="alert alert-danger text-center">{message}</div>
+              </Col>
+            </Row>
           )}
-        </Formik>
-      </Container>
+
+          <Formik
+            initialValues={{ mobile: '', password: '' }}
+            validationSchema={LoginSchema}
+            onSubmit={handleLogin}
+          >
+            {({ errors, touched }) => (
+              <Form>
+                <div>
+                  <Row>
+                    <Col>
+                      <b>  Mobile</b>
+                    </Col>
+                  </Row>
+                  <Row className="mb-3">
+                    {/* <Col md={3}><b>Mobile</b></Col> */}
+                    <Col >
+                      <Field name="mobile" className="form-control" placeholder="Enter Mobile number" />
+                      {errors.mobile && touched.mobile && (
+                        <div className="error">{errors.mobile}</div>
+                      )}
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col>
+                      <b>Password</b>
+                    </Col>
+                  </Row>
+                  <Row className="mb-3">
+                    {/* <Col md={3}><b>Password</b></Col> */}
+                    <Col>
+                      <Field
+                        name="password"
+                        type="password"
+                        className="form-control"
+                        placeholder="Enter Password"
+                      />
+                      {errors.password && touched.password && (
+                        <div className="error">{errors.password}</div>
+                      )}
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col className="text-center">
+                      <Button
+
+                        type="submit"
+                        className="btn btn-primary"
+                        disabled={loading}
+                      >
+
+                        {loading ? 'Please wait...' : 'Continue'}
+                      </Button>
+                    </Col>
+                  </Row>
+                </div>
+              </Form>
+            )}
+          </Formik>
+        </Container>
+      </div>
     </div>
   );
 };

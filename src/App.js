@@ -21,11 +21,13 @@ import Login from './components/Login';
 import Address from './components/Address';
 import Wishlist from './components/Wishlist';
 import Account from './components/Account';
-import AdminProduct from './components/AdminProduct';
+import AdminProduct from './components/AdminProducts';
 import AdminOrders from './components/AdminOrders';
 import AddCategory from './components/AddCategory';
 import AdminDashboard from './components/AdminDashboard';
 import Orders from './components/Orders';
+import Contact from './components/Contact';
+import Example2 from './components/Example2';
 
 
 function App() {
@@ -57,6 +59,8 @@ function App() {
         <Route path="/adminOrders" element={<AdminOrders />} />
         <Route path="/addCategory" element={<AddCategory />} />
         <Route path="/orders" element={<Orders />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/example2" element={<Example2 />} />
       
 
 

@@ -1,21 +1,20 @@
-import React, { useState } from 'react'
+import React from 'react'
+import Menu from "./Menu";
+import { Col, Container, Row, Button } from "react-bootstrap";
 
 const Wishlist = () => {
-    const [count,setCount]=useState(10);
-    const [name,setName]=useState("");
-    const increment=()=>{
-        setCount(count+1);
-    }
-        const decrement=()=>{
-        setCount(count-1);
-    }
-  return (
-    <div>
-      <p>Current count value is{count}</p>
-      <button onClick={increment}>+</button>
-      <button onClick={decrement}>-</button>
-    </div>
-  )
+    return (
+        <div>
+            <Row>
+                <Col>
+                    <Menu></Menu>
+                </Col>
+            </Row>
+            <div>
+                <h1>Wishlist</h1>
+            </div>
+        </div>
+    )
 }
 
-export default Wishlist;
+export default Wishlist

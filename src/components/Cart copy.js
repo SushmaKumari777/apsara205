@@ -20,7 +20,7 @@
 //             <Container className="cart-container mt-5">
 //       <Row>
 //         <Col>
-//           <h2 className="text-center mb-4">🛍️ Your Cart</h2>
+//           <h2 className="text-center mb-4"> Your Cart</h2>
 
 //           {cartItems.length === 0 ? (
 //             <h4 className="text-center">Your cart is empty</h4>

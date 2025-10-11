@@ -29,17 +29,12 @@
   
   } */
  
-  .button {
-    color:white;
-    background-color: #641E16;
+  /* .button {
+    color:#641E16 !important;
+    background-color: white !important;
     border-color: #641E16;
     width:40%;
     text-align: center;
     align-items: center;
-  }
+  } */
   
-  
-  .error {
-    color: red;
-    font-size: 14px;
-  }
