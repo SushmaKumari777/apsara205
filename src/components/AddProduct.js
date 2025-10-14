@@ -347,7 +347,7 @@ import { Button, Col, Container, Row } from 'react-bootstrap';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
-import './../App.css';
+import './AddProduct.css';
 
 import { Navigate } from 'react-router-dom';
 import { useSelector } from "react-redux";
@@ -402,6 +402,9 @@ const AddProduct = () => {
                 <Row>
                     <Col><Menu></Menu> </Col>
                 </Row>
+                <Row className="d-flex justify-content-between align-items-center mb-3">
+                    <Col><h1>Create Product</h1> </Col>
+                </Row>
                 <Row>
                     <Col>
                     <Formik
@@ -454,16 +457,16 @@ const AddProduct = () => {
                             <div className='aaa'>
                                 <Container>
                                     <Row>
-                                        <Col md={3}><label>Product Name</label></Col>
-                                        <Col md={9}>
+                                        <Col md={6}><label>Product Name</label></Col>
+                                        <Col md={6}>
                                             <Field name="productName" className="inputbox" />
                                             {errors.productName && touched.productName && <div className='error'>{errors.productName}</div>}
                                         </Col>
                                     </Row>
 
                                     <Row>
-                                        <Col md={3}><label>Product Category</label></Col>
-                                        <Col>
+                                        <Col md={6}><label>Product Category</label></Col>
+                                        <Col md={6}>
                                             <Field name="productCategory" as="select" className="inputbox">
                                                 <option value="">Select Category</option>
                                                 {
@@ -482,24 +485,24 @@ const AddProduct = () => {
                                     </Row>
 
                                     <Row>
-                                        <Col md={3}>Product Price</Col>
-                                        <Col>
+                                        <Col md={6}>Product Price</Col>
+                                        <Col md={6}>
                                             <Field name="productPrice" className="inputbox" />
                                             {errors.productPrice && touched.productPrice && <div className='error'>{errors.productPrice}</div>}
                                         </Col>
                                     </Row>
 
                                     <Row>
-                                        <Col md={3}><label>Gender</label></Col>
-                                        <Col>
+                                        <Col md={6}><label>Gender</label></Col>
+                                        <Col md={6}>
                                             <label><Field type="radio" name="productGender" value="Women" /> Women</label>
                                             <label><Field type="radio" name="productGender" value="Men" /> Men</label>
                                         </Col>
                                     </Row>
 
                                     <Row>
-                                        <Col md={3}>Product Occasion</Col>
-                                        <Col>
+                                        <Col md={6}>Product Occasion</Col>
+                                        <Col md={6}>
                                             <Field name="productOccasion" as="select" className="inputbox">
                                                 <option value="">Choose Occasion</option>
                                                 <option value="Office wear">Office wear</option>
@@ -511,16 +514,16 @@ const AddProduct = () => {
                                     </Row>
 
                                     <Row>
-                                        <Col md={3}>Product Discount</Col>
-                                        <Col>
+                                        <Col md={6}>Product Discount</Col>
+                                        <Col md={6}>
                                             <Field name="productDiscount" className="inputbox" />
                                             {errors.productDiscount && touched.productDiscount && <div className='error'>{errors.productDiscount}</div>}
                                         </Col>
                                     </Row>
 
                                     <Row>
-                                        <Col md={3}>Product Material</Col>
-                                        <Col md={9}>
+                                        <Col md={6}>Product Material</Col>
+                                        <Col md={6}>
                                             <label><Field type="radio" name="productMaterial" value="Cotton" /> Cotton </label>
                                             <label><Field type="radio" name="productMaterial" value="Chiffon" /> Chiffon</label>
                                             <label><Field type="radio" name="productMaterial" value="Georgette" /> Georgette</label>
@@ -529,16 +532,16 @@ const AddProduct = () => {
                                     </Row>
 
                                     <Row>
-                                        <Col md={3}>Description</Col>
-                                        <Col>
+                                        <Col md={6}>Description</Col>
+                                        <Col md={6}>
                                             <Field as="textarea" name="productDescription" className="inputbox" />
                                             {errors.productDescription && touched.productDescription && <div className='error'>{errors.productDescription}</div>}
                                         </Col>
                                     </Row>
 
                                     <Row>
-                                        <Col md={3}>Upload Images</Col>
-                                        <Col md={9}>
+                                        <Col md={6}>Upload Images</Col>
+                                        <Col md={6}>
                                             <input
                                                 type="file"
                                                 multiple
@@ -553,7 +556,7 @@ const AddProduct = () => {
 
                                     <Row className="mt-3">
                                         <Col className="d-flex justify-content-center">
-                                            <Button type="submit">Create product</Button>
+                                            <Button type="submit">Add</Button>
                                         </Col>
                                     </Row>
                                 </Container>

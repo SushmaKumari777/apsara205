@@ -48,13 +48,15 @@ const Register = () => {
   };
   return (
     <div>
-      <section>
-        <Container>
-          <Row>
+      <div>
+      <Row>
             <Col>
               <Menu></Menu>
             </Col>
           </Row>
+      </div>
+      <section>
+        <Container>
           <Row>
             <Col>
               <Row>

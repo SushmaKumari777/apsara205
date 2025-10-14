@@ -139,7 +139,7 @@ const Menu = () => {
               <Nav.Link as={Link} to="/wishlist">
                 <FontAwesomeIcon icon={faHeartRegular} />
               </Nav.Link>
-              <Nav.Link as={Link} to="/cart"> 
+              <Nav.Link as={Link} to="/carts"> 
                 <FontAwesomeIcon icon={faCartShopping} />
               </Nav.Link>
 

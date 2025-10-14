@@ -10,7 +10,7 @@ import Footer from './components/Footer';
 import ViewProduct from './components/ViewProduct';
 import Category from './components/Category';
 import Buy from './components/Buy';
-import Cart from './components/Cart';
+import Carts from './components/Carts';
 import Example from './components/Example';
 import Checkout from './components/Checkout';
 import Gender from './components/Gender';
@@ -28,6 +28,8 @@ import AdminDashboard from './components/AdminDashboard';
 import Orders from './components/Orders';
 import Contact from './components/Contact';
 import Example2 from './components/Example2';
+import AllProducts from './components/AllProducts';
+import CartDetails from './components/CartDetails';
 
 
 function App() {
@@ -44,7 +46,7 @@ function App() {
         <Route path="/category/:categoryName" element={<Category />} />
         <Route path="/gender/:idealFor" element={<Gender />} />
         <Route path="/buy/:productId" element={<Buy />} />
-        <Route path="/cart" element={<Cart />} />
+        <Route path="/carts" element={<Carts />} />
         <Route path="/example" element={<Example />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/pooh" element={<Pooh />} />
@@ -61,6 +63,8 @@ function App() {
         <Route path="/orders" element={<Orders />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/example2" element={<Example2 />} />
+        <Route path="/allProducts" element={<AllProducts />} />
+        <Route path="/cartDetails" element={<CartDetails />} />
       
 
 
