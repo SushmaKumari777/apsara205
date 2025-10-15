@@ -49,11 +49,11 @@ const Register = () => {
   return (
     <div>
       <div>
-      <Row>
-            <Col>
-              <Menu></Menu>
-            </Col>
-          </Row>
+        <Row>
+          <Col>
+            <Menu></Menu>
+          </Col>
+        </Row>
       </div>
       <section>
         <Container>
@@ -97,12 +97,12 @@ const Register = () => {
                         </Col>
                       </Row> */}
                       <Row>
-                      <Col>
+                        <Col>
                           <b>Mobile</b>
                         </Col>
                       </Row>
                       <Row>
-                        
+
                         <Col>
                           <Field name="mobile" className="bbb" />
                           {/*<InputMask mask="9999999999" maskChar={null} name="mobile" className='boxes' /> */}
@@ -115,12 +115,12 @@ const Register = () => {
                         </Col>
                       </Row>
                       <Row>
-                      <Col>
+                        <Col>
                           <b>Email Address</b>
                         </Col>
                       </Row>
                       <Row>
-                       
+
                         <Col>
                           <Field name="email" type="email" className="boxes" />
                           <div className="error">
@@ -131,12 +131,12 @@ const Register = () => {
                         </Col>
                       </Row>
                       <Row>
-                      <Col>
+                        <Col>
                           <b>Password</b>
                         </Col>
                       </Row>
                       <Row>
-                        
+
                         <Col>
                           <Field
                             name="password"
@@ -170,42 +170,42 @@ const Register = () => {
                         )}
                       </Col>
                     </Row> */}
-                    <Row>
-                      <Col>
-                        <Button
-                          className="button"
-                          type="submit"
-                          align-items
-                          center
-                        >
-                          Sign up
-                        </Button>
-                      </Col>
-                    </Row>
-                  </div>
+                      <Row>
+                        <Col>
+                          <Button
+                            className="button"
+                            type="submit"
+                            align-items
+                            center
+                          >
+                            Sign up
+                          </Button>
+                        </Col>
+                      </Row>
+                    </div>
                   </Form>
                 )}
-            </Formik>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            {message && (
-              <div className="form-group">
-                <div
-                  className={
-                    successful ? "alert alert-success" : "alert alert-danger"
-                  }
-                  role="alert"
-                >
-                  {message}
+              </Formik>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              {message && (
+                <div className="form-group">
+                  <div
+                    className={
+                      successful ? "alert alert-success" : "alert alert-danger"
+                    }
+                    role="alert"
+                  >
+                    {message}
+                  </div>
                 </div>
-              </div>
-            )}
-          </Col>
-        </Row>
-      </Container>
-    </section>
+              )}
+            </Col>
+          </Row>
+        </Container>
+      </section>
     </div >
   );
 };

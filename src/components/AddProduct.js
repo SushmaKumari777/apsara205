@@ -343,7 +343,7 @@
 
 
 import React, { useState, useEffect } from 'react';
-import { Button, Col, Container, Row } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
@@ -352,6 +352,10 @@ import './AddProduct.css';
 import { Navigate } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import Menu from './Menu'
+import { FaArrowCircleLeft } from "react-icons/fa";
+import { Link } from 'react-router'
+
+
 const SignupSchema = Yup.object().shape({
     productName: Yup.string()
         .min(2, 'Too Short!')
@@ -402,168 +406,184 @@ const AddProduct = () => {
                 <Row>
                     <Col><Menu></Menu> </Col>
                 </Row>
-                <Row className="d-flex justify-content-between align-items-center mb-3">
-                    <Col><h1>Create Product</h1> </Col>
+                <Row>
+                    <Col>
+                        <Link to={'/AdminDashboard'} >
+                            <FaArrowCircleLeft
+                                style={{
+                                    color: "#641E16",
+                                    fontSize: "25px",
+                                }}
+                            />
+                        </Link>
+
+                    </Col>
+                </Row>
+                <Row>
+                {/* className="d-flex justify-content-between align-items-center mb-3" */}
+                    <Col className='text-center'><h1>Add Product</h1> </Col>
                 </Row>
                 <Row>
                     <Col>
-                    <Formik
-                    initialValues={{
-                        productName: '',
-                        productCategory: '',
-                        productPrice: '',
-                        productGender: '',
-                        productOccasion: '',
-                        productDiscount: '',
-                        productMaterial: '',
-                        productDescription: '',
-                    }}
-                    validationSchema={SignupSchema}
-                    onSubmit={async (values, { resetForm }) => {
-                        const formData = new FormData();
+                        <Formik
+                            initialValues={{
+                                productName: '',
+                                productCategory: '',
+                                productPrice: '',
+                                productGender: '',
+                                productOccasion: '',
+                                productDiscount: '',
+                                productMaterial: '',
+                                productDescription: '',
+                            }}
+                            validationSchema={SignupSchema}
+                            onSubmit={async (values, { resetForm }) => {
+                                const formData = new FormData();
 
-                        // ✅ Append userId from Redux store
-                        formData.append("userId", currentUser.id);
+                                // ✅ Append userId from Redux store
+                                formData.append("userId", currentUser.id);
 
-                        // ✅ Append other form fields
-                        Object.keys(values).forEach((key) => {
-                            formData.append(key, values[key]);
-                        });
+                                // ✅ Append other form fields
+                                Object.keys(values).forEach((key) => {
+                                    formData.append(key, values[key]);
+                                });
 
-                        // ✅ Append image files
-                        for (let i = 0; i < selectedImages.length; i++) {
-                            formData.append("images", selectedImages[i]);
-                        }
-
-                        try {
-                            const res = await axios.post("http://localhost:8090/api/ssproducts", formData, {
-                                headers: {
-                                    "Content-Type": "multipart/form-data"
+                                // ✅ Append image files
+                                for (let i = 0; i < selectedImages.length; i++) {
+                                    formData.append("images", selectedImages[i]);
                                 }
-                            });
-                            console.log("Upload success:", res.data);
-                            alert("Product added successfully!");
-                            resetForm();
-                            setSelectedImages([]);
-                        } catch (err) {
-                            console.error("Upload failed:", err);
-                            alert("Failed to add product");
-                        }
-                    }}
 
-                >
-                    {({ errors, touched }) => (
-                        <Form>
-                            <div className='aaa'>
-                                <Container>
-                                    <Row>
-                                        <Col md={6}><label>Product Name</label></Col>
-                                        <Col md={6}>
-                                            <Field name="productName" className="inputbox" />
-                                            {errors.productName && touched.productName && <div className='error'>{errors.productName}</div>}
-                                        </Col>
-                                    </Row>
+                                try {
+                                    const res = await axios.post("http://localhost:8090/api/ssproducts", formData, {
+                                        headers: {
+                                            "Content-Type": "multipart/form-data"
+                                        }
+                                    });
+                                    console.log("Upload success:", res.data);
+                                    alert("Product added successfully!");
+                                    resetForm();
+                                    setSelectedImages([]);
+                                } catch (err) {
+                                    console.error("Upload failed:", err);
+                                    alert("Failed to add product");
+                                }
+                            }}
 
-                                    <Row>
-                                        <Col md={6}><label>Product Category</label></Col>
-                                        <Col md={6}>
-                                            <Field name="productCategory" as="select" className="inputbox">
-                                                <option value="">Select Category</option>
-                                                {
-                                                    categories ?
-                                                        categories.map((category, index) => {
-                                                            return (
-                                                                <option value={category.id} key={index} > {category.name} </option>
+                        >
+                            {({ errors, touched }) => (
+                                <Form>
+                                    <div className='aaa'>
+                                        <Container>
+                                            <Row>
+                                                <Col md={6}><label>Product Name</label></Col>
+                                                <Col md={6}>
+                                                    <Field name="productName" className="inputbox" />
+                                                    {errors.productName && touched.productName && <div className='error'>{errors.productName}</div>}
+                                                </Col>
+                                            </Row>
+                                            <Row>
+                                                <Col md={6}><label>Product Category</label></Col>
+                                                <Col md={6}>
+                                                    <Field name="productCategory" as="select" className="inputbox">
+                                                        <option value="">Select Category</option>
+                                                        {
+                                                            categories ?
+                                                                categories.map((category, index) => {
+                                                                    return (
+                                                                        <option value={category.id} key={index} > {category.name} </option>
 
-                                                            )
-                                                        })
-                                                        : ""
-                                                }
-                                            </Field>
-                                            {errors.productCategory && touched.productCategory && <div className='error'>{errors.productCategory}</div>}
-                                        </Col>
-                                    </Row>
+                                                                    )
+                                                                })
+                                                                : ""
+                                                        }
+                                                    </Field>
+                                                    {errors.productCategory && touched.productCategory && <div className='error'>{errors.productCategory}</div>}
+                                                </Col>
+                                            </Row>
 
-                                    <Row>
-                                        <Col md={6}>Product Price</Col>
-                                        <Col md={6}>
-                                            <Field name="productPrice" className="inputbox" />
-                                            {errors.productPrice && touched.productPrice && <div className='error'>{errors.productPrice}</div>}
-                                        </Col>
-                                    </Row>
+                                            <Row>
+                                                <Col md={6}>Product Price</Col>
+                                                <Col md={6}>
+                                                    <Field name="productPrice" className="inputbox" />
+                                                    {errors.productPrice && touched.productPrice && <div className='error'>{errors.productPrice}</div>}
+                                                </Col>
+                                            </Row>
 
-                                    <Row>
-                                        <Col md={6}><label>Gender</label></Col>
-                                        <Col md={6}>
-                                            <label><Field type="radio" name="productGender" value="Women" /> Women</label>
-                                            <label><Field type="radio" name="productGender" value="Men" /> Men</label>
-                                        </Col>
-                                    </Row>
+                                            <Row>
+                                                <Col md={6}><label>Gender</label></Col>
+                                                <Col md={6}>
+                                                    <label><Field type="radio" name="productGender" value="Women" /> Women</label>
+                                                    <label><Field type="radio" name="productGender" value="Men" /> Men</label>
+                                                </Col>
+                                            </Row>
 
-                                    <Row>
-                                        <Col md={6}>Product Occasion</Col>
-                                        <Col md={6}>
-                                            <Field name="productOccasion" as="select" className="inputbox">
-                                                <option value="">Choose Occasion</option>
-                                                <option value="Office wear">Office wear</option>
-                                                <option value="Festive wear">Festive wear</option>
-                                                <option value="Casual wear">Casual wear</option>
-                                            </Field>
-                                            {errors.productOccasion && touched.productOccasion && <div className='error'>{errors.productOccasion}</div>}
-                                        </Col>
-                                    </Row>
+                                            <Row>
+                                                <Col md={6}>Product Occasion</Col>
+                                                <Col md={6}>
+                                                    <Field name="productOccasion" as="select" className="inputbox">
+                                                        <option value="">Choose Occasion</option>
+                                                        <option value="Office wear">Office wear</option>
+                                                        <option value="Festive wear">Festive wear</option>
+                                                        <option value="Casual wear">Casual wear</option>
+                                                    </Field>
+                                                    {errors.productOccasion && touched.productOccasion && <div className='error'>{errors.productOccasion}</div>}
+                                                </Col>
+                                            </Row>
 
-                                    <Row>
-                                        <Col md={6}>Product Discount</Col>
-                                        <Col md={6}>
-                                            <Field name="productDiscount" className="inputbox" />
-                                            {errors.productDiscount && touched.productDiscount && <div className='error'>{errors.productDiscount}</div>}
-                                        </Col>
-                                    </Row>
+                                            <Row>
+                                                <Col md={6}>Product Discount</Col>
+                                                <Col md={6}>
+                                                    <Field name="productDiscount" className="inputbox" />
+                                                    {errors.productDiscount && touched.productDiscount && <div className='error'>{errors.productDiscount}</div>}
+                                                </Col>
+                                            </Row>
 
-                                    <Row>
-                                        <Col md={6}>Product Material</Col>
-                                        <Col md={6}>
-                                            <label><Field type="radio" name="productMaterial" value="Cotton" /> Cotton </label>
-                                            <label><Field type="radio" name="productMaterial" value="Chiffon" /> Chiffon</label>
-                                            <label><Field type="radio" name="productMaterial" value="Georgette" /> Georgette</label>
-                                            {errors.productMaterial && touched.productMaterial && <div className='error'>{errors.productMaterial}</div>}
-                                        </Col>
-                                    </Row>
+                                            <Row>
+                                                <Col md={6}>Product Material</Col>
+                                                <Col md={6}>
+                                                    <label><Field type="radio" name="productMaterial" value="Cotton" /> Cotton </label>
+                                                    <label><Field type="radio" name="productMaterial" value="Chiffon" /> Chiffon</label>
+                                                    <label><Field type="radio" name="productMaterial" value="Georgette" /> Georgette</label>
+                                                    {errors.productMaterial && touched.productMaterial && <div className='error'>{errors.productMaterial}</div>}
+                                                </Col>
+                                            </Row>
 
-                                    <Row>
-                                        <Col md={6}>Description</Col>
-                                        <Col md={6}>
-                                            <Field as="textarea" name="productDescription" className="inputbox" />
-                                            {errors.productDescription && touched.productDescription && <div className='error'>{errors.productDescription}</div>}
-                                        </Col>
-                                    </Row>
+                                            <Row>
+                                                <Col md={6}>Description</Col>
+                                                <Col md={6}>
+                                                    <Field as="textarea" name="productDescription" className="inputbox" />
+                                                    {errors.productDescription && touched.productDescription && <div className='error'>{errors.productDescription}</div>}
+                                                </Col>
+                                            </Row>
 
-                                    <Row>
-                                        <Col md={6}>Upload Images</Col>
-                                        <Col md={6}>
-                                            <input
-                                                type="file"
-                                                multiple
-                                                accept="image/*"
-                                                onChange={handleFileChange}
-                                            />
-                                            {selectedImages.length > 0 && (
-                                                <div>{selectedImages.length} image(s) selected</div>
-                                            )}
-                                        </Col>
-                                    </Row>
+                                            <Row>
+                                                <Col md={6}>Upload Images</Col>
+                                                <Col md={6}>
+                                                    <input
+                                                        type="file"
+                                                        multiple
+                                                        accept="image/*"
+                                                        onChange={handleFileChange}
+                                                    />
+                                                    {selectedImages.length > 0 && (
+                                                        <div>{selectedImages.length} image(s) selected</div>
+                                                    )}
+                                                </Col>
+                                            </Row>
 
-                                    <Row className="mt-3">
-                                        <Col className="d-flex justify-content-center">
-                                            <Button type="submit">Add</Button>
-                                        </Col>
-                                    </Row>
-                                </Container>
-                            </div>
-                        </Form>
-                    )}
-                </Formik>
+                                            <Row className="mt-3">
+                                                <Col className="d-flex justify-content-center">
+                                                <div className='btn'>
+                                                <button type="submit">Add</button>
+                                                </div>
+                                                   
+                                                </Col>
+                                            </Row>
+                                        </Container>
+                                    </div>
+                                </Form>
+                            )}
+                        </Formik>
                     </Col>
                 </Row>
             </Container>

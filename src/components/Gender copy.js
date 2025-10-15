@@ -1,35 +1,13 @@
 import React from 'react'
-import '../App.css'
-import { Container, Row, Col } from 'react-bootstrap'
-import pooh from '../images/pooh.webp'
-import naina from '../images/naina.webp'
-import geet from '../images/geet.webp'
-import aisa from '../images/aisa.webp'
-import halfstyle from '../images/half style.webp'
-import desi from '../images/desi.webp'
-import sanskari from '../images/sanskari.webp'
-import all from '../images/allrounder.webp'
-
-import Button from 'react-bootstrap/Button';
-import { Link } from 'react-router'
-// import Carousel from 'react-bootstrap/Carousel';
-// import slide1 from '../images/desi.webp'
-import video from '../images/menuvideo.mp4'
+import { Container, Row, Col, Link, Card, Button } from 'react-bootstrap'
+import { useParams } from 'react-router'
 import Menu from './Menu'
-import { BsFillArrowRightCircleFill } from "react-icons/bs";
-import { IoIosArrowRoundForward } from "react-icons/io";
 
-import { FaCircleArrowRight } from "react-icons/fa6";
-// import ExampleCarouselImage from 'components/ExampleCarouselImage';
-// import Carousel from 'react-bootstrap/Carousel';
-// import ExampleCarouselImage from '../images/aisa.webp';
-// import { FaBeer } from "react-icons/fa";
-// import { FaHeart, FaRegHeart } from "react-icons/fa";
-import { IoIosHeartEmpty } from "react-icons/io";
-
-const Home = () => {
-  // -------------------Women section------------------------
-  const data = [
+import './gender.css'
+const Gender = () => {
+  const { idealFor } = useParams();
+  console.log(idealFor)
+  const products = [
     {
       "id": 1,
       "title": "Laal Bijli - V neck Strap Kurti",
@@ -153,7 +131,6 @@ const Home = () => {
         }
       ]
     },
-
     {
       "id": 3,
       "title": "Ziva Pink Peplum Top",
@@ -577,9 +554,7 @@ const Home = () => {
           "reviewerEmail": ""
         }
       ]
-    }
-  ]
-  const mens = [
+    },
     {
       "id": 1,
       "title": "The Sagar Blue Shirt",
@@ -621,8 +596,10 @@ const Home = () => {
         }
       ],
       "images": [
-        "p1001.webp"
-
+        "p1001.webp",
+        "p1002.webp",
+        "p1003.jpg",
+        "p1005.webp"
       ],
       "reviews": [
         {
@@ -688,7 +665,10 @@ const Home = () => {
         }
       ],
       "images": [
-        "p2002.webp"
+        "p2002.webp",
+        "p2003.webp",
+        "p2004.webp",
+        "p2005.webp"
       ],
       "reviews": [
         {
@@ -754,8 +734,10 @@ const Home = () => {
         }
       ],
       "images": [
-        "3001.webp"
-
+        "p3001.webp",
+        "p3002.webp",
+        "p3003.jpg",
+        "p3005.webp"
       ],
       "reviews": [
         {
@@ -821,7 +803,10 @@ const Home = () => {
         }
       ],
       "images": [
-        "p4001.webp"
+        "p4001.webp",
+        "p4002.webp",
+        "p4003.jpg",
+        "p4005.webp"
       ],
       "reviews": [
         {
@@ -861,7 +846,7 @@ const Home = () => {
       "ocassion": "Casual", //or office wear
       "category": "Shirt",
       "other": "",
-      "idealFor": "Men", //women or men
+      "idealFor": "", //women or men
       "returnPolicy": "No return policy",
       "minimumOrderQuantity": 48,
       "discountedPrice": 599,
@@ -887,8 +872,10 @@ const Home = () => {
         }
       ],
       "images": [
-        "p1001.webp"
-
+        "p1001.webp",
+        "p1002.webp",
+        "p1003.jpg",
+        "p1005.webp"
       ],
       "reviews": [
         {
@@ -918,69 +905,7 @@ const Home = () => {
       "id": 6,
       "title": "Blue shirt",
       "photo": "blue shirt.jpg",
-      "price": 699,
-      "price2": 999,
-      "brand": "",
-      "fit": "Regular", //regular or slim
-      "fabric": "Cotton", //cotton or georget
-      "sleeve": "FullSleeve", //full or half
-      "pattern": "Printed",
-      "neckType": "",
-      "ocassion": "Casual", //or office wear
-      "category": "Shirt",
-      "other": "",
-      "idealFor": "Men", //women or men
-      "returnPolicy": "No return policy",
-      "minimumOrderQuantity": 48,
-      "discountedPrice": 599,
-      "discountedPercent": "50%",
-      "coloursAvailable": "",
-      "Shipping fee": "Free",
-      "rating": [
-        {
-          "average": ""
-        }
-      ],
-      "size": [
-        "XS", "S", "M", "L", "XL", "XXL"
-      ],
-      "sizeChart": [
-        {
-          "size": "",
-          "bust": "",
-          "shoulder": "",
-          "bottomWaist": "",
-          "bottomLength": "",
-          "topLength": "",
-        }
-      ],
-      "images": [
-        "p1001.webp"
-
-      ],
-      "reviews": [
-        {
-          "rating": 3,
-          "comment": "",
-          "date": "",
-          "reviewerName": "",
-          "reviewerEmail": ""
-        },
-        {
-          "rating": 4,
-          "comment": "",
-          "date": "",
-          "reviewerName": "",
-          "reviewerEmail": ""
-        },
-        {
-          "rating": 5,
-          "comment": "",
-          "date": "",
-          "reviewerName": "",
-          "reviewerEmail": ""
-        }
-      ]
+      "price": 699
     },
     {
       "id": 7,
@@ -994,9 +919,9 @@ const Home = () => {
       "pattern": "Printed",
       "neckType": "",
       "ocassion": "Casual", //or office wear
-      "category": "Shirt",
+      "category": "naina",
       "other": "",
-      "idealFor": "Men", //women or men
+      "idealFor": "", //women or men
       "returnPolicy": "No return policy",
       "minimumOrderQuantity": 48,
       "discountedPrice": 599,
@@ -1022,8 +947,10 @@ const Home = () => {
         }
       ],
       "images": [
-        "p1001.webp"
-
+        "p1001.webp",
+        "p1002.webp",
+        "p1003.jpg",
+        "p1005.webp"
       ],
       "reviews": [
         {
@@ -1052,7 +979,7 @@ const Home = () => {
     {
       "id": 8,
       "title": "Blue shirt",
-      "price1": 999,
+      "price1": 299,
       "price2": 999,
       "brand": "",
       "fit": "Regular", //regular or slim
@@ -1061,9 +988,9 @@ const Home = () => {
       "pattern": "Printed",
       "neckType": "",
       "ocassion": "Casual", //or office wear
-      "category": "Shirt",
+      "category": "pooh",
       "other": "",
-      "idealFor": "Men", //women or men
+      "idealFor": "", //women or men
       "returnPolicy": "No return policy",
       "minimumOrderQuantity": 48,
       "discountedPrice": 599,
@@ -1089,7 +1016,10 @@ const Home = () => {
         }
       ],
       "images": [
-        "p1001.webp"
+        "p1001.webp",
+        "p1002.webp",
+        "p1003.jpg",
+        "p1005.webp"
       ],
       "reviews": [
         {
@@ -1115,200 +1045,40 @@ const Home = () => {
         }
       ]
     }
-
   ]
-
   return (
     <div>
-      {/* ---------------------menu section-------------------------- */}
-      <div className="video-section">
-        <video autoPlay loop muted className="background-video">
-          <source src={video} type="video/mp4" />
-          {/* Your browser does not support HTML5 video. */}
-        </video>
-        <section>
-          <Container>
-            <Row>
-              <Col>
-                <Menu></Menu>
-              </Col>
-            </Row>
-          </Container>
+           <section>
+          <Row>
+            <Col>
+              <Menu></Menu>
+            </Col>
+          </Row>
         </section>
-      </div>
-      {/* ----------------------latest arrrival women section-------------------------- */}
-      <section className='latestw'>
-        <Row>
-          <h1>Latest Arrivals</h1>
-          {
-            data.map((pooh) => {
-              return (
-                <Col xs={6} md={3} >
-                  <div className='square'>
-                    <Link to={'/buy/' + pooh.title + pooh.price1}>
-                      <IoIosHeartEmpty className='wishlist' />
-                      <img src={pooh.images[1]} />
-                      <p>{pooh.title}</p>
-                      <h6>Rs.{pooh.price1}</h6>
-                      {/* <button>Add to Cart</button> */}
-                      <Button variant="outline-secondary">Add to cart</Button>
+      <section className='gender'>
+        <Container>
+          <Row>
+            {
+              products.filter((category) => category.idealFor === idealFor).map((product) => {
+                return (
+                  <Col md={3}>
+                    <div className='box'>
+                    <img src={"/" + product.images[0]} alt='' />
+                    <h6>{product.title}</h6>
+                    <p>Rs.{product.price1}</p>
+                    <Button className='btn'>Choose Option</Button>
+                    </div>
+                  </Col>
+                )
+              }
 
-                    </Link>
-                  </div>
-                </Col>
               )
             }
-            )
-          }
-        </Row>
-      </section>
-      {/* ---------------------latest arrivals men section-------------------------------- */}
-      <section className='latestm'>
-        <Row>
-          <h1>Latest Arrivals</h1>
-          {
-            mens.map((men) => {
-              return (
-                <Col xs={6} md={3}>
-                  <div className='square'>
-                    <Link to={'/buy/' + men.id}>
-                      <IoIosHeartEmpty className='wishlist' />
-                      <img src={men.images} />
-                      <p>{men.title}</p>
-                      <h6>Rs.{men.price1}</h6>
-                      {/* <button> Add to Cart</button> */}
-                      <Button variant="outline-secondary">Add to cart</Button>
-                    </Link>
-                  </div>
-                </Col>
-              )
-            }
-            )
-          }
-        </Row>
-      </section>
-      {/* ------------------------------Women collections------------------------------ */}
-      <section className='womencollections'>
-        <Container>
-          <Row>
-            <Col>
-              <h2>Women Collections</h2>
-            </Col>
-          </Row>
-          <Row>
-            <Col md={3}>
-              <div className='women-collection'>
-                <img src={pooh} alt='' />
-              </div>
-              <p>Sleve-less-kurti <FaCircleArrowRight /></p>
-
-            </Col>
-            <Col md={3}>
-              <div className='women-collection'>
-                <img src={naina} alt='' />
-              </div>
-              <p> FullSleeves kurti <FaCircleArrowRight /></p>
-
-            </Col>
-            <Col md={3}>
-              <div className='women-collection'>
-                <img src={geet} alt='' />
-              </div>
-              <p>Our Best Sellers <FaCircleArrowRight /></p>
-
-            </Col>
-            <Col md={3}>
-              <div className='women-collection'>
-                <img src={aisa} alt='' />
-              </div>
-              <p>New launches <FaCircleArrowRight /></p>
-            </Col>
           </Row>
         </Container>
       </section>
-      {/* ---------------------Men colllections------------------- */}
-
-      <section className='mencollections'>
-        <Container>
-          <Row>
-            <Col>
-              <h2>Men Collections</h2>
-            </Col>
-          </Row>
-          <Row>
-            <Col md={3}>
-              <div className='men-collection' >
-                <img src={halfstyle} alt='' />
-              </div>
-              <p>Half Shirts <FaCircleArrowRight /></p>
-            </Col>
-
-            <Col md={3}>
-              <div className='men-collection'>
-                <img src={desi} alt='' />
-              </div>
-              <p>Full Shirts <FaCircleArrowRight /></p>
-            </Col>
-            <Col md={3}>
-              <div className='men-collection'>
-                <img src={sanskari} alt='' />
-              </div>
-              <p>The Sanskari drips <FaCircleArrowRight /></p>
-            </Col>
-            <Col md={3}>
-              <div className='men-collection'>
-                <img src={all} alt='' />
-              </div>
-              <p>All Collections <FaCircleArrowRight /></p>
-            </Col>
-          </Row>
-        </Container>
-      </section>
-
-      {/* <section className='slidearea'>
-        <Container>
-          <Row>
-            <Col>
-              <h1>हमारी नहीं हमारी अप्सराओ की सुनो</h1>
-            </Col>
-
-          </Row>
-          <Row>
-            <Col>
-
-            </Col>
-          </Row>
-          <Carousel>
-            <Carousel.Item>
-              <img src={slide1} alt='' />
-              <ExampleCarouselImage text="First slide" />
-              <Carousel.Caption>
-                <h3>First slide label</h3>
-                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-              </Carousel.Caption>
-            </Carousel.Item>
-            <Carousel.Item>
-              <ExampleCarouselImage text="Second slide" />
-              <Carousel.Caption>
-                <h3>Second slide label</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              </Carousel.Caption>
-            </Carousel.Item>
-            <Carousel.Item>
-              <ExampleCarouselImage text="Third slide" />
-              <Carousel.Caption>
-                <h3>Third slide label</h3>
-                <p>
-                  Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-                </p>
-              </Carousel.Caption>
-            </Carousel.Item>
-          </Carousel>
-        </Container>
-      </section> */}
-
     </div>
   )
 }
 
-export default Home
+export default Gender

@@ -36,7 +36,7 @@ const AdminProducts = () => {
 
 
 
-  if (isLoggedIn) {
+    if (isLoggedIn) {
         // return <Navigate to="/home" />;
     }
     const handleDelete = (id) => {
@@ -75,7 +75,8 @@ const AdminProducts = () => {
                                 <tr>
                                     <th className='text-center'>S.No.</th>
                                     <th className='text-center'>Product name</th>
-                                    <th className='text-center'>Product price</th>
+                                    <th className='text-center'>Images</th>
+                                    <th className='text-center'>Product price</th>                                  
                                     <th className='text-center'>Delete</th>
                                     <th className='text-center'>Edit</th>
                                 </tr>
@@ -88,11 +89,18 @@ const AdminProducts = () => {
                                                 <tr key={index}>
                                                     <td className='text-center'>{index + 1}</td>
                                                     <td>{product.productName}</td>
-                                                    <td className='text-center'>{product.productPrice}</td>
+                                                    <td className='text-center'>
+                                                        <img src={`http://localhost:8090/upload/${product.images[0]}`}
+                                                            style={{ width: "80px", height: "80px", objectFit: "cover", borderRadius: "8px" }}
+                                                        />
+                                                    </td>
+                                                    <td className='text-center'>{product.productPrice}</td>                                                  
                                                     <td className='text-center'>
                                                         <button onClick={() => handleDelete(product.id)}> <MdDelete /></button>
                                                     </td>
-                                                    <td className='text-center'><MdModeEdit /></td>
+                                                    <td className='text-center'><MdModeEdit />
+                                                    </td>
+
                                                 </tr>
                                             )
                                         }
@@ -105,7 +113,7 @@ const AdminProducts = () => {
                         </Table>
                     </Col>
                 </Row>
-               
+
             </Container>
         </div >
     );

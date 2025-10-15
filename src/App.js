@@ -44,6 +44,7 @@ function App() {
         <Route path="/jsr" element={<Jsr />} />
         <Route path="/viewProduct/:productId" element={<ViewProduct />} />
         <Route path="/category/:categoryName" element={<Category />} />
+        {/* <Route path="/gender/:idealFor" element={<Gender />} /> */}
         <Route path="/gender/:idealFor" element={<Gender />} />
         <Route path="/buy/:productId" element={<Buy />} />
         <Route path="/carts" element={<Carts />} />

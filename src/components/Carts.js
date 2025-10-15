@@ -29,9 +29,6 @@ const Carts = () => {
   const { user: currentUser } = useSelector((state) => state.auth);
   console.log(currentUser)
 
-
-
-
   // const [name, setName] = useState("");
   const decrement = () => {
     setCount(count - 1);
@@ -41,13 +38,13 @@ const Carts = () => {
   }
 
   const handleDelete = (id) => {
-    // if (window.confirm("Are you sure")) {
-    //     axios.delete(`http://localhost:8090/api/ssproducts/${id}`).then((response) => {
-    //         console.log('Product successfully deleted')
-    //         alert('Product successfully deleted')
-    //         window.location.reload();
-    //     })
-    // }
+    if (window.confirm("Are you sure")) {
+        axios.delete(`http://localhost:8090/api/carts/user/${currentUser.id}/item/${id}`).then((response) => {
+            console.log('Product successfully deleted')
+            alert('Product successfully deleted')
+            window.location.reload();
+        })
+    }
   }
 
 
@@ -62,13 +59,13 @@ const Carts = () => {
           </Col>
         </Row>
       </div>
-      <div>
+      <div className="bg">
 
         <Container>
           <Row>
             <Col>
               <h1 className='text-center'>
-                Your Cart {noCartItems}
+                Your Cart ({noCartItems})
               </h1>
             </Col>
           </Row>
@@ -117,12 +114,14 @@ const Carts = () => {
                             </td>
 
                             <td className='text-center'>
-                              <button onClick={() => handleDelete(product.id)}><MdDelete /> </button>
+                              <button onClick={() => handleDelete(product.productId)}><MdDelete /> </button>
                             </td>
                     
                    
                           </tr>
+                        
                         )
+                        
                       }
                       )
                       : <tr>
@@ -159,11 +158,21 @@ const Carts = () => {
                   </tr>
                   <tr>
                     <td>
-                      <Button>
+                      <button 
+                    style={{
+                      color:"white;",
+                      backgroundColor: "#641E16;",
+                      border: "none",
+                      borderRadius: "30px",
+                      padding: "10px 25px",
+                    }}
+                      >
                       <Link to={'/Address'} >Proceed to Checkout</Link>
-                      </Button>
+                      </button>
                       <p>OR</p>
-                      <Button>Continue Shopping</Button>
+                      <Button>
+                      <Link to={'/Home'} >Continue Shopping</Link> 
+                        </Button>
                     </td>
                   </tr>
                 </tbody>

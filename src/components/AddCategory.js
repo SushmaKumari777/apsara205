@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Col, Container, Row, Table } from 'react-bootstrap';
+import { Button, Col, Container, Row, Table } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 import { Formik, Form, Field } from 'formik';
@@ -10,6 +10,10 @@ import axios from 'axios';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { MdDelete } from "react-icons/md";
 import { MdModeEdit } from "react-icons/md";
+import Menu from "./Menu";
+import { FaArrowCircleLeft } from "react-icons/fa";
+import { Link } from 'react-router'
+
 
 
 const checkNameExists = async (name) => {
@@ -82,94 +86,120 @@ const AddCategory = () => {
     }
     return (
         <div>
-            <Container className='login'>
-                <Row>
-                    <Col xs={12} sm={8} md={6} lg={4} className='heading'>
-                        <h1 >Add Category</h1>
-                    </Col>
-                </Row>
-                {message && (
-                    <Row>
-                        <Col>
-                            <div className="alert alert-danger text-center">{message}</div>
-                        </Col>
-                    </Row>
-                )}
-                <Formik
-                    initialValues={{
-                        name: '',
-                    }}
-                    validationSchema={CategorySchema}
-                    onSubmit={handleSubmit}
-                >
-                    {({ errors, touched }) => (
-                        <Form>
-                            <div className='aaa'>
-                                <Row>
-                                    <Col md={4}>
-                                        <label>Category Name</label>
-                                    </Col>
-                                    <Col md={4}>
-                                        <Field name="name" className="inputbox" autoComplete="off" />
-                                        {errors.name && touched.name ? <div className='error'>{errors.name}</div> : null}
-                                    </Col>
-                                    <Col md={4}>
-                                        <button
-                                            type="submit"
-                                            className="btn btn-primary"
-                                            disabled={loading}
-                                        >
-                                            {loading ? 'Please wait...' : ' + Add'}
-                                        </button>
-                                    </Col>
-                                </Row>
-                                <Row>
-
-                                </Row>
-                            </div>
-                        </Form>
-                    )}
-                </Formik>
-
-
-            </Container >
-            <Container>
+            <div>
                 <Row>
                     <Col>
-                        <Table striped bordered hover>
-                            <thead>
-                                <tr>
-                                    <th className='text-center'>S.No.</th>
-                                    <th className='text-center'>Category</th>
-                                    <th className='text-center'>Delete</th>
-                                    <th className='text-center'>Edit</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {
-                                    categories ?
-                                        categories.map((category, index) => {
-                                            return (
-                                                <tr key={index}>
-                                                    <td className='text-center'>{index + 1}</td>
-                                                    <td>{category.name}</td>
-                                                    <td className='text-center'>
-                                                        <button onClick={() => handleDelete(category.id)}> <MdDelete /></button>
-                                                    </td>
-                                                    <td className='text-center'><MdModeEdit /></td>
-                                                </tr>
-                                            )
-                                        }
-                                        )
-                                        : <tr>
-                                            <td colSpan={4}>no data available</td>
-                                        </tr>
-                                }
-                            </tbody>
-                        </Table>
+                        <Menu></Menu>
                     </Col>
                 </Row>
-            </Container>
+
+            </div>
+
+            <div>
+                <Container className='bbb'>
+
+                    <Row> 
+                        <Col md={2}>
+                            <Link to={'/AdminDashboard'} >
+                                <FaArrowCircleLeft
+                                    style={{
+                                        color: "#641E16",
+                                        fontSize: "25px",
+                                        margin:"10px"
+                                    }}
+                                />
+                            </Link>
+
+                        </Col>
+                        {/* xs={12} sm={8} md={6} lg={4} className='heading' */}
+                        <Col md={8}>
+                            <h1 className='text-center'>Add Category</h1>
+                        </Col>
+
+                    </Row>
+                    {message && (
+                        <Row>
+                            <Col>
+                                <div className="alert alert-danger text-center">{message}</div>
+                            </Col>
+                        </Row>
+                    )}
+                    <Formik
+                        initialValues={{
+                            name: '',
+                        }}
+                        validationSchema={CategorySchema}
+                        onSubmit={handleSubmit}
+                    >
+                        {({ errors, touched }) => (
+                            <Form>
+                                <div className='category'>
+                                    <Row >
+                                        <Col md={4}>
+                                            <label>Category Name</label>
+                                        </Col>
+                                        <Col md={4}>
+                                            <Field name="name" className="inputbox" autoComplete="off" />
+                                            {errors.name && touched.name ? <div className='error'>{errors.name}</div> : null}
+                                        </Col>
+                                        <Col md={4}>
+                                            <Button
+                                                type="submit"
+                                                // className="btn btn-primary"
+                                                disabled={loading}
+                                                variant="secondary"
+                                            >
+                                                {loading ? 'Please wait...' : ' + Add'}
+                                            </Button>
+                                        </Col>
+                                    </Row>
+                      
+                                </div>
+                            </Form>
+                        )}
+                    </Formik>
+
+
+                </Container >
+                <Container>
+                    <Row >
+                        <Col>
+                            <Table striped bordered hover>
+                                <thead>
+                                    <tr>
+                                        <th className='text-center'>S.No.</th>
+                                        <th className='text-center'>Category</th>
+                                        <th className='text-center'>Delete</th>
+                                        <th className='text-center'>Edit</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {
+                                        categories ?
+                                            categories.map((category, index) => {
+                                                return (
+                                                    <tr key={index}>
+                                                        <td className='text-center'>{index + 1}</td>
+                                                        <td>{category.name}</td>
+                                                        <td className='text-center'>
+                                                            <button onClick={() => handleDelete(category.id)}> <MdDelete /></button>
+                                                        </td>
+                                                        <td className='text-center'><MdModeEdit /></td>
+                                                    </tr>
+                                                )
+                                            }
+                                            )
+                                            : <tr>
+                                                <td colSpan={4}>no data available</td>
+                                            </tr>
+                                    }
+                                </tbody>
+                            </Table>
+                        </Col>
+                    </Row>
+                </Container>
+
+            </div>
         </div >
     );
 };

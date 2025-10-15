@@ -2,22 +2,40 @@ import React from 'react'
 import { Row, Col, Container } from 'react-bootstrap'
 import { Link } from 'react-router'
 import Menu from "./Menu";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; import { FaArrowCircleLeft } from "react-icons/fa";
 import { faSignOut } from "@fortawesome/free-solid-svg-icons";
+
+
 const AdminDashboard = () => {
   return (
     <div>
-      <Row>
+      {/* <Row>
         <Col>
           <Menu></Menu>
         </Col>
-      </Row>
+      </Row> */}
       <section className='dashboard'>
         <Container fluid>
           <Row>
+            <Col>
+              <Link to={'/Home'} >
+          
+                <FaArrowCircleLeft
+                  style={{
+                    color: "#641E16",
+                    fontSize: "25px",
+                    margin:"5px"
+                  }}
+                />
+                   
+              </Link>
+              
+            </Col>
+          </Row>
+          <Row>
             <Col md={2} className='sidebar'>
               <ul>
-                <li><p>Dashboard</p></li>
+                <li><Link to={'/AdminDashboard'} ><p>Dashboard</p></Link><p></p></li>
                 <li><Link to={'/AddCategory'} ><p>Add Category</p></Link></li>
                 <li><Link to={'/AddProduct'} ><p>Add Product</p></Link></li>
                 <li><Link to={'/AdminProduct'} ><p>AdminProduct</p></Link></li>
@@ -69,10 +87,10 @@ const AdminDashboard = () => {
                 </Col>
                 <Row>
                   <Col>
-                  
-                  
-                  
-                  
+
+
+
+
                   </Col>
 
                 </Row>
