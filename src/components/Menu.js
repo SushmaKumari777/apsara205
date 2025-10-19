@@ -1,37 +1,53 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./menu.css";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { Link } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHome, faUser } from "@fortawesome/free-regular-svg-icons";
+import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { faCartShopping, faSignOut } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { Container } from "react-bootstrap";
 import { logout } from '../slices/auth';
 import { useSelector } from "react-redux";
-// import logo from '..logo1.png'
 import logo from "../images/logo4.png";
-// import logo from 'public/images/logo.png'
 import { RiHome2Line } from "react-icons/ri";
-
 import { useDispatch } from 'react-redux';
-import { FaSearch } from "react-icons/fa";
 import { CiSearch } from "react-icons/ci";
+import axios from 'axios';
+
+
+
+
+
+
 
 const Menu = () => {
   const dispatch = useDispatch();
+  const [searchTerm, setSearchTerm] = useState("");
+  const [noCartItems, setNoCartItems] = useState();
+
+  useEffect(() => {
+    axios.get(`http://localhost:8090/api/carts/user/${currentUser.id}`).then((response) => {
+      console.log(response.data.items)
+      console.log(response.data)
+      // setProducts(response.data.items)
+      setNoCartItems(response.data.itemCount)
+    })
+  }, []);
+
   const { user: currentUser } = useSelector((state) => state.auth);
   console.log(currentUser);
+
   const handleLogout = () => {
     dispatch(logout());
     // navigate('/login'); // Redirect to login page
     window.location.reload();
   };
-  const [searchTerm, setSearchTerm] = useState("");
+
+
+
 
   return (
     <div>
@@ -51,18 +67,19 @@ const Menu = () => {
               {/* <Nav.Link><Link to="/jsr">JSR</Link></Nav.Link> */}
               {/* <Nav.Link><Link to="/example">New</Link></Nav.Link> */}
               {/* <Nav.Link><Link to="/cart">Cart</Link></Nav.Link> */}
+
               <NavDropdown title="Women" id="basic-nav-dropdown">
                 <NavDropdown.Item>
-                  <Link to="/category/pooh">Pooh</Link>
+                  <Link to="/category/68e79d180418ea89753732b0">Pooh</Link>
                 </NavDropdown.Item>
                 <NavDropdown.Item>
-                  <Link to="/category/naina">Naina</Link>
+                  <Link to="/category/68e79d200418ea89753732bb">Naina</Link>
                 </NavDropdown.Item>
                 <NavDropdown.Item>
-                  <Link to="/category/geet">geet</Link>
+                  <Link to="/category/68e79d280418ea89753732c5">geet</Link>
                 </NavDropdown.Item>
                 <NavDropdown.Item>
-                  <Link to="/category/aisha">Aisha</Link>
+                  <Link to="/category/68e79d4e0418ea89753732d2">Aisha</Link>
                 </NavDropdown.Item>
                 <NavDropdown.Item>
                   <Link to="/gender/women">All Women</Link>
@@ -70,16 +87,16 @@ const Menu = () => {
               </NavDropdown>
               <NavDropdown title="Men" id="basic-nav-dropdown">
                 <NavDropdown.Item>
-                  <Link to="/category/halfStyle">Half Style Street Look</Link>
+                  <Link to="/category/68e7b531b6bd3f4009b1e96d">Half Style Street Look</Link>
                 </NavDropdown.Item>
                 <NavDropdown.Item>
-                  <Link to="/category/desiformal">Desi Formals</Link>
+                  <Link to="/category/68e7b542b6bd3f4009b1e974">Desi Formals</Link>
                 </NavDropdown.Item>
                 <NavDropdown.Item>
-                  <Link to="/category/Sanskari">Sanskari Drips</Link>
+                  <Link to="/category/68e7b557b6bd3f4009b1e97b">Sanskari Drips</Link>
                 </NavDropdown.Item>
                 <NavDropdown.Item>
-                  <Link to="/category/allRounder">All Rounder</Link>
+                  <Link to="/category/68e7b566b6bd3f4009b1e982">All Rounder</Link>
                 </NavDropdown.Item>
                 <NavDropdown.Item>
                   <Link to="/gender/men">All Men</Link>
@@ -135,14 +152,14 @@ const Menu = () => {
                     <FontAwesomeIcon icon={faUser} />
                   </Nav.Link>
               }
-              {/* <Nav.Link><FontAwesomeIcon icon={faHeart} /></Nav.Link> */}
               <Nav.Link as={Link} to="/wishlist">
                 <FontAwesomeIcon icon={faHeartRegular} />
               </Nav.Link>
-              <Nav.Link as={Link} to="/carts"> 
-                <FontAwesomeIcon icon={faCartShopping} />
-              </Nav.Link>
 
+              <Nav.Link as={Link} to="/carts" className="cart-container">
+                <FontAwesomeIcon icon={faCartShopping} />
+                {noCartItems > 0 && <span className="cart-badge">{noCartItems}</span>}
+              </Nav.Link>
               {
                 currentUser && currentUser.id !== "" ?
                   <Nav.Link onClick={handleLogout}>

@@ -158,21 +158,22 @@ const Carts = () => {
                   </tr>
                   <tr>
                     <td>
-                      <button 
-                    style={{
-                      color:"white;",
-                      backgroundColor: "#641E16;",
-                      border: "none",
-                      borderRadius: "30px",
-                      padding: "10px 25px",
-                    }}
+                      < button type="button" class="btn btn-light"
+                    // style={{
+                    //   color:"white",
+                    //   backgroundColor: "#641E16",
+                    //   borderColor: "#641E16",
+                      
+                    //   padding: "5px 20px",
+                    // }}
                       >
                       <Link to={'/Address'} >Proceed to Checkout</Link>
                       </button>
                       <p>OR</p>
-                      <Button>
+                      {/* <Button variant="outline-secondary"> */}
+                      <button type="button" class="btn btn-light">
                       <Link to={'/Home'} >Continue Shopping</Link> 
-                        </Button>
+                      </button>
                     </td>
                   </tr>
                 </tbody>
