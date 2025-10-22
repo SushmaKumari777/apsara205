@@ -1150,7 +1150,7 @@ const Home = () => {
                       <img src={pooh.images[1]} />
                       <p>{pooh.title}</p>
                       <h6>Rs.{pooh.price1}</h6>
-                      {/* <button>Add to Cart</button> */}
+                   
                       <Button variant="outline-secondary">Add to cart</Button>
 
                     </Link>

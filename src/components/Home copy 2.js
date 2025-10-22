@@ -34,7 +34,7 @@ const Home = () => {
 
   const [womenProducts, setWomenProducts] = useState([]);
   const [products, setProducts] = useState([]);
-
+  
   useEffect(() => {
     axios.get('http://localhost:8090/api/ssproducts/new/women').then((response) => {
       console.log(response.data)
@@ -59,7 +59,7 @@ const Home = () => {
           {/* Your browser does not support HTML5 video. */}
         </video>
         <section>
-          <Container fluid>
+          <Container>
             <Row>
               <Col>
                 <Menu></Menu>
@@ -69,33 +69,31 @@ const Home = () => {
         </section>
       </div>
       {/* ----------------------latest arrrival women section-------------------------- */}
-      <div>
-        <section className='latestw'>
-          <Row>
-            <h1>Latest Arrivals</h1>
-            {
-              womenProducts.map((product) => {
-                return (
-                  <Col xs={6} md={3} >
-                    <div className='square'>
-                      <IoIosHeartEmpty className='wishlist' />
-                      <img src={`http://localhost:8090/upload/${product.images[0]}`} />
-                      <p>{product.productName}</p>
-                      <h6>Rs.{product.productPrice}</h6>
-                      <Button variant="outline-secondary" >Add to Cart</Button>
-                    </div>
-                  </Col>
-                )
-              }
+     <div>
+     {/* <section className='latestw'>
+        <Row>
+          <h1>Latest Arrivals</h1>
+          {
+            womenProducts.map((product) => {
+              return (
+                <Col xs={6} md={3} >
+                  <div className='square'>
+                    <IoIosHeartEmpty className='wishlist' />
+                    <img src={`http://localhost:8090/upload/${product.images[0]}`} />
+                    <p>{product.productName}</p>{ }
+                    <h6>Rs.{product.productPrice}</h6>
+                    <Button variant="outline-secondary" >Add to Cart</Button>
+                  </div>
+                </Col>
               )
             }
-          </Row>
-        </section>
+            )
+          }
+        </Row>
+      </section> */}
+ {/* ---------------------latest arrivals men section-------------------------------- */}
 
-
-        {/* ---------------------latest arrivals men section-------------------------------- */}
-
-        <section className='latestm'>
+      {/* <section className='latestm'>
         <Row>
           <h1>Latest Arrivals</h1>
           {
@@ -117,11 +115,11 @@ const Home = () => {
             )
           }
         </Row>
-      </section>
-      </div>
-
+      </section> */}
+     </div>
+    
       {/* ------------------------------Women collections------------------------------ */}
-      <section className='womencollections'>
+      {/* <section className='womencollections'>
         <Container>
           <Row>
             <Col>
@@ -158,10 +156,10 @@ const Home = () => {
             </Col>
           </Row>
         </Container>
-      </section>
+      </section> */}
       {/* ---------------------Men colllections------------------- */}
 
-      <section className='mencollections'>
+      {/* <section className='mencollections'>
         <Container>
           <Row>
             <Col>
@@ -196,7 +194,7 @@ const Home = () => {
             </Col>
           </Row>
         </Container>
-      </section>
+      </section> */}
 
       {/* <section className='slidearea'>
         <Container>
