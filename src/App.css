@@ -8,10 +8,10 @@
 
 }
 
-/* 
+
 .toparea p {
   margin: 0;
-} */
+}
 
 .video-section {
   position: relative;
@@ -88,10 +88,10 @@
 }
 
 .square {
-  width: 220px;
+  width: 200px;
   height: 400px;
   padding: 20px;
-  margin: 10px;
+  /* margin: 10px; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -101,11 +101,13 @@
   position: relative;
   /* keep this */
   text-align: center;
+  flex: 0 0 auto;
 }
 
 .square img {
   width: 100%;
   height: 220px;
+  object-fit: cover;
 
 }
 
@@ -147,6 +149,18 @@
   padding: 10px;
   overflow: hidden;
 
+}
+.scroll-container {
+  display: flex;
+  overflow-x: auto;
+  gap: 5px;
+  scroll-behavior: smooth;
+  padding-bottom: 10px;
+}
+
+/* Hide scrollbar */
+.scroll-container::-webkit-scrollbar {
+  display: none;
 }
 
 /* ----------------women collections------------------ */
@@ -394,4 +408,6 @@ border-radius: 10px;
 .category .row {
   margin: 10px 0;
 }
+
+
 

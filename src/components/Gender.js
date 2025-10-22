@@ -70,7 +70,6 @@ const Gender = () => {
       </section>
       <section>
         <Container>
-
           <Row>
             {
               products ?

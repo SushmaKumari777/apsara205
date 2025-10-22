@@ -17,10 +17,8 @@ const Header = () => {
         <div>
             <header className='toparea' >
                 <Container fluid>
-
                     <Row>
                         <Col>
-
                             <marquee direction="left" scrollamount="10">
                                 <p><FontAwesomeIcon icon={faTag} /><b> Grab 10% OFF on your first order. &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; <FontAwesomeIcon icon={faTag} /> Grab 10% off
                                     on your first order.  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; <FontAwesomeIcon icon={faTag} /> Grab 10% OFF
@@ -29,12 +27,9 @@ const Header = () => {
                                     on your first order. &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; <FontAwesomeIcon icon={faTag} /> Grab 10% OFF
                                     on your first order.</b></p>
                             </marquee>
-
                         </Col>
                     </Row>
                 </Container>
-
-
             </header>
         </div>
     )
