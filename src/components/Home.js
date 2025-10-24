@@ -50,6 +50,33 @@ const Home = () => {
     })
   }, []);
 
+  const AddCart = (product) => {
+    // console.log(pooh)
+    const data = {
+      "userId": currentUser.id,
+      "items": [
+        {
+          "productId": product.id,
+          "quantity": 1,
+          "price": product.productPrice
+        }
+      ]
+
+    }
+    console.log(data)
+    try {
+      const res = axios.post("http://localhost:8090/api/carts", data);
+      console.log("product add to cart:", res.data);
+      alert("product add to cart successfully!");
+      window.location.reload();
+    } catch (err) {
+      console.error(" Failed add to cart", err);
+      alert("Failed add to cart");
+    }
+  }
+  const { user: currentUser } = useSelector((state) => state.auth);
+  console.log(currentUser)
+
 
   return (
     <div>
@@ -57,14 +84,14 @@ const Home = () => {
       <div className="video-section">
         <section>
           {/* <Container fluid> */}
-            <Row>
-              <Col>
-                <video autoPlay loop muted className="background-video">
-                  <source src={video} type="video/mp4" />
-                </video>
-                <Menu></Menu>
-              </Col>
-            </Row>
+          <Row>
+            <Col>
+              <video autoPlay loop muted className="background-video">
+                <source src={video} type="video/mp4" />
+              </video>
+              <Menu></Menu>
+            </Col>
+          </Row>
           {/* </Container> */}
         </section>
       </div>
@@ -75,49 +102,50 @@ const Home = () => {
         <section className='latestw'>
           <Row>
             <h1>Latest Arrivals</h1>
-    <div className="scroll-container">
-    {
-              womenProducts.map((product,index) => {
-                return (
-                  <Col md={3} >
-                    <div className='square' key={index}>
-                      <IoIosHeartEmpty className='wishlist' />
-                      <img src={`http://localhost:8090/upload/${product.images[0]}`} />
-                      <p>{product.productName}</p>
-                      <h6>Rs.{product.productPrice}</h6>
-                      <Button variant="outline-secondary" >Add to Cart</Button>
-                    </div>
-                  </Col>
+            <div className="scroll-container">
+              {
+                womenProducts.map((product, index) => {
+                  return (
+                    <Col md={2} >
+                      <div className='square' key={index}>
+                        <IoIosHeartEmpty className='wishlist' />
+                        <img src={`http://localhost:8090/upload/${product.images[0]}`} />
+                        <p>{product.productName}</p>
+                        <h6>Rs.{product.productPrice}</h6>
+                        <Button variant="outline-secondary" className="button" onClick={() => AddCart(product)}>Add to Cart</Button>
+                      </div>
+                    </Col>
+                  )
+                }
                 )
               }
-              )
-            }
-    </div>
+            </div>
+         
           </Row>
         </section>
         <section className='latestm'>
           <Row>
             <h1>Latest Arrivals</h1>
-         <div className="scroll-container">
-         {
-              products.map((product,index) => {
-                return (
-                  <Col md={3} key={index}>
-                  <div className="square" >
-                  {/* <div className='square'> */}
-                      <IoIosHeartEmpty className='wishlist' />
-                      <img src={`http://localhost:8090/upload/${product.images[0]}`} />
-                      <p>{product.productName}</p>
-                      <h6>Rs.{product.productPrice}</h6>
-                      <Button variant="outline-secondary">Add to cart</Button>
-                    {/* </div> */}
-                  </div>
-                  </Col>
+            <div className="scroll-container">
+              {
+                products.map((product, index) => {
+                  return (
+                    <Col md={2} key={index}>
+                      <div className="square" >
+                        {/* <div className='square'> */}
+                        <IoIosHeartEmpty className='wishlist' />
+                        <img src={`http://localhost:8090/upload/${product.images[0]}`} />
+                        <p>{product.productName}</p>
+                        <h6>Rs.{product.productPrice}</h6>
+                        <Button variant="outline-secondary" className="button" onClick={() => AddCart(product)}>Add to cart</Button>
+                        {/* </div> */}
+                      </div>
+                    </Col>
+                  )
+                }
                 )
               }
-              )
-            }
-         </div>
+            </div>
           </Row>
         </section>
 
@@ -135,28 +163,40 @@ const Home = () => {
             <Row>
               <Col xs={6} md={3}>
                 <div className='women-collection'>
-                  <img src={pooh} alt='' />
+                   <Link to="/category/68e79d200418ea89753732bb">
+                   <img src={pooh} alt='' />
+                   </Link>
+                 
                 </div>
                 <p>Sleve-less-kurti <FaCircleArrowRight /></p>
 
               </Col>
               <Col xs={6} md={3}>
                 <div className='women-collection'>
-                  <img src={naina} alt='' />
+                      <Link to="/category/68e79d180418ea89753732b0">
+                      <img src={naina} alt='' />
+                      </Link>
+             
                 </div>
                 <p> FullSleeves kurti <FaCircleArrowRight /></p>
 
               </Col>
               <Col xs={6} md={3}>
                 <div className='women-collection'>
+                  <Link to="/category/68e79d4e0418ea89753732d2">
                   <img src={geet} alt='' />
+                  </Link>
+                 
                 </div>
                 <p>Our Best Sellers <FaCircleArrowRight /></p>
 
               </Col>
               <Col xs={6} md={3}>
                 <div className='women-collection'>
+               
+                  <Link to="">
                   <img src={aisa} alt='' />
+                      </Link>
                 </div>
                 <p>New launches <FaCircleArrowRight /></p>
               </Col>

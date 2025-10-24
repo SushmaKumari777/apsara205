@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 
 const AllProducts = () => {
     const [products, setProducts] = useState();
+    
     useEffect(() => {
         axios.get('http://localhost:8090/api/ssproducts').then((response) => {
             console.log(response.data)
@@ -33,7 +34,7 @@ const AllProducts = () => {
             const res = axios.post("http://localhost:8090/api/carts", data);
             console.log("product add to cart:", res.data);
             alert("product add to cart successfully!");
-     
+            window.location.reload();
         } catch (err) {
             console.error(" Failed add to cart", err);
             alert("Failed add to cart");

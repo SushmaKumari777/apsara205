@@ -6,6 +6,37 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; import { FaArr
 import { faSignOut } from "@fortawesome/free-solid-svg-icons";
 
 
+import { Chart } from "react-google-charts";
+
+
+
+
+
+
+const data = [
+  ["x", "dogs"],
+  [0, 0],
+  [1, 10],
+  [2, 23],
+  [3, 17],
+  [4, 18],
+  [5, 9],
+  [6, 11],
+  [7, 27],
+  [8, 33],
+  [9, 40],
+  [10, 32],
+  [11, 35],
+];
+
+const options = {
+  title: "SALES PERFORMENCE",
+  hAxis: { title: "Time" },
+  vAxis: { title: "Popularity" },
+  legend: "none",
+};
+
+
 const AdminDashboard = () => {
   return (
     <div>
@@ -19,17 +50,17 @@ const AdminDashboard = () => {
           <Row>
             <Col>
               <Link to={'/Home'} >
-          
+
                 <FaArrowCircleLeft
                   style={{
                     color: "#641E16",
                     fontSize: "25px",
-                    margin:"5px"
+                    margin: "5px"
                   }}
                 />
-                   
+
               </Link>
-              
+
             </Col>
           </Row>
           <Row>
@@ -54,25 +85,25 @@ const AdminDashboard = () => {
               </Row>
               <Row>
                 <Col>
-                  <div className='front'>
+                  <div className='sales'>
                     <p>Total Sales</p>
                     <h6>$110,019</h6>
                   </div>
                 </Col>
                 <Col>
-                  <div className='front'>
+                  <div className='order'>
                     <p>Total Orders</p>
                     <h6>$110,019</h6>
                   </div>
                 </Col>
                 <Col>
-                  <div className='front'>
+                  <div className='profit'>
                     <p>Total Profit</p>
                     <h6>$110,019</h6>
                   </div>
                 </Col>
                 <Col>
-                  <div className='front'>
+                  <div className='customer'>
                     <p>New Customers</p>
                     <h6>$110,019</h6>
                   </div>
@@ -80,9 +111,22 @@ const AdminDashboard = () => {
               </Row>
               <Row>
                 <Col>
+                  
                   <Row>
-                    <Col>SALES PERFORMANCE</Col>
-                    <Col>Calender Weekly</Col>
+                    <Col>
+                    <div className='saleschart'>
+                    <Chart
+                        chartType="LineChart"
+                        width="100%"
+                        height="400px"
+                        data={data}
+                        options={options}
+                      />
+                    </div>
+                    </Col>
+                    <Col>
+                    
+                    </Col>
                   </Row>
                 </Col>
                 <Row>
