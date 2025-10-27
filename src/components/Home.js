@@ -27,10 +27,27 @@ import { FaCircleArrowRight } from "react-icons/fa6";
 import { IoIosHeartEmpty } from "react-icons/io";
 import { useSelector } from "react-redux";
 import axios from 'axios';
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
+import { FaArrowLeft, FaArrowRight } from 'react-icons/fa'
 
 
+
+const settings = {
+  infinite: true,
+  slidesToShow: 4,
+  slidesToScroll: 4,
+  arrows: true,
+  dots: true,
+  nextArrow: <FaArrowRight></FaArrowRight>,
+  prevArrow: <FaArrowLeft></FaArrowLeft>
+  
+};
 
 const Home = () => {
+
+
 
   const [womenProducts, setWomenProducts] = useState([]);
   const [products, setProducts] = useState([]);
@@ -40,6 +57,7 @@ const Home = () => {
       console.log(response.data)
       setWomenProducts(response.data)
     })
+  
   }, []);
 
 
@@ -78,6 +96,7 @@ const Home = () => {
   console.log(currentUser)
 
 
+
   return (
     <div>
       {/* -------------------------------------Menu section-------------------------------------------- */}
@@ -102,10 +121,13 @@ const Home = () => {
         <section className='latestw'>
           <Row>
             <h1>Latest Arrivals</h1>
-            <div className="scroll-container">
-              {
+            {/* <div className="scroll-container"> */}
+
+             <Slider {...settings}>
+             {
                 womenProducts.map((product, index) => {
                   return (
+
                     <Col md={2} >
                       <div className='square' key={index}>
                         <IoIosHeartEmpty className='wishlist' />
@@ -119,8 +141,9 @@ const Home = () => {
                 }
                 )
               }
-            </div>
-         
+             </Slider>
+            {/* </div> */}
+
           </Row>
         </section>
         <section className='latestm'>
@@ -163,20 +186,20 @@ const Home = () => {
             <Row>
               <Col xs={6} md={3}>
                 <div className='women-collection'>
-                   <Link to="/category/68e79d200418ea89753732bb">
-                   <img src={pooh} alt='' />
-                   </Link>
-                 
+                  <Link to="/category/68e79d200418ea89753732bb">
+                    <img src={pooh} alt='' />
+                  </Link>
+
                 </div>
                 <p>Sleve-less-kurti <FaCircleArrowRight /></p>
 
               </Col>
               <Col xs={6} md={3}>
                 <div className='women-collection'>
-                      <Link to="/category/68e79d180418ea89753732b0">
-                      <img src={naina} alt='' />
-                      </Link>
-             
+                  <Link to="/category/68e79d180418ea89753732b0">
+                    <img src={naina} alt='' />
+                  </Link>
+
                 </div>
                 <p> FullSleeves kurti <FaCircleArrowRight /></p>
 
@@ -184,19 +207,19 @@ const Home = () => {
               <Col xs={6} md={3}>
                 <div className='women-collection'>
                   <Link to="/category/68e79d4e0418ea89753732d2">
-                  <img src={geet} alt='' />
+                    <img src={geet} alt='' />
                   </Link>
-                 
+
                 </div>
                 <p>Our Best Sellers <FaCircleArrowRight /></p>
 
               </Col>
               <Col xs={6} md={3}>
                 <div className='women-collection'>
-               
+
                   <Link to="">
-                  <img src={aisa} alt='' />
-                      </Link>
+                    <img src={aisa} alt='' />
+                  </Link>
                 </div>
                 <p>New launches <FaCircleArrowRight /></p>
               </Col>

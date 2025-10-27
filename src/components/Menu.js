@@ -113,7 +113,6 @@ const Menu = () => {
             <Nav className="ms-auto icons-nav">
               <Nav.Link >
                 <div style={{ position: "relative", width: "250px" }}>
-                  {/* <FaSearch */}
                   <CiSearch
                     style={{
                       position: "absolute",
@@ -141,8 +140,6 @@ const Menu = () => {
                   />
                 </div>
               </Nav.Link>
-
-
               {
                 currentUser && currentUser.id !== "" ?
                   <Nav.Link as={Link} to="/account">

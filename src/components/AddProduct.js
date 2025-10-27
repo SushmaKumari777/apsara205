@@ -343,11 +343,11 @@
 
 
 import React, { useState, useEffect } from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Col, Container, Row,Breadcrumb } from 'react-bootstrap';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
-import './AddProduct.css';
+
 
 import { Navigate } from 'react-router-dom';
 import { useSelector } from "react-redux";
@@ -408,19 +408,24 @@ const AddProduct = () => {
                 </Row>
                 <Row>
                     <Col>
-                        <Link to={'/AdminDashboard'} >
+                        {/* <Link to={'/AdminDashboard'} >
                             <FaArrowCircleLeft
                                 style={{
                                     color: "#641E16",
                                     fontSize: "25px",
                                 }}
                             />
-                        </Link>
+                        </Link> */}
 
+                        <Breadcrumb>
+                            <Breadcrumb.Item href="#">Admin Dashboard</Breadcrumb.Item>
+
+                            <Breadcrumb.Item active>Data</Breadcrumb.Item>
+                        </Breadcrumb>
                     </Col>
                 </Row>
                 <Row>
-                {/* className="d-flex justify-content-between align-items-center mb-3" */}
+                    {/* className="d-flex justify-content-between align-items-center mb-3" */}
                     <Col className='text-center'><h1>Add Product</h1> </Col>
                 </Row>
                 <Row>
@@ -573,10 +578,10 @@ const AddProduct = () => {
 
                                             <Row className="mt-3">
                                                 <Col className="d-flex justify-content-center">
-                                                <div className='btn'>
-                                                <button type="submit">Add</button>
-                                                </div>
-                                                   
+                                                    <div className='btn'>
+                                                        <button type="submit">Add</button>
+                                                    </div>
+
                                                 </Col>
                                             </Row>
                                         </Container>

@@ -11,7 +11,7 @@ import { MdDelete } from "react-icons/md";
 import { Link } from 'react-router'
 
 const Carts = () => {
-
+  
   // const dispatch = useDispatch();
   const [products, setProducts] = useState();
   const [count, setCount] = useState(1);
@@ -132,26 +132,26 @@ const Carts = () => {
                         return (
                           <tr key={index}>
                             <td className='text-center'>{index + 1}</td>
+                            {/* <Link to={`/products/${product.id}`}> */}
                             <td>{product.productDetails.productName}
+
                             </td>
+                            {/* </Link> */}
                             <td className='text-center'>{product.productDetails.productPrice}</td>
                             <td className='text-center'>
                               <img src={`http://localhost:8090/upload/${product.productDetails.images[0]}`}
                                 style={{ width: "80px", height: "80px", objectFit: "cover", borderRadius: "8px" }}
                               />
                             </td>
-                            {/* <td className='text-center'>{product.Quantity}</td> */}
 
                             <td className='text-center'>
-                              {/* <button onClick={decrement}>-</button>
-                              <button>{count}</button>
-                              <button onClick={increment}>+</button> */}
                               <button onClick={() => quantityUpdate(product.productId, product.quantity - 1)}>-</button>
                               {product.quantity}
                               <button onClick={() => quantityUpdate(product.productId, product.quantity + 1)}>+</button>
 
 
                             </td>
+                           
                             <td className='text-center'>
                               {product.quantity * product.productDetails.productPrice}
                             </td>
@@ -216,7 +216,7 @@ const Carts = () => {
                         fontWeight: "500"
                       }}
                       >Checkout</Link> </button>
-                      <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;OR</p>
+                      <p> &nbsp; &nbsp; &nbsp; &nbsp;OR</p>
                       <button type="button" class="btn btn-light"> 
                         <Link to={'/Home'} 
                         style={{

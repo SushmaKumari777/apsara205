@@ -57,8 +57,12 @@ const AllProducts = () => {
                                             <img src={`http://localhost:8090/upload/${product.images[0]}`} />
                                             <p>{product.productName}</p>{}
                                             <h6>Rs.{product.productPrice}</h6>
-                                            <Button className="button" onClick={() => AddCart(product)}>Add to Cart</Button>
-                                            {/* </Link> */}
+                                            <div>
+                                            <Button variant="outline-secondary" className="button" onClick={() => AddCart(product)}>Add to Cart</Button>
+                                            <Button variant="outline-secondary" className="button" ><Link to={`/products/${product.id}`}>view</Link></Button>
+                                            </div>
+                                            
+                                            
                                         </div>
                                     </Col>
                                 )

@@ -5,51 +5,75 @@ import Menu from "./Menu";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; import { FaArrowCircleLeft } from "react-icons/fa";
 import { faSignOut } from "@fortawesome/free-solid-svg-icons";
 
+import Breadcrumb from 'react-bootstrap/Breadcrumb';
 
 import { Chart } from "react-google-charts";
 
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+import { Bar } from 'react-chartjs-2';
+// import faker from 'faker';
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 
+// const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+
+const data = {
+  labels: ["January", "February", "March", "April", "May"],
+  datasets: [
+    {
+      label: "Sales",
+      data: [12000, 19000, 3000, 5000, 2000],
+      backgroundColor: "rgba(75, 192, 192, 0.5)",
+      borderColor: "rgba(75, 192, 192, 1)",
+      borderWidth: 1
+    }
+  ]
+};
 
 
-
-const data = [
-  ["x", "dogs"],
-  [0, 0],
-  [1, 10],
-  [2, 23],
-  [3, 17],
-  [4, 18],
-  [5, 9],
-  [6, 11],
-  [7, 27],
-  [8, 33],
-  [9, 40],
-  [10, 32],
-  [11, 35],
+const options = [
+  { value: 'admin', label: 'Admin' },
+  { value: 'user', label: 'User' },
 ];
 
-const options = {
-  title: "SALES PERFORMENCE",
-  hAxis: { title: "Time" },
-  vAxis: { title: "Popularity" },
-  legend: "none",
-};
+
+
+
+
+
+
+
 
 
 const AdminDashboard = () => {
   return (
     <div>
-      {/* <Row>
+      <Row>
         <Col>
           <Menu></Menu>
         </Col>
-      </Row> */}
+      </Row>
       <section className='dashboard'>
         <Container fluid>
           <Row>
             <Col>
-              <Link to={'/Home'} >
+              {/* <Link to={'/Home'} >
 
                 <FaArrowCircleLeft
                   style={{
@@ -59,18 +83,22 @@ const AdminDashboard = () => {
                   }}
                 />
 
-              </Link>
+              </Link> */}
+              <Breadcrumb>
+                <Breadcrumb.Item href="#">Dashboard</Breadcrumb.Item>
+              </Breadcrumb>
 
             </Col>
           </Row>
           <Row>
             <Col md={2} className='sidebar'>
               <ul>
-                <li><Link to={'/AdminDashboard'} ><p>Dashboard</p></Link><p></p></li>
+                {/* <li><Link to={'/AdminDashboard'} ><p>Dashboard</p></Link><p></p></li> */}
                 <li><Link to={'/AddCategory'} ><p>Add Category</p></Link></li>
                 <li><Link to={'/AddProduct'} ><p>Add Product</p></Link></li>
                 <li><Link to={'/AdminProduct'} ><p>AdminProduct</p></Link></li>
                 <li><Link to={'/AdminOrders'} ><p>Admin Orders</p></Link></li>
+                <li><Link to={'/Addproduct'} ><p>Add product</p></Link></li>
                 <li>Setting</li>
                 <li>Help Center</li>
                 <li><FontAwesomeIcon icon={faSignOut} />Logout</li>
@@ -111,21 +139,21 @@ const AdminDashboard = () => {
               </Row>
               <Row>
                 <Col>
-                  
+
                   <Row>
                     <Col>
-                    <div className='saleschart'>
-                    <Chart
+                      <div className='saleschart'>
+                        {/* <Chart
                         chartType="LineChart"
                         width="100%"
                         height="400px"
                         data={data}
                         options={options}
-                      />
-                    </div>
+                      /> */}
+                      </div>
                     </Col>
                     <Col>
-                    
+                      <Bar options={options} data={data} />;
                     </Col>
                   </Row>
                 </Col>

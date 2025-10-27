@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col ,Button} from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, Navigate } from "react-router-dom";
 import { Formik, Field, Form } from "formik";
@@ -65,22 +65,13 @@ const Contact = () => {
 
                     <Row>
                         <Col className="text-center my-1">
-                            <h1>Contact</h1>
+                            <h1>Contact us</h1>
                         </Col>
                     </Row>
-
-                    {/* {message && (
-          <Row>
-            <Col>
-              <div className="alert alert-danger text-center">{message}</div>
-            </Col>
-          </Row>
-        )} */}
 
                     <Formik
                         initialValues={{ name: '', mobile: '', password: '' }}
                         validationSchema={ContactSchema}
-                    // onSubmit={handleContact}
                     >
                         {({ errors, touched }) => (
                             <Form>
@@ -113,30 +104,25 @@ const Contact = () => {
                                             )}
                                         </Col>
                                     </Row>
-                                    <Row>
-                                        <Col md={3} >
+                                    <Row className="mb-3">
+                                        <Col>
                                             <b>Comment</b>
                                         </Col>
                                     </Row>
-                                    <Row>
-                                        <Col md={9} >
+                                    <Row className="mb-3">
+                                        <Col>
                                             <div>
-                                                <Field as="textarea" id="description" name="description" className="form-control" />
+                                                <Field as="textarea" id="description" name="description" className="form-control" style={{ width: "420px" ,height:"150px"}}/>
                                             </div>
                                         </Col>
                                     </Row>
-
-                                    <Row>
+                                            &nbsp;
+                                            &nbsp;
+                                            
+                                    <Row >
                                         <Col className="text-center">
-                                            <button
+                                        <Button variant="secondary" className="button">Submit</Button>
 
-                                                type="submit"
-                                                className="btn btn-primary"
-                                            // disabled={loading}
-                                            >
-                                                Sent
-                                                {/* {loading ? 'Please wait...' : 'Continue'} */}
-                                            </button>
                                         </Col>
                                     </Row>
                                 </div>

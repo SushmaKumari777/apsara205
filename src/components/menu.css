@@ -4,13 +4,8 @@
 }
 
 .navbar {
-  /* width: 100%; */
-  /* display: flex; */
   background-color: rgba(210, 155, 178, 0.8);
-/* margin: 0;
-padding: 0; */
-width:auto;
-
+  width: auto;
 
 }
 
@@ -27,10 +22,12 @@ width:auto;
   color: #641E16;
 
 }
+
 .cart-container {
   position: relative;
   display: inline-block;
 }
+
 .cart-badge {
   position: absolute;
   top: -5px;

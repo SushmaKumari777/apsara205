@@ -30,6 +30,7 @@ import Contact from './components/Contact';
 import Example2 from './components/Example2';
 import AllProducts from './components/AllProducts';
 import CartDetails from './components/CartDetails';
+import Products from './components/Products';
 
 
 function App() {
@@ -66,6 +67,7 @@ function App() {
         <Route path="/example2" element={<Example2 />} />
         <Route path="/allProducts" element={<AllProducts />} />
         <Route path="/cartDetails" element={<CartDetails />} />
+        <Route path="/products/:productId" element={<Products />} />
       
 
 

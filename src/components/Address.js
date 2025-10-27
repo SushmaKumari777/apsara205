@@ -6,8 +6,8 @@ import '../App.css'
 
 const SignupSchema = Yup.object().shape({
     name: Yup.string()
-    //   .min(2, 'Name must be at least 2 characters')
-    //   .max(50, 'Too Long!')
+      .min(2, 'Name must be at least 2 characters')
+      .max(20, 'Too Long!')
       .required('Name is required'),
   
     city: Yup.string()
@@ -17,11 +17,11 @@ const SignupSchema = Yup.object().shape({
       .required('State is required'),
   
     pincode: Yup.string()
-      .matches(/^[1-9]{5}$/, 'Invalid Pincode (must be 6 digits)')
+      .matches(/^[1-9][0-9]{5}$/, 'Invalid Pincode (must be 6 digits)')
       .required('Pincode is required'),
   
     address: Yup.string()
-    //   .min(5, 'Address is too short')
+      .min(5, 'Address is too short')
       .required('Address is required'),
   
     house: Yup.number()
@@ -48,6 +48,12 @@ const SignupSchema = Yup.object().shape({
   });
 
 const Address = () => {
+
+
+
+
+
+
     return (
         <div>
             <Container>
