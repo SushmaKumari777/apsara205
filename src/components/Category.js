@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Container, Row, Col, Link, Card, Button } from 'react-bootstrap'
+import { Container, Row, Col, Card, Button } from 'react-bootstrap'
 import { useParams } from 'react-router'
 // import './categories.css'
 import '../App.css'
@@ -8,7 +8,7 @@ import { FaHeart } from "react-icons/fa";
 import axios from 'axios';
 import { IoIosHeartEmpty } from "react-icons/io";
 import { useSelector } from "react-redux";
-
+import { Link } from 'react-router'
 
 
 
@@ -73,17 +73,20 @@ const Category = () => {
 
                 products.map((product, index) => {
                   return (
-                    <Col md={3} key={index} >
-                      <div className='box'>
-                        {/* <Link to={'/buy/' + pooh.title + pooh.price1}> */}
-                        <IoIosHeartEmpty className='wishlist' />
-                        <img src={`http://localhost:8090/upload/${product.images[0]}`} />
-                        <p>{product.productName}</p>{ }
-                        <h6>Rs.{product.productPrice}</h6>
-                        <Button variant="outline-secondary" className="button" onClick={() => AddCart(product)}>Add to Cart</Button>
-                        {/* </Link> */}
-                      </div>
-                    </Col>
+                
+                    <Col xs={6} md={3} key={index}>
+                    <div className="box" >
+                    <Link to={`/products/${product.id}`}>
+                      <IoIosHeartEmpty className='wishlist' />
+                      <img src={`http://localhost:8090/upload/${product.images[0]}`} />
+                      <p>{product.productName}</p>
+                      <h6>Rs.{product.productPrice}</h6>
+                      <Button variant="outline-secondary" className="button" onClick={() => AddCart(product)}>Add to cart</Button>
+                     
+                      </Link>
+                    </div>
+                  </Col>
+
                   )
                 }
                 )

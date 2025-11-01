@@ -22,14 +22,18 @@ const Gender = () => {
       console.log(response.data)
       setProducts(response.data)
     })
-  }, []);
-
-  useEffect(() => {
     axios.get('http://localhost:8090/api/ssproducts/new/women').then((response) => {
       console.log(response.data)
       setProducts(response.data)
     })
   }, []);
+
+  // useEffect(() => {
+  //   axios.get('http://localhost:8090/api/ssproducts/new/women').then((response) => {
+  //     console.log(response.data)
+  //     setProducts(response.data)
+  //   })
+  // }, []);
 
 
   const AddCart = (product) => {

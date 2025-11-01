@@ -1,7 +1,8 @@
 
 import React, { useState, useEffect } from 'react'
 import Menu from "./Menu";
-import { Container, Row, Col, Table } from 'react-bootstrap'
+import Address from "./Address";
+import { Container, Row, Col, Table, Modal } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux';
 import { clearMessage } from "../slices/message";
 import axios from 'axios';
@@ -9,22 +10,37 @@ import { CiSquareRemove } from "react-icons/ci";
 import Button from 'react-bootstrap/Button';
 import { MdDelete } from "react-icons/md";
 import { Link } from 'react-router'
-
+import { Formik, Field, Form } from 'formik';
 const Carts = () => {
-  
+
   // const dispatch = useDispatch();
   const [products, setProducts] = useState();
   const [count, setCount] = useState(1);
   const [noCartItems, setNoCartItems] = useState();
+  const [addresses, setAddresses] = useState();
+
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   useEffect(() => {
     axios.get(`http://localhost:8090/api/carts/user/${currentUser.id}`).then((response) => {
       console.log(response.data.items)
       console.log(response.data)
-      setProducts(response.data.items)
-      setNoCartItems(response.data.itemCount)
+      // setProducts(response.data.items)
+      // setNoCartItems(response.data.itemCount)
+      const reversedItems = [...response.data.items].reverse();
+      setProducts(reversedItems);
+      setNoCartItems(response.data.itemCount);
+    })
+    axios.get(`http://localhost:8090/api/addresses/user/${currentUser.id}`).then((response) => {
+
+      console.log(response.data)
+      setAddresses(response.data)
+
     })
   }, []);
+
 
   const { user: currentUser } = useSelector((state) => state.auth);
   console.log(currentUser)
@@ -99,7 +115,7 @@ const Carts = () => {
           </Col>
         </Row>
       </div>
-      <div className="bg">
+      <div>
 
         <Container>
           <Row>
@@ -110,7 +126,7 @@ const Carts = () => {
             </Col>
           </Row>
           <Row>
-            <Col>
+            <Col >
               <Table Striped rows hover>
                 <thead>
                   <tr>
@@ -126,43 +142,75 @@ const Carts = () => {
                   </tr>
                 </thead>
                 <tbody>
+                                        
+
                   {
                     products ?
                       products.map((product, index) => {
                         return (
+                          // <Link to={`/products/${product.id}`}>
                           <tr key={index}>
-                            <td className='text-center'>{index + 1}</td>
-                            {/* <Link to={`/products/${product.id}`}> */}
-                            <td>{product.productDetails.productName}
+                            
+                              <td className='text-center'>{index + 1}</td>
+                            
+                              <td>{product.productDetails.productName}
 
-                            </td>
-                            {/* </Link> */}
-                            <td className='text-center'>{product.productDetails.productPrice}</td>
-                            <td className='text-center'>
-                              <img src={`http://localhost:8090/upload/${product.productDetails.images[0]}`}
-                                style={{ width: "80px", height: "80px", objectFit: "cover", borderRadius: "8px" }}
-                              />
-                            </td>
+                              </td>
+                        
+                              <td className='text-center'>Rs. {product.productDetails.productPrice}.00</td>
+                              <td className='text-center'>
+                                <img src={`http://localhost:8090/upload/${product.productDetails.images[0]}`}
+                                  style={{ width: "80px", height: "80px", objectFit: "cover", borderRadius: "8px" }}
+                                />
+                              </td>
 
-                            <td className='text-center'>
-                              <button onClick={() => quantityUpdate(product.productId, product.quantity - 1)}>-</button>
+                              <td className='text-center'>
+                                {/* <button onClick={() => quantityUpdate(product.productId, product.quantity - 1)}>-</button>
+                              &nbsp;
                               {product.quantity}
-                              <button onClick={() => quantityUpdate(product.productId, product.quantity + 1)}>+</button>
+                              &nbsp;
+                              <button onClick={() => quantityUpdate(product.productId, product.quantity + 1)}>+</button> */}
 
+                                <button
+                                  style={{
+                                    color: "#641E16",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "space-between",
+                                    width: "100px",
+                                    padding: "5px 10px",
+                                    border: "1px solid #ccc",
+                                    borderRadius: "5px",
+                                    backgroundColor: "white",
+                                  }}
+                                >
+                                  <span onClick={() => quantityUpdate(product.productId, product.quantity - 1)} style={{ cursor: "pointer" }}>
+                                    <b>-</b>
+                                  </span>
+                                  <span>{product.quantity}</span>
+                                  <span onClick={() => quantityUpdate(product.productId, product.quantity + 1)} style={{ cursor: "pointer" }}>
+                                    <b>+</b>
+                                  </span>
+                                </button>
+                              </td>
 
-                            </td>
-                           
-                            <td className='text-center'>
-                              {product.quantity * product.productDetails.productPrice}
-                            </td>
+                              <td className='text-center'>
+                                Rs. {product.quantity * product.productDetails.productPrice}.00
+                              </td>
 
-                            <td className='text-center'>
-                              <button onClick={() => handleDelete(product.productId)}><MdDelete /> </button>
-                            </td>
+                              <td className='text-center'>
+                                <button onClick={() => handleDelete(product.productId)}
+                                  style={{
+                                    color: "#641E16",
+                                    alignItems: "center",
+                                    border: "1px solid #ccc"
+                                  }}
+                                ><MdDelete /> </button>
+                              </td>
 
-
+                          
                           </tr>
-
+                                  // </Link>
                         )
 
                       }
@@ -171,6 +219,7 @@ const Carts = () => {
                         <td colSpan={4}>Your cart is empty</td>
                       </tr>
                   }
+                 
                 </tbody>
 
               </Table>
@@ -181,26 +230,26 @@ const Carts = () => {
             <Col>Coupon code</Col>
             <Col>
               <Table>
-                <tbody 
-                 style={{
-                  color: "#641E16"
-                }}
+                <tbody
+                  style={{
+                    color: "#641E16"
+                  }}
                 >
                   <tr>
-                    <td>Subtotal :</td>
+                    <td>Subtotal  :</td>
                     <td>
-                      <p> ₹{subTotal.toFixed(2)}</p>
+                      <p> Rs. {subTotal.toFixed(2)}</p>
                     </td>
                   </tr>
-                  
+
                   <tr>
-                    <td> Discount:</td>
-                    <td><p> ₹{discountValue.toFixed(2)}</p>
+                    <td> Discount  :</td>
+                    <td><p> Rs. {discountValue.toFixed(2)}</p>
                     </td>
                   </tr>
                   <tr>
-                    <td> Grand Total:</td>
-                    <td><p>₹{grandTotal.toFixed(2)}</p></td>
+                    <td> Grand Total  :</td>
+                    <td><p>Rs. {grandTotal.toFixed(2)}</p></td>
                   </tr>
                   <tr>
                     <td> Coupon code:</td>
@@ -209,30 +258,93 @@ const Carts = () => {
                   <tr>
                     <td>
                       <button type="button" class="btn btn-light">
-                        <Link to={'/Address'} 
-                       style={{
-                        textDecoration: "none",
-                        color: "#641E16",
-                        fontWeight: "500"
-                      }}
-                      >Checkout</Link> </button>
+                        <Link to={'/Address'}
+                          style={{
+                            textDecoration: "none",
+                            color: "#641E16",
+                            fontWeight: "500"
+                          }}
+                        >Checkout</Link> </button>
                       <p> &nbsp; &nbsp; &nbsp; &nbsp;OR</p>
-                      <button type="button" class="btn btn-light"> 
-                        <Link to={'/Home'} 
-                        style={{
-                          textDecoration: "none",
-                          color: "#641E16",
-                          fontWeight: "500"
-                        }}
+                      <button type="button" class="btn btn-light">
+                        <Link to={'/Home'}
+                          style={{
+                            textDecoration: "none",
+                            color: "#641E16",
+                            fontWeight: "500"
+                          }}
                         >Continue Shopping</Link>  </button>
-                       
+
                     </td>
                   </tr>
-                  
+
                 </tbody>
               </Table>
             </Col>
 
+          </Row>
+          <Row>
+            <Col>
+              <h4>Addresses</h4>
+              <Button variant="outline-secondary" onClick={handleShow}>
+                Add address
+              </Button>
+
+              <Modal
+                show={show}
+                onHide={handleClose}
+                backdrop="static"
+                keyboard={false}
+              >
+                <Modal.Header closeButton>
+                  <Modal.Title>Modal title</Modal.Title>
+                </Modal.Header>
+
+                <Modal.Body>
+                  <Address />
+                </Modal.Body>
+
+                <Modal.Footer>
+                  <Button variant="secondary" onClick={handleClose}>
+                    Close
+                  </Button>
+                  <Button variant="primary">Understood</Button>
+                </Modal.Footer>
+              </Modal>
+              <Formik
+                initialValues={{
+                  addressId: '',
+                }}
+                onSubmit={async (values) => {
+                  await new Promise((r) => setTimeout(r, 500));
+                  alert(JSON.stringify(values, null, 2));
+                }}
+              >
+                {({ values }) => (
+                  <Form>
+                    <div id="my-radio-group">Choose address</div>
+                    <div role="group" aria-labelledby="my-radio-group">
+
+                      {
+                        addresses ? addresses.map((address, index) => {
+                          return (
+                            <label>
+                              <Field type="radio" name="addressId" value={address.id} />
+                              {address.addressLine1}, {address.addressLine2}
+                            </label>
+                          )
+                        })
+                          : "no address available"
+                      }
+                      <div>Picked: {values.addressId}</div>
+                    </div>
+
+                    <button type="submit">Submit</button>
+                  </Form>
+                )}
+              </Formik>
+
+            </Col>
           </Row>
         </Container>
       </div>

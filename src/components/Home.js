@@ -27,22 +27,21 @@ import { FaCircleArrowRight } from "react-icons/fa6";
 import { IoIosHeartEmpty } from "react-icons/io";
 import { useSelector } from "react-redux";
 import axios from 'axios';
-import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import { FaArrowLeft, FaArrowRight } from 'react-icons/fa'
-
+import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 
 
 const settings = {
   infinite: true,
   slidesToShow: 4,
-  slidesToScroll: 4,
+  slidesToScroll: 2,
   arrows: true,
   dots: true,
-  nextArrow: <FaArrowRight></FaArrowRight>,
-  prevArrow: <FaArrowLeft></FaArrowLeft>
-  
+  nextArrow: <MdKeyboardArrowRight />,
+  prevArrow: <MdKeyboardArrowLeft />
+
 };
 
 const Home = () => {
@@ -57,7 +56,7 @@ const Home = () => {
       console.log(response.data)
       setWomenProducts(response.data)
     })
-  
+
   }, []);
 
 
@@ -119,42 +118,59 @@ const Home = () => {
 
       <div>
         <section className='latestw'>
+          {/* <Row> */}
+          {/* <Col> */}
           <Row>
             <h1>Latest Arrivals</h1>
-            {/* <div className="scroll-container"> */}
 
-             <Slider {...settings}>
-             {
+
+            <Slider {...settings}>
+              {
                 womenProducts.map((product, index) => {
                   return (
+                    <Col xs={6} md={3}>
+                      {/* <div className="scroll-container"> */}
+                        <div className='square' key={index}>
+                           <Link to={`/products/${product.id}`}>
+                          <IoIosHeartEmpty className='wishlist' />
+                          <img src={`http://localhost:8090/upload/${product.images[0]}`} />
+                          <p>{product.productName}</p>
+                          <h6>Rs.{product.productPrice}</h6>
+                          <Button variant="outline-secondary" className="button" onClick={() => AddCart(product)}>Add to Cart</Button>
+                          </Link>
+                        </div>
+                        
+                      {/* </div> */}
 
-                    <Col md={2} >
-                      <div className='square' key={index}>
-                        <IoIosHeartEmpty className='wishlist' />
-                        <img src={`http://localhost:8090/upload/${product.images[0]}`} />
-                        <p>{product.productName}</p>
-                        <h6>Rs.{product.productPrice}</h6>
-                        <Button variant="outline-secondary" className="button" onClick={() => AddCart(product)}>Add to Cart</Button>
-                      </div>
                     </Col>
+
                   )
                 }
                 )
               }
-             </Slider>
-            {/* </div> */}
+
+            </Slider>
+
+
 
           </Row>
+          {/* </Col> */}
+
+
+
+          {/* </Row> */}
         </section>
         <section className='latestm'>
           <Row>
             <h1>Latest Arrivals</h1>
-            <div className="scroll-container">
+            {/* <div className="scroll-container"> */}
+            <Slider {...settings}>
               {
                 products.map((product, index) => {
                   return (
-                    <Col md={2} key={index}>
+                    <Col md={3} key={index}>
                       <div className="square" >
+                         <Link to={`/products/${product.id}`}>
                         {/* <div className='square'> */}
                         <IoIosHeartEmpty className='wishlist' />
                         <img src={`http://localhost:8090/upload/${product.images[0]}`} />
@@ -162,13 +178,15 @@ const Home = () => {
                         <h6>Rs.{product.productPrice}</h6>
                         <Button variant="outline-secondary" className="button" onClick={() => AddCart(product)}>Add to cart</Button>
                         {/* </div> */}
+                        </Link>
                       </div>
                     </Col>
                   )
                 }
                 )
               }
-            </div>
+              {/* </div> */}
+            </Slider>
           </Row>
         </section>
 
@@ -216,7 +234,6 @@ const Home = () => {
               </Col>
               <Col xs={6} md={3}>
                 <div className='women-collection'>
-
                   <Link to="">
                     <img src={aisa} alt='' />
                   </Link>
@@ -255,10 +272,15 @@ const Home = () => {
                 <p>The Sanskari drips <FaCircleArrowRight /></p>
               </Col>
               <Col xs={6} md={3}>
+            
                 <div className='men-collection'>
+                <Link to={'/Allproducts'} >
                   <img src={all} alt='' />
+                  </Link>
                 </div>
+                
                 <p>All Collections <FaCircleArrowRight /></p>
+                
               </Col>
             </Row>
           </Container>
@@ -307,7 +329,7 @@ const Home = () => {
         </Container>
       </section> */}
 
-    </div>
+    </div >
   )
 }
 

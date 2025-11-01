@@ -91,7 +91,7 @@
   width: 200px;
   height: 400px;
   padding: 20px;
-  /* margin: 10px; */
+  margin: 20px;
   flex-direction: column;
   align-items: center;
   border-radius: 8px;
@@ -104,7 +104,7 @@
 
 .square img {
   width: 100%;
-  height: 220px;
+  height: 200px;
   object-fit: cover;
 
 }
@@ -138,9 +138,12 @@
   color: #641E16;
   margin-bottom: 10px;
 }
+.square h6 a{
+  color:#641E16
+}
 
 .square p {
-  font-size: 12px;
+  font-size: 15px;
   line-height: 1.5;
   margin: 10px 0;
   color: #641E16;
@@ -148,7 +151,11 @@
   overflow: hidden;
 
 }
-.scroll-container {
+.square p a{
+  color: #641E16;
+}
+
+/* .scroll-container {
   display: flex;
   overflow-x: auto;
   gap:50px;
@@ -156,10 +163,11 @@
   padding-bottom: 10px;
 }
 
-/* Hide scrollbar */
+
 .scroll-container::-webkit-scrollbar {
   display: none;
-}
+} */
+ 
 
 /* ----------------women collections------------------ */
 .womencollections h2 {
@@ -385,7 +393,7 @@ background-color: rgb(190, 46, 203);
  
  /* _______________form___________________________________ */
  .aaa {
-  width: 60%;
+  width: 100%;
   padding: 10px;
   border: solid 1px #641E16;
   border-radius: 3px;
@@ -393,7 +401,7 @@ background-color: rgb(190, 46, 203);
   color: #641E16;
   padding: 20px;
   /* border:solid 1px black; */
-  margin: 10px auto;
+  /* margin: 10px auto; */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-radius: 10px;
 }
@@ -435,7 +443,7 @@ background-color: rgb(190, 46, 203);
 
 
 /* ________________________________category______________________________________ */
-
+/* 
 .box {
   width: 180px;
   height: 400px;
@@ -448,8 +456,6 @@ background-color: rgb(190, 46, 203);
   display: flex;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
-
-  /* background-color: #5EADE2; */
 }
 
 .box img{
@@ -464,6 +470,79 @@ background-color: rgb(190, 46, 203);
   color: #641E16;
   padding: 10px;
   overflow: hidden;
+} */
+
+
+.wishlist {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  color: gray;
+  cursor: pointer;
+}
+
+.box {
+  width: 180px;
+  height: 380px;
+  /* padding-top: 10px; */
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 10px;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 8px;
+  display: flex;
+  background-color: #ffffff;
+  position: relative;
+  text-align: center;
+  flex: 0 0 auto;
+  box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+
+}
+
+.box img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  padding: 5px;
+
+}
+
+.box:hover img {
+  /* animation: morph 0.5s ease-in-out 1 forwards; */
+}
+
+
+/* .box:hover {
+  box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+} */
+
+.box h6 {
+  font-size: 18px;
+  color: #641E16;
+  margin-bottom: 10px;
+}
+.box h6 a{
+  color:#641E16
+}
+
+.box p {
+  font-size: 15px;
+  line-height: 1.5;
+  margin: 10px 0;
+  color: #641E16;
+  padding: 10px;
+  overflow: hidden;
+
+}
+.box p a{
+  color: #641E16;
 }
 /* __________________________________________________________________________________ */
 
+.slick-prev,.slick-next{
+  color: black !important;
+  margin:0 50px;
+  z-index: 1000 ;
+}

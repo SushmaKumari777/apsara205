@@ -52,17 +52,19 @@ const AllProducts = () => {
                                 return (
                                     <Col xs={6} md={3} >
                                         <div className='square'>
+                                        <Link to={`/products/${product.id}`}>
                                             {/* <Link to={'/buy/' + pooh.title + pooh.price1}> */}
                                             <IoIosHeartEmpty className='wishlist' />
-                                            <img src={`http://localhost:8090/upload/${product.images[0]}`} />
-                                            <p>{product.productName}</p>{}
-                                            <h6>Rs.{product.productPrice}</h6>
+                                           <img src={`http://localhost:8090/upload/${product.images[0]}`} />
+                                           
+                                            <p>{product.productName}</p>
+                                            <h6>Rs. {product.productPrice}</h6>
                                             <div>
                                             <Button variant="outline-secondary" className="button" onClick={() => AddCart(product)}>Add to Cart</Button>
-                                            <Button variant="outline-secondary" className="button" ><Link to={`/products/${product.id}`}>view</Link></Button>
+                                            {/* <Button variant="outline-secondary" className="button" ><Link to={`/products/${product.id}`}>view</Link></Button> */}
                                             </div>
                                             
-                                            
+                                            </Link>
                                         </div>
                                     </Col>
                                 )
