@@ -1,13 +1,14 @@
-import React from 'react'
-import { Row, Col, Container } from 'react-bootstrap'
+import React, { useState } from "react";
+import { Row, Col, Container, Table } from 'react-bootstrap'
 import { Link } from 'react-router'
 import Menu from "./Menu";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; import { FaArrowCircleLeft } from "react-icons/fa";
 import { faSignOut } from "@fortawesome/free-solid-svg-icons";
 
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
+import { Doughnut } from "react-chartjs-2";
+import Dropdown from 'react-bootstrap/Dropdown';
 
-import { Chart } from "react-google-charts";
 
 import {
   Chart as ChartJS,
@@ -16,10 +17,12 @@ import {
   BarElement,
   Title,
   Tooltip,
+  ArcElement,
   Legend,
 } from 'chart.js';
-import { Bar } from 'react-chartjs-2';
+import { Bar, Pie } from 'react-chartjs-2';
 // import faker from 'faker';
+
 
 ChartJS.register(
   CategoryScale,
@@ -37,7 +40,7 @@ const data = {
   labels: ["January", "February", "March", "April", "May"],
   datasets: [
     {
-      label: "Sales",
+      label: "Order statistics",
       data: [12000, 19000, 3000, 5000, 2000],
       backgroundColor: "rgba(75, 192, 192, 0.5)",
       borderColor: "rgba(75, 192, 192, 1)",
@@ -56,12 +59,104 @@ const options = [
 
 
 
+ChartJS.register(ArcElement, Tooltip, Legend, Title);
+const datas = {
+  labels: ["Handicrafts", "Tourism", "Agriculture", "Education", "Health"],
+  datasets: [
+    {
+      label: "Tribal Development",
+      data: [30, 25, 20, 15, 10],
+      backgroundColor: [
+        "rgba(255, 99, 132, 0.7)",
+        "rgba(54, 162, 235, 0.7)",
+        "rgba(255, 206, 86, 0.7)",
+        "rgba(75, 192, 192, 0.7)",
+        "rgba(153, 102, 255, 0.7)",
+      ],
+      borderColor: [
+        "rgba(255, 99, 132, 1)",
+        "rgba(54, 162, 235, 1)",
+        "rgba(255, 206, 86, 1)",
+        "rgba(75, 192, 192, 1)",
+        "rgba(153, 102, 255, 1)",
+      ],
+      borderWidth: 2,
+    },
+  ],
+};
+
+const option = {
+  responsive: true,
+  plugins: {
+    title: {
+      display: true,
+      text: "Visitors Report",
+      font: {
+        size: 18,
+        weight: "bold",
+      },
+      color: "#333",
+    },
+    legend: {
+      position: "bottom",
+      labels: {
+        font: {
+          size: 14,
+        },
+        color: "#444",
+      },
+    },
+    tooltip: {
+      callbacks: {
+        label: function (context) {
+          return `${context.label}: ${context.parsed}%`;
+        },
+      },
+    },
+  },
+};
 
 
 
 
+const Dataset = {
+  labels: [
+    'Red',
+    'Blue',
+    'Yellow'
+  ],
+  datasets: [{
+    label: 'Top selling categories',
+    data: [300, 50, 100],
+    backgroundColor: [
+      'rgb(255, 99, 132)',
+      'rgb(54, 162, 235)',
+      'rgb(255, 205, 86)'
+    ],
+    hoverOffset: 4
+  }]
+};
 
-const AdminDashboard = () => {
+// const hours = [
+//   "08:00", "09:00", "10:00", "11:00",
+//   "12:00", "13:00", "14:00", "15:00",
+//   "16:00", "17:00"
+// ];
+
+// const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+
+// const weeks = [
+//   "Week 1 (1–7)",
+//   "Week 2 (8–14)",
+//   "Week 3 (15–21)",
+//   "Week 4 (22–28)"
+// ];
+
+
+const AdminDashboard = (props) => {
+  // const [selectedWeek, setSelectedWeek] = useState(weeks[0]);
+
+
   return (
     <div>
       <Row>
@@ -72,7 +167,7 @@ const AdminDashboard = () => {
       <section className='dashboard'>
         <Container fluid>
           <Row>
-            <Col>
+            <Col md={10}>
               {/* <Link to={'/Home'} >
 
                 <FaArrowCircleLeft
@@ -89,28 +184,99 @@ const AdminDashboard = () => {
               </Breadcrumb>
 
             </Col>
+
+            <Col md={2}>
+            
+                  <Dropdown>
+                    <Dropdown.Toggle variant="secondary"id="dropdown-basic" style={{}}>
+                      Calender
+                    </Dropdown.Toggle>
+
+                    <Dropdown.Menu>
+                      <Dropdown.Item href="#/action-1">Last 45 days</Dropdown.Item>
+                      <Dropdown.Item href="#/action-2">Last 90 days</Dropdown.Item>
+                      <Dropdown.Item href="#/action-3">Last 6 months</Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </Col>
+          
           </Row>
           <Row>
-            <Col md={2} className='sidebar'>
+            {/* <Col md={2} className='sidebar'>
               <ul>
-                {/* <li><Link to={'/AdminDashboard'} ><p>Dashboard</p></Link><p></p></li> */}
-                <li><Link to={'/AddCategory'} ><p>Add Category</p></Link></li>
-                <li><Link to={'/AddProduct'} ><p>Add Product</p></Link></li>
-                <li><Link to={'/AdminProduct'} ><p>AdminProduct</p></Link></li>
-                <li><Link to={'/AdminOrders'} ><p>Admin Orders</p></Link></li>
-                <li><Link to={'/Addproduct'} ><p>Add product</p></Link></li>
+                <li><Link to={'/AdminDashboard'} ><p>Dashboard</p></Link><p></p></li>
+                <li><Link to={'/AddCategory'} style={{
+                  textDecoration: "none",
+                  color: "#641E16",
+                  fontWeight: "20px"
+                }}><p>Add Category</p></Link></li>
+                <li><Link to={'/AddminProduct'} style={{
+                  textDecoration: "none",
+                  color: "#641E16",
+                  fontWeight: "20px"
+                }}><p>Admin Product</p></Link></li>
+                <li><Link to={'/AdminProduct'} style={{
+                  textDecoration: "none",
+                  color: "#641E16",
+                  fontWeight: "20px"
+                }}><p>AdminProduct</p></Link></li>
+                <li><Link to={'/AdminOrders'} style={{
+                  textDecoration: "none",
+                  color: "#641E16",
+                  fontWeight: "20px"
+                }}><p>Admin Orders</p></Link></li>
+                <li><Link to={'/Addproduct'} style={{
+                  textDecoration: "none",
+                  color: "#641E16",
+                  fontWeight: "20px"
+                }}><p>Add product</p></Link></li>
                 <li>Setting</li>
                 <li>Help Center</li>
                 <li><FontAwesomeIcon icon={faSignOut} />Logout</li>
               </ul>
+            </Col> */}
+            <Col md={2} className='sidebar'>
+            <Table Striped rows hover>
+             <tbody>
+             <tr>
+                <td>
+                <Link to={'/AddCategory'} style={{textDecoration: "none", color: "#641E16", fontWeight: "20px"  }}>Add Category</Link>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                <Link to={'/AddProduct'} style={{textDecoration: "none",color: "#641E16",  fontWeight: "20px" }}>Add Product</Link>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                <Link to={'/AdminProduct'} style={{textDecoration: "none",color: "#641E16",  fontWeight: "20px" }}>Admin Product</Link>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                <Link to={'/AdminOrders'} style={{textDecoration: "none",color: "#641E16",  fontWeight: "20px" }}>Admin Orders</Link>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Setting
+                </td>
+              </tr>
+              <tr>
+                <td>Help Cente</td>
+              </tr>
+              <tr>
+                <td>
+                <FontAwesomeIcon icon={faSignOut} />Logout
+                </td>
+              </tr>
+             </tbody>
+            
+            </Table>
             </Col>
             <Col md={10}>
-              <Row>
-                <Col md={6}>
-                  <h5>Dashboard</h5>
-                </Col>
-                <Col md={6}>Calender</Col>
-              </Row>
+
               <Row>
                 <Col>
                   <div className='sales'>
@@ -139,34 +305,57 @@ const AdminDashboard = () => {
               </Row>
               <Row>
                 <Col>
-
-                  <Row>
-                    <Col>
-                      <div className='saleschart'>
-                        {/* <Chart
-                        chartType="LineChart"
-                        width="100%"
-                        height="400px"
-                        data={data}
-                        options={options}
-                      /> */}
-                      </div>
-                    </Col>
-                    <Col>
-                      <Bar options={options} data={data} />;
-                    </Col>
-                  </Row>
+                  <div style={{
+                    width: "300px",
+                    height: "350px",
+                    backgroundColor: "#f9f9f9",
+                    padding: "20px",
+                    marginTop: "10px",
+                    borderRadius: "12px",
+                    boxShadow: "0 4px 4px rgba(0, 0, 0, 0.1)",
+                  }}>
+                    Top selling categories
+                    <Doughnut data={Dataset} />
+                  </div>
                 </Col>
-                <Row>
-                  <Col>
-
-
-
-
-                  </Col>
-
-                </Row>
+                <Col md={6} style={{
+                  backgroundColor: "#f9f9f9",
+                  padding: "10px",
+                  marginTop: "10px",
+                  borderRadius: "12px",
+                  boxShadow: "0 4px 4px rgba(0, 0, 0, 0.1)",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  height: "350px",
+                  width:"500px"
+                }}>
+                  
+                  <Bar options={options} data={data}></Bar>
+                </Col>
               </Row>
+
+              <Row>
+              
+                <Col md={6} style={{
+                  backgroundColor: "#f9f9f9",
+                  padding: "20px",
+                  marginTop: "10px",
+                  borderRadius: "12px",
+                  boxShadow: "0 4px 4px rgba(0, 0, 0, 0.1)",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  height: "300px",
+                }}>
+                  <Pie
+                    options={option}
+                    data={data}
+                    {...props}
+                  />
+                </Col>
+              </Row>
+
             </Col>
 
           </Row>

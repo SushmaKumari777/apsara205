@@ -11,10 +11,10 @@ const SignupSchema = Yup.object().shape({
         .min(2, 'Name must be at least 2 characters')
         .max(20, 'Too Long!')
         .required('Name is required'),
-    address: Yup.string()
+    addressLine1: Yup.string()
         .min(5, 'Address is too short')
         .required('Address is required'),
-    street: Yup.string()
+    addressLine2: Yup.string()
         .required('Street/Locality is required'),
     city: Yup.string()
         .required('City is required'),
@@ -22,7 +22,7 @@ const SignupSchema = Yup.object().shape({
         .required('District is required'),
     state: Yup.string()
         .required('State is required'),
-    pincode: Yup.string()
+    pin: Yup.string()
         .matches(/^[1-9][0-9]{5}$/, 'Invalid Pincode (must be 6 digits)')
         .required('Pincode is required'),
     mobile: Yup.string()
@@ -66,7 +66,7 @@ const Address = () => {
     console.log(currentUser)
 
     const handleSubmit = async (formValue, resetForm) => {
-        const { name ,addressLine1,addressLine2,city,district,state,pincode,mobile,email,addressType} = formValue;
+        const { name ,addressLine1,addressLine2,city,district,state,pin,mobile,email,addressType} = formValue;
 
 
         console.log(formValue)
@@ -89,8 +89,8 @@ const Address = () => {
                 <Row>
                     <Col>
                         <Row>
-                            <Col className='bbb'>
-                                <h1>Delivery Address</h1>
+                            <Col>
+                                {/* <h1>Delivery Address</h1> */}
                             </Col>
                         </Row>
 
@@ -98,12 +98,12 @@ const Address = () => {
                             initialValues={{
                                 userId:currentUser.id,
                                 name: '',
-                                address: '',
-                                street: '',
+                                addressLine1: '',
+                                addressLine2: '',
                                 city: '',
                                 district: '',
                                 state: '',
-                                pincode: '',
+                                pin: '',
                                 mobile: '',
                                 email: '',
                                 addressType: '',
@@ -120,7 +120,7 @@ const Address = () => {
                         >
                             {({ errors, touched }) => (
                                 <Form>
-                                    <div className='aaa'>
+                                    <div className='delivery-address'>
                                         <Row>
                                             <Col md={3}>Name</Col>
                                             <Col md={9}>
@@ -135,15 +135,15 @@ const Address = () => {
                                         <Row>
                                             <Col md={3}>Address</Col>
                                             <Col md={9}>
-                                                <Field name="address" type="text" className='bbb' />
-                                                {errors.address && touched.address ? <div className='error'>{errors.address}</div> : null}
+                                                <Field name="addressLine1" type="text" className='bbb' />
+                                                {errors.addressLine1 && touched.addressLine1 ? <div className='error'>{errors.addressLine1}</div> : null}
                                             </Col>
                                         </Row>
                                         <Row>
                                             <Col md={3}>Street/Locality</Col>
                                             <Col md={9}>
-                                                <Field name="street" type="text" className='bbb' />
-                                                {errors.street && touched.street ? <div className='error'>{errors.street}</div> : null}
+                                                <Field name="addressLine2" type="text" className='bbb' />
+                                                {errors.addressLine2 && touched.addressLine2 ? <div className='error'>{errors.addressLine2}</div> : null}
                                             </Col>
                                         </Row>
                                         <Row>
@@ -172,8 +172,8 @@ const Address = () => {
                                         <Row>
                                             <Col md={3}>Pincode</Col>
                                             <Col md={9}>
-                                                <Field name="pincode" type="pincode" className='bbb' />
-                                                {errors.pincode && touched.pincode ? <div className='error'>{errors.pincode}</div> : null}
+                                                <Field name="pin" type="pin" className='bbb' />
+                                                {errors.pin && touched.pin ? <div className='error'>{errors.pin}</div> : null}
                                             </Col>
                                         </Row>
                                         <Row>

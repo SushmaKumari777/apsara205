@@ -12,28 +12,21 @@ import { useSelector } from "react-redux";
 
 
 const Gender = () => {
-  // const { idealFor } = useParams();
-  // console.log(idealFor)
+  const { idealFor } = useParams();
+  console.log(idealFor)
 
-  const [products, setProducts] = useState();
-
+  // const [products, setProducts] = useState();
+//  const [womenProducts, setWomenProducts] = useState([]);
+  const [products, setProducts] = useState([]);
   useEffect(() => {
-    axios.get('http://localhost:8090/api/ssproducts/new/men').then((response) => {
+    axios.get(`http://localhost:8090/api/ssproducts/new/${idealFor}`).then((response) => {
       console.log(response.data)
       setProducts(response.data)
     })
-    axios.get('http://localhost:8090/api/ssproducts/new/women').then((response) => {
-      console.log(response.data)
-      setProducts(response.data)
-    })
-  }, []);
+  
+  }, [idealFor]);
 
-  // useEffect(() => {
-  //   axios.get('http://localhost:8090/api/ssproducts/new/women').then((response) => {
-  //     console.log(response.data)
-  //     setProducts(response.data)
-  //   })
-  // }, []);
+
 
 
   const AddCart = (product) => {
@@ -77,7 +70,7 @@ const Gender = () => {
           <Row>
             {
               products ?
-                products.map((product, index) => {
+              products.map((product, index) => {
                   return (
                     <Col xs={6} md={3} >
                       <div className='square'>
@@ -98,6 +91,7 @@ const Gender = () => {
                 </div>
             }
           </Row>
+        
         </Container>
       </section>
     </div>

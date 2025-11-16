@@ -9,14 +9,14 @@ import { clearMessage } from "../slices/message";
 import { useDispatch, useSelector } from "react-redux";
 
 const SignupSchema = Yup.object().shape({
-  // username: Yup.string()
-  //   .matches(/^[a-zA-Z0-9_]+$/, "Only letters, numbers and underscores allowed")
-  //   .min(3, "Username must be at least 3 characters")
-  //   .max(20, "Username must be less than 20 characters")
-  //   .required("Username is required"),
-  mobile: Yup.string()
-    .matches(/^[6-9]\d{9}$/, "Enter a valid 10 Digit Mobile No. ")
-    .required("Mobile No. is Mandetory!"),
+  username: Yup.string()
+    .matches(/^[a-zA-Z0-9_]+$/, "Only letters, numbers and underscores allowed")
+    .min(3, "Username must be at least 3 characters")
+    .max(20, "Username must be less than 20 characters")
+    .required("Username is required"),
+  // mobile: Yup.string()
+  //   .matches(/^[6-9]\d{9}$/, "Enter a valid 10 Digit Mobile No. ")
+  //   .required("Mobile No. is Mandetory!"),
   email: Yup.string().email("Invalid email").required("E-Mail Id Required"),
   password: Yup.string()
     .min(6, "Minimum Six charecter required")
@@ -33,11 +33,12 @@ const Register = () => {
     dispatch(clearMessage());
   }, [dispatch]);
   const handleRegister = (formValue) => {
-    const { mobile, email, password } = formValue;
-
+    console.log()
+    const {username, email, password } = formValue;
+   
     setSuccessful(false);
 
-    dispatch(register({ mobile, email, password }))
+    dispatch(register({username, email, password }))
       .unwrap()
       .then(() => {
         setSuccessful(true);
@@ -66,8 +67,8 @@ const Register = () => {
               </Row>
               <Formik
                 initialValues={{
-                  // username: "",
-                  mobile: "",
+                  username: "",
+                 
                   email: "",
                   password: "",
                 }}
@@ -81,7 +82,7 @@ const Register = () => {
                 {({ errors, touched }) => (
                   <Form>
                     <div className="background">
-                      {/* <Row>
+                      <Row>
                       <Col>
                           <b>Username</b>
                         </Col>
@@ -95,8 +96,8 @@ const Register = () => {
                             ) : null}
                           </div>
                         </Col>
-                      </Row> */}
-                      <Row>
+                      </Row>
+                      {/* <Row>
                         <Col>
                           <b>Mobile</b>
                         </Col>
@@ -105,7 +106,6 @@ const Register = () => {
 
                         <Col>
                           <Field name="mobile" className="bbb" />
-                          {/*<InputMask mask="9999999999" maskChar={null} name="mobile" className='boxes' /> */}
 
                           <div className="error">
                             {errors.mobile && touched.mobile ? (
@@ -113,7 +113,7 @@ const Register = () => {
                             ) : null}
                           </div>
                         </Col>
-                      </Row>
+                      </Row> */}
                       <Row>
                         <Col>
                           <b>Email Address</b>

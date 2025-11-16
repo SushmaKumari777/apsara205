@@ -31,6 +31,7 @@ import Example2 from './components/Example2';
 import AllProducts from './components/AllProducts';
 import CartDetails from './components/CartDetails';
 import Products from './components/Products';
+import AddressDetails from './components/AddressDetails';
 
 
 function App() {
@@ -67,6 +68,7 @@ function App() {
         <Route path="/example2" element={<Example2 />} />
         <Route path="/allProducts" element={<AllProducts />} />
         <Route path="/cartDetails" element={<CartDetails />} />
+        <Route path="/AddressDetails" element={<AddressDetails />} />
         <Route path="/products/:productId" element={<Products />} />
       
 

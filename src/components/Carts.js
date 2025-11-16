@@ -9,8 +9,13 @@ import axios from 'axios';
 import { CiSquareRemove } from "react-icons/ci";
 import Button from 'react-bootstrap/Button';
 import { MdDelete } from "react-icons/md";
+import { CiCircleRemove } from "react-icons/ci";
 import { Link } from 'react-router'
 import { Formik, Field, Form } from 'formik';
+import Badge from 'react-bootstrap/Badge';
+import { BsPlus } from "react-icons/bs";
+
+
 const Carts = () => {
 
   // const dispatch = useDispatch();
@@ -106,6 +111,20 @@ const Carts = () => {
 
   }
 
+
+
+
+
+  const handleRemove = (id) => {
+    if (window.confirm("Are you sure you want to delete this address?")) {
+      axios.delete(`http://localhost:8090/api/addresses/${id}`).then((response) => {
+        console.log('Product successfully deleted')
+        alert('Product successfully deleted')
+        window.location.reload();
+      })
+    }
+  }
+
   return (
     <div>
       <div>
@@ -130,19 +149,18 @@ const Carts = () => {
               <Table Striped rows hover>
                 <thead>
                   <tr>
-                    <th className='text-center'>S.No.</th>
-                    <th className='text-center'>Products</th>
+                    <th className='text-center'>S.No.</th>                  
+                    <th className='text-center'></th>
+                    <th >Products</th>
                     <th className='text-center'>Price</th>
-                    <th className='text-center'>Images</th>
                     <th className='text-center'>Quantity</th>
-
                     <th className='text-center'>Total price</th>
                     <th className='text-center'>Remove</th>
 
                   </tr>
                 </thead>
                 <tbody>
-                                        
+
 
                   {
                     products ?
@@ -150,67 +168,64 @@ const Carts = () => {
                         return (
                           // <Link to={`/products/${product.id}`}>
                           <tr key={index}>
-                            
-                              <td className='text-center'>{index + 1}</td>
-                            
-                              <td>{product.productDetails.productName}
 
-                              </td>
-                        
-                              <td className='text-center'>Rs. {product.productDetails.productPrice}.00</td>
-                              <td className='text-center'>
-                                <img src={`http://localhost:8090/upload/${product.productDetails.images[0]}`}
-                                  style={{ width: "80px", height: "80px", objectFit: "cover", borderRadius: "8px" }}
-                                />
-                              </td>
-
-                              <td className='text-center'>
-                                {/* <button onClick={() => quantityUpdate(product.productId, product.quantity - 1)}>-</button>
+                            <td className='text-center'>{index + 1}</td>
+                            <td className='text-center'>
+                              <img src={`http://localhost:8090/upload/${product.productDetails.images[0]}`}
+                                style={{ width: "80px", height: "80px", objectFit: "cover", borderRadius: "8px" }}
+                              />
+                            </td>
+                            <td>
+                             <p>  {product.productDetails.productName}</p>                       
+                            </td>
+                            <td className='text-center'>Rs. {product.productDetails.productPrice}.00</td>
+                            <td className='text-center'>
+                              {/* <button onClick={() => quantityUpdate(product.productId, product.quantity - 1)}>-</button>
                               &nbsp;
                               {product.quantity}
                               &nbsp;
                               <button onClick={() => quantityUpdate(product.productId, product.quantity + 1)}>+</button> */}
 
-                                <button
-                                  style={{
-                                    color: "#641E16",
-                                    display: "flex",
-                                    alignItems: "center",
-                                    justifyContent: "space-between",
-                                    width: "100px",
-                                    padding: "5px 10px",
-                                    border: "1px solid #ccc",
-                                    borderRadius: "5px",
-                                    backgroundColor: "white",
-                                  }}
-                                >
-                                  <span onClick={() => quantityUpdate(product.productId, product.quantity - 1)} style={{ cursor: "pointer" }}>
-                                    <b>-</b>
-                                  </span>
-                                  <span>{product.quantity}</span>
-                                  <span onClick={() => quantityUpdate(product.productId, product.quantity + 1)} style={{ cursor: "pointer" }}>
-                                    <b>+</b>
-                                  </span>
-                                </button>
-                              </td>
+                              <button
+                                style={{
+                                  color: "#641E16",
+                                  display: "flex",
+                                  alignItems: "center",
+                                  justifyContent: "space-between",
+                                  width: "100px",
+                                  padding: "5px 10px",
+                                  border: "1px solid #ccc",
+                                  borderRadius: "5px",
+                                  backgroundColor: "white",
+                                }}
+                              >
+                                <span onClick={() => quantityUpdate(product.productId, product.quantity - 1)} style={{ cursor: "pointer" }}>
+                                  <b>-</b>
+                                </span>
+                                <span>{product.quantity}</span>
+                                <span onClick={() => quantityUpdate(product.productId, product.quantity + 1)} style={{ cursor: "pointer" }}>
+                                  <b>+</b>
+                                </span>
+                              </button>
+                            </td>
 
-                              <td className='text-center'>
-                                Rs. {product.quantity * product.productDetails.productPrice}.00
-                              </td>
+                            <td className='text-center'>
+                              Rs. {product.quantity * product.productDetails.productPrice}.00
+                            </td>
 
-                              <td className='text-center'>
-                                <button onClick={() => handleDelete(product.productId)}
-                                  style={{
-                                    color: "#641E16",
-                                    alignItems: "center",
-                                    border: "1px solid #ccc"
-                                  }}
-                                ><MdDelete /> </button>
-                              </td>
+                            <td className='text-center'>
+                              <button onClick={() => handleDelete(product.productId)}
+                                style={{
+                                  color: "#641E16",
+                                  alignItems: "center",
+                                  border: "1px solid #ccc"
+                                }}
+                              ><MdDelete /> </button>
+                            </td>
 
-                          
+
                           </tr>
-                                  // </Link>
+                          // </Link>
                         )
 
                       }
@@ -219,7 +234,7 @@ const Carts = () => {
                         <td colSpan={4}>Your cart is empty</td>
                       </tr>
                   }
-                 
+
                 </tbody>
 
               </Table>
@@ -227,7 +242,106 @@ const Carts = () => {
           </Row>
 
           <Row>
-            <Col>Coupon code</Col>
+            <Col>
+            <Row>
+            <Col>
+              <div className='delivery-address'>
+                <Modal
+                  show={show}
+                  onHide={handleClose}
+                  backdrop="static"
+                  keyboard={false}
+                >
+                  <Modal.Header closeButton>
+                    {/* <Modal.Title>Modal title</Modal.Title> */}
+                  </Modal.Header>
+
+                  <Modal.Body>
+                    <Address />
+                  </Modal.Body>
+
+                  {/* <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>
+                      Close
+                    </Button>
+                    {/* <Button variant="primary">Understood</Button> */}
+                  {/* </Modal.Footer> */} 
+                </Modal>
+                <Formik
+                  initialValues={{
+                    addressId: '',
+                  }}
+                  onSubmit={async (values) => {
+                    await new Promise((r) => setTimeout(r, 500));
+                    alert(JSON.stringify(values, null, 2));
+                  }}
+                >
+                  {({ values }) => (
+                    <Form>
+
+
+
+                      {/* <div role="group" aria-labelledby="my-radio-group"> */}
+                      <Table Striped rows hover >
+                        <thead>
+                          <tr>
+                            <th style={{ backgroundColor: "#641E16", color: "white", }}>
+                              <h5>Delivery Address </h5>
+                            </th>
+                          </tr>
+                          <tr>
+                           
+                           <th>
+                             <p onClick={handleShow} style={{color:"#641E16"}}><BsPlus  style={{color:"#641E16",fontWeight: "400"}}/> <b>Add a new address</b> </p>
+                           </th>
+                         </tr>
+                        </thead>
+                        <tbody>
+
+                          {
+                            addresses ? addresses.map((address, index) => {
+                              return (
+                                // <Row key="index">
+                                //   <Col>
+                                <tr>
+                                  <td>
+
+                                    <Field type="radio" name="addressId" value={address.id} /> &nbsp; <b>{address.name}</b> &nbsp;<Badge bg="dark" > {address.addressType} </Badge> &nbsp;{address.mobile}
+                                    <p>{address.addressLine1}, {address.addressLine2}, {address.city}, {address.district}, {address.state} - <b>{address.pin}</b>
+                                    <br></br>
+                                     Gmail - {address.email}</p>
+                                    <p></p>
+                                    <Button onClick={() => handleRemove(address.id)} style={{backgroundColor:"#D4D4D4",color:"black",border:"#6C757D"}}>Remove</Button>
+                                    &nbsp;
+                                    {/* <Button variant="outline-secondary">Edit</Button> */}
+                                   
+                                  </td>
+                                  
+                                </tr>
+                              )
+                            })
+                              : "no address available"
+                          }                       
+                          <div>Picked: {values.addressId}</div>
+                          
+                          <button type="button" class="btn btn-light"
+                            style={{
+                              color: "#641E16",
+                              // fontWeight: "400"
+                            }}
+                          >Submit </button>
+                        </tbody>
+                      </Table>
+                      {/* </div> */}
+
+
+                    </Form>
+                  )}
+                </Formik>
+              </div>
+            </Col>
+          </Row>
+            </Col>
             <Col>
               <Table>
                 <tbody
@@ -283,69 +397,10 @@ const Carts = () => {
             </Col>
 
           </Row>
-          <Row>
-            <Col>
-              <h4>Addresses</h4>
-              <Button variant="outline-secondary" onClick={handleShow}>
-                Add address
-              </Button>
 
-              <Modal
-                show={show}
-                onHide={handleClose}
-                backdrop="static"
-                keyboard={false}
-              >
-                <Modal.Header closeButton>
-                  <Modal.Title>Modal title</Modal.Title>
-                </Modal.Header>
 
-                <Modal.Body>
-                  <Address />
-                </Modal.Body>
 
-                <Modal.Footer>
-                  <Button variant="secondary" onClick={handleClose}>
-                    Close
-                  </Button>
-                  <Button variant="primary">Understood</Button>
-                </Modal.Footer>
-              </Modal>
-              <Formik
-                initialValues={{
-                  addressId: '',
-                }}
-                onSubmit={async (values) => {
-                  await new Promise((r) => setTimeout(r, 500));
-                  alert(JSON.stringify(values, null, 2));
-                }}
-              >
-                {({ values }) => (
-                  <Form>
-                    <div id="my-radio-group">Choose address</div>
-                    <div role="group" aria-labelledby="my-radio-group">
-
-                      {
-                        addresses ? addresses.map((address, index) => {
-                          return (
-                            <label>
-                              <Field type="radio" name="addressId" value={address.id} />
-                              {address.addressLine1}, {address.addressLine2}
-                            </label>
-                          )
-                        })
-                          : "no address available"
-                      }
-                      <div>Picked: {values.addressId}</div>
-                    </div>
-
-                    <button type="submit">Submit</button>
-                  </Form>
-                )}
-              </Formik>
-
-            </Col>
-          </Row>
+          
         </Container>
       </div>
 

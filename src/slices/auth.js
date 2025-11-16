@@ -9,8 +9,10 @@ export const register = createAsyncThunk(
   "auth/register",
   async ({ username, email, password }, thunkAPI) => {
     try {
+     // console.log(username, email, password);
       const response = await AuthService.register(username, email, password);
       thunkAPI.dispatch(setMessage(response.data.message));
+     // console.log("response",response);
       return response.data;
     } catch (error) {
       const message =
