@@ -3,11 +3,23 @@
   height: 80px;
 }
 
+html, body, #root {
+  overflow: visible !important;
+}
 .navbar {
   background-color: rgba(210, 155, 178, 0.8);
   width: auto;
 
+  position: sticky !important;
+  top: 0;
+  z-index:1000;
+
+
+  background-color: rgba(210, 155, 178, 0.95); /* your color */
+  backdrop-filter: blur(6px);
+  padding: 8px 0;
 }
+
 
 
 .navbar a {
@@ -38,4 +50,22 @@
   padding: 2px 6px;
   font-size: 10px;
   font-weight: bold;
+}
+
+
+@media (max-width: 768px) {
+  .search-box {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  .icons-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .icons-nav .nav-link {
+    width: fit-content;
+  }
 }

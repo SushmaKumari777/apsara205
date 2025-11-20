@@ -88,8 +88,8 @@
 }
 
 .square {
-  width: 200px;
-  height: 400px;
+  width: 250px;
+  height: 500px;
   padding: 20px;
   margin: 20px;
   flex-direction: column;
@@ -104,7 +104,7 @@
 
 .square img {
   width: 100%;
-  height: 200px;
+  height: 290px;
   object-fit: cover;
 
 }
@@ -351,32 +351,59 @@
   width: 100%;
   text-align: center;
   border-radius: 5px;
-  background-color: #FF4069;
+  color: #FF4069;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  background-color: white;
+  font-size: 25px;
+}
+
+.sales h6{
+  color:black;
+  font-size: 28px;
 }
 
 .order {
   width: 100%;
   text-align: center;
   border-radius: 5px;
-  background-color: rgb(190, 46, 203);
-  
+  color: rgb(190, 46, 203);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  background-color: white;
+  font-size: 25px;
+}
+.order h6{
+  color:black;
+  font-size: 28px;
 }
 
 .profit {
   width: 100%;
   text-align: center;
   border-radius: 5px;
-  background-color: #60d9f1;
+  color: #60d9f1;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  background-color: white;
+  font-size: 25px;
+}
+.profit h6{
+  color:black;
+  font-size: 28px;
 }
 
 .customer {
   width: 100%;
   text-align: center;
   border-radius: 5px;
-  background-color: rgb(135, 68, 223);
-
+  color: rgb(135, 68, 223);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  background-color: white;
+  font-size: 25px;
+  
 }
-
+.customer h6{
+  color:black;
+  font-size: 28px;
+}
 .sidebar {
   width: 100%;
   border: #641E16 solid 1px;
@@ -594,4 +621,23 @@
 
 .delivery-address.row {
   margin: 10px 0;
+}
+
+
+.breadcrumb .breadcrumb-item a {
+  color: #641E16 !important;   /* custom color */
+  text-decoration: none;
+
+}
+
+/* Hover effect */
+.breadcrumb .breadcrumb-item a:hover {
+  color: #641E16  !important;
+  text-decoration: underline;
+}
+
+/* Active breadcrumb (last item) */
+.breadcrumb .breadcrumb-item.active {
+  color: #444 !important;
+  font-weight: 600;
 }

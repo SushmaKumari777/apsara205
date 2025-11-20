@@ -19,10 +19,6 @@ import axios from 'axios';
 
 
 
-
-
-
-
 const Menu = () => {
   const dispatch = useDispatch();
   const [searchTerm, setSearchTerm] = useState("");
@@ -45,8 +41,6 @@ const Menu = () => {
     // navigate('/login'); // Redirect to login page
     window.location.reload();
   };
-
-
 
 
   return (
@@ -112,7 +106,7 @@ const Menu = () => {
             </Nav>
             <Nav className="ms-auto icons-nav">
               <Nav.Link >
-                <div style={{ position: "relative", width: "250px" }}>
+                <div className="search-box" style={{ position: "relative", width: "250px" }}>
                   <CiSearch
                     style={{
                       position: "absolute",
@@ -144,9 +138,11 @@ const Menu = () => {
                 currentUser && currentUser.id !== "" ?
                   <Nav.Link as={Link} to="/account">
                     <FontAwesomeIcon icon={faUser} />
+                    &nbsp; Login
                   </Nav.Link>
                   : <Nav.Link as={Link} to="/login">
                     <FontAwesomeIcon icon={faUser} />
+
                   </Nav.Link>
               }
               <Nav.Link as={Link} to="/wishlist">

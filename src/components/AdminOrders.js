@@ -2,6 +2,8 @@
 import React from 'react'
 import { Col, Row, Table } from 'react-bootstrap';
 import { Formik, Form, Field } from 'formik';
+import Menu from "./Menu";
+
 
 const AdminOrders = () => {
   const orders = [
@@ -67,7 +69,7 @@ const AdminOrders = () => {
 
 
   ]
-   
+
   const orderStatusUpdate = (orderId, newStatus) => {
     console.log(orderId)
     console.log(newStatus)
@@ -82,6 +84,9 @@ const AdminOrders = () => {
 
   return (
     <div>
+      <Row>
+        <Col><Menu></Menu> </Col>
+      </Row>
       <Table>
         <tbody>
           {
@@ -119,15 +124,15 @@ const AdminOrders = () => {
                       initialValues={{
                         orderStatus: '',
                       }}
-                      // validationSchema={CategorySchema}
-                      // onSubmit={handleSubmit}
+                    // validationSchema={CategorySchema}
+                    // onSubmit={handleSubmit}
                     >
                       {({ errors, touched }) => (
                         <Form>
                           <div>
                             <Row >
-                              
-                              <Field name="orderStatus" as="select" className="inputbox" onChange={() => orderStatusUpdate(order.id, formorderStatus)}>
+
+                              <Field name="orderStatus" as="select" className="inputbox" onChange={() => orderStatusUpdate(order.id)}>
                                 {
                                   status.map((data, index) => {
                                     return (

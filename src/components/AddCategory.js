@@ -14,6 +14,7 @@ import Menu from "./Menu";
 import { FaArrowCircleLeft } from "react-icons/fa";
 import { Link } from 'react-router'
 
+import Breadcrumb from 'react-bootstrap/Breadcrumb';
 
 
 const checkNameExists = async (name) => {
@@ -96,26 +97,18 @@ const AddCategory = () => {
             </div>
 
             <div>
-                <Container className='bbb'>
+                <Container>
 
-                    <Row> 
-                        <Col md={2}>
-                            <Link to={'/AdminDashboard'} >
-                                <FaArrowCircleLeft
-                                    style={{
-                                        color: "#641E16",
-                                        fontSize: "25px",
-                                        margin:"10px"
-                                    }}
-                                />
-                            </Link>
-
+                    <Row>
+                        <Col md={4} style={{ color: "#641E16", }}>
+                            <Breadcrumb>
+                                <Breadcrumb.Item href="#">Home</Breadcrumb.Item>
+                                <Breadcrumb.Item href="adminDashboard"> Admin Dashboard </Breadcrumb.Item>
+                            </Breadcrumb>
                         </Col>
-                        {/* xs={12} sm={8} md={6} lg={4} className='heading' */}
-                        <Col md={8}>
-                            <h1 className='text-center'>Add Category</h1>
+                        <Col>
+                            <h1>Category</h1>
                         </Col>
-
                     </Row>
                     {message && (
                         <Row>
@@ -124,6 +117,7 @@ const AddCategory = () => {
                             </Col>
                         </Row>
                     )}
+                    <div>
                     <Formik
                         initialValues={{
                             name: '',
@@ -133,31 +127,35 @@ const AddCategory = () => {
                     >
                         {({ errors, touched }) => (
                             <Form>
-                                <div className='category'>
-                                    <Row >
-                                        <Col md={4}>
-                                            <label>Category Name</label>
-                                        </Col>
-                                        <Col md={4}>
-                                            <Field name="name" className="inputbox" autoComplete="off" />
+                                <div>
+                                    <Row>
+                                        <Col>
+                                        {/* <label>Add Category Name</label> */}
+                                        <br></br>
+                                            <Field name="name" className="inputbox" autoComplete="off" placeholder="Add category name" />
                                             {errors.name && touched.name ? <div className='error'>{errors.name}</div> : null}
-                                        </Col>
-                                        <Col md={4}>
+                                            <br></br>
                                             <Button
                                                 type="submit"
                                                 // className="btn btn-primary"
                                                 disabled={loading}
                                                 variant="secondary"
                                             >
-                                                {loading ? 'Please wait...' : ' + Add'}
+                                                {loading ? 'Please wait...' : ' Submit'}
                                             </Button>
                                         </Col>
+                                        <Col>
+                                           
+                                        </Col>
                                     </Row>
-                      
+
                                 </div>
                             </Form>
                         )}
                     </Formik>
+                    </div>
+                  
+                   
 
 
                 </Container >

@@ -125,6 +125,25 @@ const Carts = () => {
     }
   }
 
+
+  const handleOrder = async (formValue, resetForm) => {
+    const { addressId } = formValue;
+    // setLoading(true);
+
+    console.log(addressId)
+    // try {
+    //     const res = await axios.post("http://localhost:8090/api/cats", formValue);
+    //     console.log("category name succesfully added:", res.data);
+    //     alert("category name added successfully!");
+    //     // resetForm();
+    //     window.location.reload();
+    // } catch (err) {
+    //     console.error(" Failed to add category name", err);
+    //     alert("Failed to add category name");
+    // }
+};
+
+
   return (
     <div>
       <div>
@@ -271,10 +290,12 @@ const Carts = () => {
                   initialValues={{
                     addressId: '',
                   }}
-                  onSubmit={async (values) => {
-                    await new Promise((r) => setTimeout(r, 500));
-                    alert(JSON.stringify(values, null, 2));
-                  }}
+                  // onSubmit={async (values) => {
+                  //   await new Promise((r) => setTimeout(r, 500));
+                  //   alert(JSON.stringify(values, null, 2));
+                  //   console.log(values)
+                  // }}
+                  onSubmit={handleOrder}
                 >
                   {({ values }) => (
                     <Form>
@@ -303,10 +324,10 @@ const Carts = () => {
                               return (
                                 // <Row key="index">
                                 //   <Col>
-                                <tr>
+                                <tr key={index}>
                                   <td>
 
-                                    <Field type="radio" name="addressId" value={address.id} /> &nbsp; <b>{address.name}</b> &nbsp;<Badge bg="dark" > {address.addressType} </Badge> &nbsp;{address.mobile}
+                                    <Field type="radio" name="addressId" value={address.id} /> &nbsp; <b>{address.name}</b> &nbsp;<Badge bg="dark" > {address.addressType.toUpperCase()} </Badge> &nbsp;{address.mobile}
                                     <p>{address.addressLine1}, {address.addressLine2}, {address.city}, {address.district}, {address.state} - <b>{address.pin}</b>
                                     <br></br>
                                      Gmail - {address.email}</p>
@@ -324,7 +345,7 @@ const Carts = () => {
                           }                       
                           <div>Picked: {values.addressId}</div>
                           
-                          <button type="button" class="btn btn-light"
+                          <button type="button" class="btn btn-success"
                             style={{
                               color: "#641E16",
                               // fontWeight: "400"

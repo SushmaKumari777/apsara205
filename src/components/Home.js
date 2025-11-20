@@ -9,43 +9,31 @@ import halfstyle from '../images/half style.webp'
 import desi from '../images/desi.webp'
 import sanskari from '../images/sanskari.webp'
 import all from '../images/allrounder.webp'
-
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router'
-// import Carousel from 'react-bootstrap/Carousel';
-// import slide1 from '../images/desi.webp'
 import video from '../images/menuvideo.mp4'
 import Menu from './Menu'
-import { BsFillArrowRightCircleFill } from "react-icons/bs";
-import { IoIosArrowRoundForward } from "react-icons/io";
 import { FaCircleArrowRight } from "react-icons/fa6";
-// import ExampleCarouselImage from 'components/ExampleCarouselImage';
-// import Carousel from 'react-bootstrap/Carousel';
-// import ExampleCarouselImage from '../images/aisa.webp';
-// import { FaBeer } from "react-icons/fa";
-// import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { IoIosHeartEmpty } from "react-icons/io";
 import { useSelector } from "react-redux";
 import axios from 'axios';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
-
-
-import ReactDOM from 'react-dom';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from 'react-responsive-carousel';
+import { IoIosArrowDropleftCircle } from "react-icons/io";
+import { IoIosArrowDroprightCircle } from "react-icons/io";
+
 
 
 const settings = {
   infinite: true,
-  slidesToShow: 4,
+  slidesToShow: 5,
   slidesToScroll: 2,
   arrows: true,
   dots: true,
-  nextArrow: <MdKeyboardArrowRight />,
-  prevArrow: <MdKeyboardArrowLeft />
+  nextArrow: <IoIosArrowDroprightCircle />,
+  prevArrow: <IoIosArrowDropleftCircle />
 
 };
 
@@ -54,15 +42,9 @@ const setting = {
   slidesToShow: 3,
   slidesToScroll: 2,
   arrows: true,
-  // dots: true,
-  // nextArrow: <MdKeyboardArrowRight />,
-  // prevArrow: <MdKeyboardArrowLeft />
-
 };
 
 const Home = () => {
-
-
 
   const [womenProducts, setWomenProducts] = useState([]);
   const [products, setProducts] = useState([]);
@@ -117,7 +99,6 @@ const Home = () => {
       {/* -------------------------------------Menu section-------------------------------------------- */}
       <div className="video-section">
         <section>
-          {/* <Container fluid> */}
           <Row>
             <Col>
               <video autoPlay loop muted className="background-video">
@@ -126,7 +107,6 @@ const Home = () => {
               <Menu></Menu>
             </Col>
           </Row>
-          {/* </Container> */}
         </section>
       </div>
 
@@ -134,12 +114,7 @@ const Home = () => {
 
       <div>
         <section className='latestw'>
-          {/* <Row> */}
-          {/* <Col> */}
-          <Row>
             <h1>Latest Arrivals</h1>
-
-
             <Slider {...settings}>
               {
                 womenProducts.map((product, index) => {
@@ -164,20 +139,13 @@ const Home = () => {
                 }
                 )
               }
-
             </Slider>
-
-
-
-          </Row>
-          {/* </Col> */}
-
-
-
-          {/* </Row> */}
         </section>
+
         <section className='latestm'>
           <Row>
+            <Col>
+            </Col>
             <h1>Latest Arrivals</h1>
             {/* <div className="scroll-container"> */}
             <Slider {...settings}>
@@ -306,9 +274,9 @@ const Home = () => {
 
 
 
-      <div  style={{ padding: "0 50px" }}>
-       
-      {/* <Slider {...setting}>
+      <div style={{ padding: "0 50px" }}>
+
+        {/* <Slider {...setting}>
         
       <div style={{ padding: "0 50px" }}>
        <img src='desi.webp'style={{width:"200px",height:"200px"}}/>

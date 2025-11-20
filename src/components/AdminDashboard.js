@@ -158,7 +158,7 @@ const AdminDashboard = (props) => {
 
 
   return (
-    <div>
+    <div style={{backgroundColor:"#EAEAEA"}}>
       <Row>
         <Col>
           <Menu></Menu>
@@ -202,40 +202,8 @@ const AdminDashboard = (props) => {
           
           </Row>
           <Row>
-            {/* <Col md={2} className='sidebar'>
-              <ul>
-                <li><Link to={'/AdminDashboard'} ><p>Dashboard</p></Link><p></p></li>
-                <li><Link to={'/AddCategory'} style={{
-                  textDecoration: "none",
-                  color: "#641E16",
-                  fontWeight: "20px"
-                }}><p>Add Category</p></Link></li>
-                <li><Link to={'/AddminProduct'} style={{
-                  textDecoration: "none",
-                  color: "#641E16",
-                  fontWeight: "20px"
-                }}><p>Admin Product</p></Link></li>
-                <li><Link to={'/AdminProduct'} style={{
-                  textDecoration: "none",
-                  color: "#641E16",
-                  fontWeight: "20px"
-                }}><p>AdminProduct</p></Link></li>
-                <li><Link to={'/AdminOrders'} style={{
-                  textDecoration: "none",
-                  color: "#641E16",
-                  fontWeight: "20px"
-                }}><p>Admin Orders</p></Link></li>
-                <li><Link to={'/Addproduct'} style={{
-                  textDecoration: "none",
-                  color: "#641E16",
-                  fontWeight: "20px"
-                }}><p>Add product</p></Link></li>
-                <li>Setting</li>
-                <li>Help Center</li>
-                <li><FontAwesomeIcon icon={faSignOut} />Logout</li>
-              </ul>
-            </Col> */}
-            <Col md={2} className='sidebar'>
+           
+            <Col md={2}>
             <Table Striped rows hover>
              <tbody>
              <tr>
@@ -279,62 +247,30 @@ const AdminDashboard = (props) => {
 
               <Row>
                 <Col>
-                  <div className='sales'>
+                  <div className='sales' style={{boxShadow: "rgba(0, 0, 0, 0.1) 0px 4px 12px"}}>
                     <p>Total Sales</p>
-                    <h6>$110,019</h6>
+                    <h6>	₹ 110,019</h6>
                   </div>
                 </Col>
                 <Col>
                   <div className='order'>
                     <p>Total Orders</p>
-                    <h6>$110,019</h6>
+                    <h6>	₹ 110,019</h6>
                   </div>
                 </Col>
                 <Col>
                   <div className='profit'>
                     <p>Total Profit</p>
-                    <h6>$110,019</h6>
+                    <h6>	₹ 110,019</h6>
                   </div>
                 </Col>
                 <Col>
                   <div className='customer'>
                     <p>New Customers</p>
-                    <h6>$110,019</h6>
+                    <h6>	₹ 110,019</h6>
                   </div>
                 </Col>
               </Row>
-              <Row>
-                <Col>
-                  <div style={{
-                    width: "300px",
-                    height: "350px",
-                    backgroundColor: "#f9f9f9",
-                    padding: "20px",
-                    marginTop: "10px",
-                    borderRadius: "12px",
-                    boxShadow: "0 4px 4px rgba(0, 0, 0, 0.1)",
-                  }}>
-                    Top selling categories
-                    <Doughnut data={Dataset} />
-                  </div>
-                </Col>
-                <Col md={6} style={{
-                  backgroundColor: "#f9f9f9",
-                  padding: "10px",
-                  marginTop: "10px",
-                  borderRadius: "12px",
-                  boxShadow: "0 4px 4px rgba(0, 0, 0, 0.1)",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  height: "350px",
-                  width:"500px"
-                }}>
-                  
-                  <Bar options={options} data={data}></Bar>
-                </Col>
-              </Row>
-
               <Row>
               
                 <Col md={6} style={{
@@ -354,6 +290,69 @@ const AdminDashboard = (props) => {
                     {...props}
                   />
                 </Col>
+                <Col style={{
+                  backgroundColor: "#f9f9f9",
+                  padding: "10px",
+                  marginTop: "10px",
+                  borderRadius: "12px",
+                  boxShadow: "0 4px 4px rgba(0, 0, 0, 0.1)",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  height: "350px",
+                  width:"500px"
+                }}>
+                  
+                  <Bar options={options} data={data}></Bar>
+                </Col>
+              </Row>
+
+              <Row>
+              <Col>
+                  <div style={{
+                    width: "300px",
+                    height: "350px",
+                    backgroundColor: "#f9f9f9",
+                    padding: "20px",
+                    marginTop: "10px",
+                    borderRadius: "12px",
+                    boxShadow: "0 4px 4px rgba(0, 0, 0, 0.1)",
+                  }}>
+                    Top selling categories
+                    <Doughnut data={Dataset} />
+                  </div>
+                </Col>
+             
+              </Row>
+              <Row>
+                <Col style={{marginTop:"10px"}}>
+               <div style={{backgroundColor:"white",borderRadius:"10px"}} >
+                <h4 style={{margin:"10px"}}>Recent Orders</h4>
+                <hr></hr>
+               <Table Striped rows hover >
+                  <thead>
+                    <tr>
+                      <th>Product</th>
+                      <th>Order Id</th>
+                      <th>Date</th>
+                      <th>Customer Name</th>
+                      <th>Status</th>
+                      <th>Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Full-Sleeves</td>
+                      <td>45893</td>
+                      <td>Nov15th,2025</td>
+                      <td>Sushma Kumari</td>
+                      <td>Delivered</td>
+                      <td>₹ 2000</td>
+                    </tr>
+                  </tbody>
+                </Table>
+               </div>
+                </Col>
               </Row>
 
             </Col>
@@ -362,9 +361,7 @@ const AdminDashboard = (props) => {
         </Container>
 
       </section>
-      <section className='main'>
-
-      </section>
+    
     </div>
   )
 }
