@@ -14,6 +14,9 @@ import { Link } from 'react-router'
 import { Formik, Field, Form } from 'formik';
 import Badge from 'react-bootstrap/Badge';
 import { BsPlus } from "react-icons/bs";
+import { IoMdMail } from "react-icons/io";
+
+import { useNavigate, Navigate } from "react-router-dom";
 
 
 const Carts = () => {
@@ -27,6 +30,7 @@ const Carts = () => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios.get(`http://localhost:8090/api/carts/user/${currentUser.id}`).then((response) => {
@@ -131,16 +135,33 @@ const Carts = () => {
     // setLoading(true);
 
     console.log(addressId)
-    // try {
-    //     const res = await axios.post("http://localhost:8090/api/cats", formValue);
-    //     console.log("category name succesfully added:", res.data);
-    //     alert("category name added successfully!");
-    //     // resetForm();
-    //     window.location.reload();
-    // } catch (err) {
-    //     console.error(" Failed to add category name", err);
-    //     alert("Failed to add category name");
-    // }
+    if(!addressId){
+      alert("must be choose address")
+      return 
+    }
+    if(noCartItems<1){
+      alert("cart is empty")
+      return
+    }
+    const orderData = {
+      addressId:addressId,
+      userId:currentUser.id,
+      products:products
+     
+    }
+    console.log(orderData)
+    try {
+        const res = await axios.post("http://localhost:8090/api/ssorders", orderData);
+        console.log("order succesfully added:", res.data);
+        alert("order added successfully!");
+        navigate("/home");
+
+        // resetForm();
+    
+    } catch (err) {
+        console.error(" Failed to add order", err);
+        alert("Failed to add order");
+    }
 };
 
 
@@ -175,19 +196,15 @@ const Carts = () => {
                     <th className='text-center'>Quantity</th>
                     <th className='text-center'>Total price</th>
                     <th className='text-center'>Remove</th>
-
                   </tr>
                 </thead>
                 <tbody>
-
-
                   {
                     products ?
                       products.map((product, index) => {
                         return (
                           // <Link to={`/products/${product.id}`}>
                           <tr key={index}>
-
                             <td className='text-center'>{index + 1}</td>
                             <td className='text-center'>
                               <img src={`http://localhost:8090/upload/${product.productDetails.images[0]}`}
@@ -241,21 +258,16 @@ const Carts = () => {
                                 }}
                               ><MdDelete /> </button>
                             </td>
-
-
                           </tr>
                           // </Link>
                         )
-
                       }
                       )
                       : <tr>
                         <td colSpan={4}>Your cart is empty</td>
                       </tr>
                   }
-
                 </tbody>
-
               </Table>
             </Col>
           </Row>
@@ -330,7 +342,7 @@ const Carts = () => {
                                     <Field type="radio" name="addressId" value={address.id} /> &nbsp; <b>{address.name}</b> &nbsp;<Badge bg="dark" > {address.addressType.toUpperCase()} </Badge> &nbsp;{address.mobile}
                                     <p>{address.addressLine1}, {address.addressLine2}, {address.city}, {address.district}, {address.state} - <b>{address.pin}</b>
                                     <br></br>
-                                     Gmail - {address.email}</p>
+                                    <IoMdMail /> {address.email}</p>
                                     <p></p>
                                     <Button onClick={() => handleRemove(address.id)} style={{backgroundColor:"#D4D4D4",color:"black",border:"#6C757D"}}>Remove</Button>
                                     &nbsp;
@@ -343,12 +355,17 @@ const Carts = () => {
                             })
                               : "no address available"
                           }                       
-                          <div>Picked: {values.addressId}</div>
+                          {/* <div>Picked: {values.addressId}</div> */}
                           
-                          <button type="button" class="btn btn-success"
+                          <button type="submit"
                             style={{
-                              color: "#641E16",
-                              // fontWeight: "400"
+                            backgroundColor: "#641E16",
+                            color:"white",
+                              width: "200px",
+                              height: "40px",
+                              marginTop: "12px",
+                              borderRadius:"5px",
+                              fontSize: "20px"
                             }}
                           >Submit </button>
                         </tbody>
@@ -390,28 +407,7 @@ const Carts = () => {
                     <td> Coupon code:</td>
                     <td> Add Coupon</td>
                   </tr>
-                  <tr>
-                    <td>
-                      <button type="button" class="btn btn-light">
-                        <Link to={'/Address'}
-                          style={{
-                            textDecoration: "none",
-                            color: "#641E16",
-                            fontWeight: "500"
-                          }}
-                        >Checkout</Link> </button>
-                      <p> &nbsp; &nbsp; &nbsp; &nbsp;OR</p>
-                      <button type="button" class="btn btn-light">
-                        <Link to={'/Home'}
-                          style={{
-                            textDecoration: "none",
-                            color: "#641E16",
-                            fontWeight: "500"
-                          }}
-                        >Continue Shopping</Link>  </button>
-
-                    </td>
-                  </tr>
+               
 
                 </tbody>
               </Table>

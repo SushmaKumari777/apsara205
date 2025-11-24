@@ -381,6 +381,7 @@ const SignupSchema = Yup.object().shape({
 // ];
 
 const AddProduct = () => {
+
     const [selectedImages, setSelectedImages] = useState([]);
     const [categories, setCategories] = useState();
 
@@ -400,6 +401,9 @@ const AddProduct = () => {
     if (!currentUser) {
         return <Navigate to="/login" />;
     }
+
+
+    
     return (
         <div>
             <Container>

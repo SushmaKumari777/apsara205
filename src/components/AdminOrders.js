@@ -1,113 +1,130 @@
 // import { Formik } from 'formik';
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Col, Row, Table } from 'react-bootstrap';
 import { Formik, Form, Field } from 'formik';
 import Menu from "./Menu";
+import axios from 'axios';
 
 
 const AdminOrders = () => {
-  const orders = [
-    {
-      id: "1",
-      items: [
-        {
-          productName: "Noorika Full-sleeves",
-          ProductCategory: "",
-          productPrice: 599,
-          productQuantity: 2
-        },
-        {
-          productName: "Noorika Full-sleeves",
-          ProductCategory: "",
-          productPrice: 599,
-          productQuantity: 2
 
-        }
+  const [orders, setOrders] = useState();
 
-      ],
-      total: 499,
-      discount: 10,
-      grandTotal: 500,
-      status: 0
-    },
-    {
-      id: "2",
-      items: [
-        {
-          productName: "Full-sleeves",
-          ProductCategory: "",
-          productPrice: 399,
-          productQuantity: 3
+  useEffect(() => {
+    axios.get('http://localhost:8090/api/ssorders').then((response) => {
+      console.log(response.data);
+      setOrders(response.data)
+    })
+  }, []);
 
-        },
-        {
-          productName: "Full-sleeves",
-          ProductCategory: "",
-          productPrice: 399,
-          productQuantity: 4
+  // const orders = [
+  //   {
+  //     id: "1",
+  //     items: [
+  //       {
+  //         productName: "Noorika Full-sleeves",
+  //         ProductCategory: "",
+  //         productPrice: 599,
+  //         productQuantity: 2
+  //       },
+  //       {
+  //         productName: "Noorika Full-sleeves",
+  //         ProductCategory: "",
+  //         productPrice: 599,
+  //         productQuantity: 2
 
-        }
+  //       }
 
-      ],
-      total: 599,
-      discount: 10,
-      grandTotal: 500,
-      status: 0
-    }
+  //     ],
+  //     total: 499,
+  //     discount: 10,
+  //     grandTotal: 500,
+  //     status: 0
+  //   },
+  //   {
+  //     id: "2",
+  //     items: [
+  //       {
+  //         productName: "Full-sleeves",
+  //         ProductCategory: "",
+  //         productPrice: 399,
+  //         productQuantity: 3
 
+  //       },
+  //       {
+  //         productName: "Full-sleeves",
+  //         ProductCategory: "",
+  //         productPrice: 399,
+  //         productQuantity: 4
 
-  ]
-  const status = [
-    "Order Placed",
-    "Processing",
-    "Order shipped",
-    "Out For deleverd",
-    "Return Accepted",
-    "Return Process complete",
-    "Canceled"
+  //       }
 
+  //     ],
+  //     total: 599,
+  //     discount: 10,
+  //     grandTotal: 500,
+  //     status: 0
+  //   }
 
 
-  ]
+  // ]
+  // const status = [
+  //   "Order Placed",
+  //   "Processing",
+  //   "Order shipped",
+  //   "Out For deleverd",
+  //   "Return Accepted",
+  //   "Return Process complete",
+  //   "Canceled"
+
+
+
+  // ]
 
   const orderStatusUpdate = (orderId, newStatus) => {
     console.log(orderId)
     console.log(newStatus)
 
-    // axios.put(`http://localhost:8090/api/carts/user/${currentUser.id}/item/${productId}`, { quantity: newQuantity }).then(() => {
+    // axios.put(`http://localhost:8090/api/ssorders/${currentUser.id}/${orderId}/status`).then(() => {
     //   window.location.reload();
 
-    // }).catch((error) => { console.error("Failed to update quantity", error); });
+    // })
+    // .catch((error) => { console.error("Failed to update status", error); });
 
   }
+  // const { user: currentUser } = useSelector((state) => state.auth);
+  // console.log(currentUser)
 
 
   return (
     <div>
       <Row>
-        <Col><Menu></Menu> </Col>
+        <Col><Menu></Menu></Col>
+      </Row>
+      <Row>
+        <Col>
+          <h1 className='text-center'>My Orders</h1>
+        </Col>
       </Row>
       <Table>
         <tbody>
           {
             orders.map((order, index) => {
               return (
-                <tr>
+                <tr key={index}>
                   <td>
                     {order.id}
-
                   </td>
                   <td>
                     {
                       order.items.map((item, index) => {
                         return (
-                          <p>  {item.productName}   Rs. {item.productPrice} X {item.productQuantity} = {item.productPrice * item.productQuantity}
+                          <p key={index}>  {item.productName}   Rs. {item.productPrice} X {item.productQuantity} = {item.productPrice * item.productQuantity}
 
                           </p>
 
                         )
                       }
-
                       )
                     }
                     <hr />
@@ -133,6 +150,7 @@ const AdminOrders = () => {
                             <Row >
 
                               <Field name="orderStatus" as="select" className="inputbox" onChange={() => orderStatusUpdate(order.id)}>
+                            
                                 {
                                   status.map((data, index) => {
                                     return (

@@ -32,6 +32,8 @@ import AllProducts from './components/AllProducts';
 import CartDetails from './components/CartDetails';
 import Products from './components/Products';
 import AddressDetails from './components/AddressDetails';
+import CustomerOrder from './components/CustomerOrder';
+import Success from './components/Success';
 
 
 function App() {
@@ -68,9 +70,11 @@ function App() {
         <Route path="/example2" element={<Example2 />} />
         <Route path="/allProducts" element={<AllProducts />} />
         <Route path="/cartDetails" element={<CartDetails />} />
-        <Route path="/AddressDetails" element={<AddressDetails />} />
+        <Route path="/addressDetails" element={<AddressDetails />} />
         <Route path="/products/:productId" element={<Products />} />
-      
+        <Route path="/customerOrder" element={<CustomerOrder />} />
+        <Route path="/success" element={<Success />} />
+
 
 
 

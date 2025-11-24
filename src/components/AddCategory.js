@@ -86,26 +86,24 @@ const AddCategory = () => {
         }
     }
     return (
-        <div>
+        <div style={{ backgroundColor: "#EAEAEA" }}>
             <div>
                 <Row>
                     <Col>
                         <Menu></Menu>
                     </Col>
                 </Row>
-
-            </div>
-
-            <div>
                 <Container>
-
                     <Row>
                         <Col md={4} style={{ color: "#641E16", }}>
                             <Breadcrumb>
                                 <Breadcrumb.Item href="#">Home</Breadcrumb.Item>
                                 <Breadcrumb.Item href="adminDashboard"> Admin Dashboard </Breadcrumb.Item>
+               
                             </Breadcrumb>
                         </Col>
+                    </Row>
+                    <Row>
                         <Col>
                             <h1>Category</h1>
                         </Col>
@@ -117,51 +115,50 @@ const AddCategory = () => {
                             </Col>
                         </Row>
                     )}
-                    <div>
-                    <Formik
-                        initialValues={{
-                            name: '',
-                        }}
-                        validationSchema={CategorySchema}
-                        onSubmit={handleSubmit}
-                    >
-                        {({ errors, touched }) => (
-                            <Form>
-                                <div>
-                                    <Row>
-                                        <Col>
-                                        {/* <label>Add Category Name</label> */}
-                                        <br></br>
-                                            <Field name="name" className="inputbox" autoComplete="off" placeholder="Add category name" />
-                                            {errors.name && touched.name ? <div className='error'>{errors.name}</div> : null}
-                                            <br></br>
-                                            <Button
-                                                type="submit"
-                                                // className="btn btn-primary"
-                                                disabled={loading}
-                                                variant="secondary"
-                                            >
-                                                {loading ? 'Please wait...' : ' Submit'}
-                                            </Button>
-                                        </Col>
-                                        <Col>
-                                           
-                                        </Col>
-                                    </Row>
-
-                                </div>
-                            </Form>
-                        )}
-                    </Formik>
-                    </div>
-                  
-                   
-
-
-                </Container >
-                <Container>
                     <Row >
                         <Col>
+
+
+                            <div style={{ backgroundColor: "white", borderRadius: "5px" }}>
+
+                                <Formik
+                                    initialValues={{
+                                        name: '',
+                                    }}
+                                    validationSchema={CategorySchema}
+                                    onSubmit={handleSubmit}
+                                >
+                                    {({ errors, touched }) => (
+                                        <Form>
+                                            <div>
+                                                
+                                                <Row>
+                                                    <Col style={{ margin: "10px" }}>
+                                                        {/* <h5>Add New</h5> */}
+                                                        {/* <br></br> */}
+                                                        <Field name="name" className="inputbox" autoComplete="off" placeholder="Add new category name" style={{ width:"100%",height:"50px"}} />
+                                                        {errors.name && touched.name ? <div className='error'>{errors.name}</div> : null}
+                                                    </Col>
+                                                </Row>
+                                                <Row>
+                                                <Col className='text-center'>
+                                                    
+                                                    <Button
+                                                            type="submit"
+                                                            disabled={loading}
+                                                            variant="secondary"
+                                                           
+                                                            style={{ margin:"10px",borderRadius:"5px",  fontSize: "20px",width:"40%",}}
+                                                        >
+                                                            {loading ? 'Please wait...' : ' Submit'}
+                                                        </Button></Col>
+                                                </Row>
+
+                                            </div>
+                                        </Form>
+                                    )}
+                                </Formik>
+                            </div>
                             <Table striped bordered hover>
                                 <thead>
                                     <tr>

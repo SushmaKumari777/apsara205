@@ -66,13 +66,13 @@ const Gender = () => {
         </Row>
       </section>
       <section>
-        <Container>
-          <Row>
+ 
+          <Row className='box'>
             {
               products ?
               products.map((product, index) => {
                   return (
-                    <Col xs={6} md={3} >
+                    <Col xs={6} md={2} >
                       <div className='square'>
                         {/* <Link to={'/buy/' + pooh.title + pooh.price1}> */}
                         <IoIosHeartEmpty className='wishlist' />
@@ -92,7 +92,7 @@ const Gender = () => {
             }
           </Row>
         
-        </Container>
+    
       </section>
     </div>
   )

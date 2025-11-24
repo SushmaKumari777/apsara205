@@ -16,6 +16,7 @@ import { RiHome2Line } from "react-icons/ri";
 import { useDispatch } from 'react-redux';
 import { CiSearch } from "react-icons/ci";
 import axios from 'axios';
+import { BsBoxSeam } from "react-icons/bs";
 
 
 
@@ -106,7 +107,7 @@ const Menu = () => {
             </Nav>
             <Nav className="ms-auto icons-nav">
               <Nav.Link >
-                <div className="search-box" style={{ position: "relative", width: "250px" }}>
+                <div className="search-box" style={{ position: "relative", width: "450px"}}>
                   <CiSearch
                     style={{
                       position: "absolute",
@@ -138,7 +139,7 @@ const Menu = () => {
                 currentUser && currentUser.id !== "" ?
                   <Nav.Link as={Link} to="/account">
                     <FontAwesomeIcon icon={faUser} />
-                    &nbsp; Login
+                    
                   </Nav.Link>
                   : <Nav.Link as={Link} to="/login">
                     <FontAwesomeIcon icon={faUser} />
@@ -148,6 +149,10 @@ const Menu = () => {
               <Nav.Link as={Link} to="/wishlist">
                 <FontAwesomeIcon icon={faHeartRegular} />
               </Nav.Link>
+              <Nav.Link as={Link} to="/customerOrder">
+              <BsBoxSeam />
+              </Nav.Link>
+             
 
               <Nav.Link as={Link} to="/carts" className="cart-container">
                 <FontAwesomeIcon icon={faCartShopping} />

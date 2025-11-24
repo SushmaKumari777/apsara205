@@ -121,7 +121,7 @@ const Home = () => {
                   return (
                     <Col xs={6} md={3}>
                       {/* <div className="scroll-container"> */}
-                      <div className='square' key={index}>
+                      <div className='square' key={index} style={{width:"px"}}>
                         <Link to={`/products/${product.id}`}>
                           <IoIosHeartEmpty className='wishlist' />
                           <img src={`http://localhost:8090/upload/${product.images[0]}`} />

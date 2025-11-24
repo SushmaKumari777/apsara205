@@ -55,48 +55,41 @@ const Category = () => {
   return (
     <div>
       <section>
-          <Row>
-            <Col>
-              <Menu></Menu>
-            </Col>
-            {/* <Col>
-              <div className="pooh-image">
-                <img src="pooh.webp" alt="" />
-              </div>
-            </Col> */}
-          </Row>
-          <Row>
-       {/* <div className="gap-container" > */}
-       {
-              products ?
-                // products.filter((category) => category.category === categoryName).map((product) => {
+        <Row>
+          <Col>
+            <Menu></Menu>
+          </Col>        
+        </Row>
+        <Row className='box'>
+          {/* <div className="gap-container" > */}
+          {
+            products ?
+              // products.filter((category) => category.category === categoryName).map((product) => {
 
-                products.map((product, index) => {
-                  return (
-                
-                    <Col xs={6} md={3} key={index}>
-                    <div className="box" >
-                    <Link to={`/products/${product.id}`}>
-                      <IoIosHeartEmpty className='wishlist' />
-                      <img src={`http://localhost:8090/upload/${product.images[0]}`} />
-                      <p>{product.productName}</p>
-                      <h6>Rs.{product.productPrice}</h6>
-                      <Button variant="outline-secondary" className="button" onClick={() => AddCart(product)}>Add to cart</Button>
-                     
+              products.map((product, index) => {
+                return (
+                  <Col  xs={6} sm={4} md={3} key={index}>
+                    <div className='square' key={index}>
+                      <Link to={`/products/${product.id}`}>
+                        <IoIosHeartEmpty className='wishlist' />
+                        <img src={`http://localhost:8090/upload/${product.images[0]}`} />
+                        <p>{product.productName}</p>
+                        <h6>Rs.{product.productPrice}</h6>
+                        <Button variant="outline-secondary" className="button" onClick={() => AddCart(product)}>Add to Cart</Button>
                       </Link>
                     </div>
                   </Col>
 
-                  )
-                }
                 )
-                : <div>
-                  no data available
-                </div>
-            }
-       {/* </div> */}
-          </Row>
-     
+              }
+              )
+              : <div>
+                no data available
+              </div>
+          }
+          {/* </div> */}
+        </Row>
+
       </section>
     </div>
   )
