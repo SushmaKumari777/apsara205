@@ -8,6 +8,7 @@ import { Col, Container, Row } from 'react-bootstrap';
 
 
 const Account = () => {
+  
   const { user: currentUser } = useSelector((state) => state.auth);
 
   if (!currentUser) {
@@ -43,17 +44,17 @@ const Account = () => {
         </ul>
 
       </section>
-      <section style={{backgroundColor:"#F1F3F6"}}>
+      <section style={{ backgroundColor: "#F1F3F6" }}>
         <Row>
           <Col>
             <Row>
               <Col>
                 <Row>
                   <Col>
-                  <div style={{backgroundColor:"white", width:"200px",height:"60px",boxShadow: "rgba(0, 0, 0, 0.1) 0px 4px 12px"}}>
-                    Hello,
-                   <h4>Sushma Kumari</h4> 
-                  </div>
+                    <div style={{ backgroundColor: "white", width: "200px", height: "60px", boxShadow: "rgba(0, 0, 0, 0.1) 0px 4px 12px" }}>
+                      Hello,
+                      <h4>Sushma Kumari</h4>
+                    </div>
                   </Col>
                 </Row>
                 <Row>

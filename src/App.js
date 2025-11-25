@@ -34,6 +34,7 @@ import Products from './components/Products';
 import AddressDetails from './components/AddressDetails';
 import CustomerOrder from './components/CustomerOrder';
 import Success from './components/Success';
+import OrderConfirm from './components/OrderConfirm';
 
 
 function App() {
@@ -74,6 +75,7 @@ function App() {
         <Route path="/products/:productId" element={<Products />} />
         <Route path="/customerOrder" element={<CustomerOrder />} />
         <Route path="/success" element={<Success />} />
+        <Route path="/orderConfirm" element={<OrderConfirm />} />
 
 
 

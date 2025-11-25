@@ -24,19 +24,21 @@ const Menu = () => {
   const dispatch = useDispatch();
   const [searchTerm, setSearchTerm] = useState("");
   const [noCartItems, setNoCartItems] = useState();
-
-  useEffect(() => {
-    axios.get(`http://localhost:8090/api/carts/user/${currentUser.id}`).then((response) => {
-      console.log(response.data.items)
-      console.log(response.data)
-      // setProducts(response.data.items)
-      setNoCartItems(response.data.itemCount)
-    })
-  }, []);
-
   const { user: currentUser } = useSelector((state) => state.auth);
   console.log(currentUser);
 
+  useEffect(() => {
+    
+
+    // axios.get(`http://localhost:8090/api/carts/user/${currentUser.id}`).then((response) => {
+    //   console.log(response.data.items)
+    //   console.log(response.data)
+    //   // setProducts(response.data.items)
+    //   setNoCartItems(response.data.itemCount)
+    // })
+  }, []);
+
+  
   const handleLogout = () => {
     dispatch(logout());
     // navigate('/login'); // Redirect to login page
@@ -151,6 +153,9 @@ const Menu = () => {
               </Nav.Link>
               <Nav.Link as={Link} to="/customerOrder">
               <BsBoxSeam />
+              </Nav.Link>
+              <Nav.Link as={Link} to="/register">
+              Sign up
               </Nav.Link>
              
 

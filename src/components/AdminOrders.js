@@ -8,78 +8,78 @@ import axios from 'axios';
 
 const AdminOrders = () => {
 
-  const [orders, setOrders] = useState();
+  // const [orders, setOrders] = useState();
 
-  useEffect(() => {
-    axios.get('http://localhost:8090/api/ssorders').then((response) => {
-      console.log(response.data);
-      setOrders(response.data)
-    })
-  }, []);
+  // useEffect(() => {
+  //   axios.get('http://localhost:8090/api/ssorders').then((response) => {
+  //     console.log(response.data);
+  //     setOrders(response.data)
+  //   })
+  // }, []);
 
-  // const orders = [
-  //   {
-  //     id: "1",
-  //     items: [
-  //       {
-  //         productName: "Noorika Full-sleeves",
-  //         ProductCategory: "",
-  //         productPrice: 599,
-  //         productQuantity: 2
-  //       },
-  //       {
-  //         productName: "Noorika Full-sleeves",
-  //         ProductCategory: "",
-  //         productPrice: 599,
-  //         productQuantity: 2
+  const orders = [
+    {
+      id: "1",
+      items: [
+        {
+          productName: "Noorika Full-sleeves",
+          ProductCategory: "",
+          productPrice: 599,
+          productQuantity: 2
+        },
+        {
+          productName: "Noorika Full-sleeves",
+          ProductCategory: "",
+          productPrice: 599,
+          productQuantity: 2
 
-  //       }
+        }
 
-  //     ],
-  //     total: 499,
-  //     discount: 10,
-  //     grandTotal: 500,
-  //     status: 0
-  //   },
-  //   {
-  //     id: "2",
-  //     items: [
-  //       {
-  //         productName: "Full-sleeves",
-  //         ProductCategory: "",
-  //         productPrice: 399,
-  //         productQuantity: 3
+      ],
+      total: 499,
+      discount: 10,
+      grandTotal: 500,
+      status: 0
+    },
+    {
+      id: "2",
+      items: [
+        {
+          productName: "Full-sleeves",
+          ProductCategory: "",
+          productPrice: 399,
+          productQuantity: 3
 
-  //       },
-  //       {
-  //         productName: "Full-sleeves",
-  //         ProductCategory: "",
-  //         productPrice: 399,
-  //         productQuantity: 4
+        },
+        {
+          productName: "Full-sleeves",
+          ProductCategory: "",
+          productPrice: 399,
+          productQuantity: 4
 
-  //       }
+        }
 
-  //     ],
-  //     total: 599,
-  //     discount: 10,
-  //     grandTotal: 500,
-  //     status: 0
-  //   }
-
-
-  // ]
-  // const status = [
-  //   "Order Placed",
-  //   "Processing",
-  //   "Order shipped",
-  //   "Out For deleverd",
-  //   "Return Accepted",
-  //   "Return Process complete",
-  //   "Canceled"
+      ],
+      total: 599,
+      discount: 10,
+      grandTotal: 500,
+      status: 0
+    }
 
 
+  ]
+  const status = [
+    "Order Placed",
+    "Processing",
+    "Order shipped",
+    "Out For deleverd",
+    "Return Accepted",
+    "Return Process complete",
+    "Canceled"
 
-  // ]
+
+
+  ]
 
   const orderStatusUpdate = (orderId, newStatus) => {
     console.log(orderId)
@@ -108,7 +108,7 @@ const AdminOrders = () => {
       </Row>
       <Table>
         <tbody>
-          {
+          {/* {
             orders.map((order, index) => {
               return (
                 <tr key={index}>
@@ -175,7 +175,21 @@ const AdminOrders = () => {
             }
 
             )
-          }
+          } */}
+          {orders && orders.length > 0 ? (
+            orders.map((order, index) => (
+              <tr key={index}>
+                <td>{order?.id}</td>
+                <td>
+                  {order?.items?.map((item, i) => (
+                    <p key={i}>{item.productName}</p>
+                  ))}
+                </td>
+              </tr>
+            ))
+          ) : (
+            <p>No orders found</p>
+          )}
         </tbody>
       </Table>
     </div>

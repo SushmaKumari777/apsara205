@@ -10,6 +10,7 @@ import { clearMessage } from "../slices/message";
 import { FaRegUserCircle } from "react-icons/fa";
 import "./login.css";
 import Menu from "./Menu";
+import { Link } from 'react-router'
 
 
 const LoginSchema = Yup.object().shape({
@@ -143,6 +144,11 @@ const Login = () => {
               </Form>
             )}
           </Formik>
+          <Row>
+            <Col>
+            <p>Not registerd?<Link to={"/Register"}>Create an account</Link> </p>
+            </Col>
+          </Row>
         </Container>
       </div>
     </div>
