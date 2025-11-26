@@ -9,14 +9,14 @@ import { clearMessage } from "../slices/message";
 import { useDispatch, useSelector } from "react-redux";
 
 const SignupSchema = Yup.object().shape({
-  username: Yup.string()
-    .matches(/^[a-zA-Z0-9_]+$/, "Only letters, numbers and underscores allowed")
-    .min(3, "Username must be at least 3 characters")
-    .max(20, "Username must be less than 20 characters")
-    .required("Username is required"),
-  // mobile: Yup.string()
-  //   .matches(/^[6-9]\d{9}$/, "Enter a valid 10 Digit Mobile No. ")
-  //   .required("Mobile No. is Mandetory!"),
+  // username: Yup.string()
+  //   .matches(/^[a-zA-Z0-9_]+$/, "Only letters, numbers and underscores allowed")
+  //   .min(3, "Username must be at least 3 characters")
+  //   .max(20, "Username must be less than 20 characters")
+  //   .required("Username is required"),
+  mobile: Yup.string()
+    .matches(/^[6-9]\d{9}$/, "Enter a valid 10 Digit Mobile No. ")
+    .required("Mobile No. is Mandetory!"),
   email: Yup.string().email("Invalid email").required("E-Mail Id Required"),
   password: Yup.string()
     .min(6, "Minimum Six charecter required")
@@ -34,11 +34,11 @@ const Register = () => {
   }, [dispatch]);
   const handleRegister = (formValue) => {
     console.log()
-    const {username, email, password } = formValue;
+    const {mobile, email, password } = formValue;
    
     setSuccessful(false);
 
-    dispatch(register({username, email, password }))
+    dispatch(register({mobile, email, password }))
       .unwrap()
       .then(() => {
         setSuccessful(true);
@@ -67,7 +67,7 @@ const Register = () => {
               </Row>
               <Formik
                 initialValues={{
-                  username: "",
+                  mobile: "",
                  
                   email: "",
                   password: "",
@@ -84,15 +84,15 @@ const Register = () => {
                     <div className="background">
                       <Row>
                       <Col>
-                          <b>Username</b>
+                          <b>Mobile no.</b>
                         </Col>
                       </Row>
                       <Row>
                         <Col>
-                          <Field name="username" className="bbb" placeholder="Enter Full Name" />
+                          <Field name="mobile" className="bbb" placeholder="Enter Mobile no." />
                           <div className="error">
-                            {errors.username && touched.username ? (
-                              <div>{errors.username}</div>
+                            {errors.mobile && touched.mobile ? (
+                              <div>{errors.mobile}</div>
                             ) : null}
                           </div>
                         </Col>

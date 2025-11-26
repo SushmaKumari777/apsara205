@@ -28,7 +28,7 @@ const Menu = () => {
   console.log(currentUser);
 
   useEffect(() => {
-    
+
 
     // axios.get(`http://localhost:8090/api/carts/user/${currentUser.id}`).then((response) => {
     //   console.log(response.data.items)
@@ -38,7 +38,7 @@ const Menu = () => {
     // })
   }, []);
 
-  
+
   const handleLogout = () => {
     dispatch(logout());
     // navigate('/login'); // Redirect to login page
@@ -109,7 +109,7 @@ const Menu = () => {
             </Nav>
             <Nav className="ms-auto icons-nav">
               <Nav.Link >
-                <div className="search-box" style={{ position: "relative", width: "450px"}}>
+                <div className="search-box" style={{ position: "relative", width: "480px" }}>
                   <CiSearch
                     style={{
                       position: "absolute",
@@ -137,11 +137,14 @@ const Menu = () => {
                   />
                 </div>
               </Nav.Link>
+              <Nav.Link as={Link} to="/register">
+                Sign up
+              </Nav.Link>
               {
                 currentUser && currentUser.id !== "" ?
                   <Nav.Link as={Link} to="/account">
                     <FontAwesomeIcon icon={faUser} />
-                    
+
                   </Nav.Link>
                   : <Nav.Link as={Link} to="/login">
                     <FontAwesomeIcon icon={faUser} />
@@ -152,13 +155,8 @@ const Menu = () => {
                 <FontAwesomeIcon icon={faHeartRegular} />
               </Nav.Link>
               <Nav.Link as={Link} to="/customerOrder">
-              <BsBoxSeam />
+                <BsBoxSeam />
               </Nav.Link>
-              <Nav.Link as={Link} to="/register">
-              Sign up
-              </Nav.Link>
-             
-
               <Nav.Link as={Link} to="/carts" className="cart-container">
                 <FontAwesomeIcon icon={faCartShopping} />
                 {noCartItems > 0 && <span className="cart-badge">{noCartItems}</span>}

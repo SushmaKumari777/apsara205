@@ -146,7 +146,7 @@ const Login = () => {
           </Formik>
           <Row>
             <Col>
-            <p>Not registerd?<Link to={"/Register"}>Create an account</Link> </p>
+            <p className="text-center">Not registerd? <Link to={"/Register"}> Create an account</Link> </p>
             </Col>
           </Row>
         </Container>
