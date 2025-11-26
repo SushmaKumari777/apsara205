@@ -24,6 +24,7 @@ const Menu = () => {
   const dispatch = useDispatch();
   const [searchTerm, setSearchTerm] = useState("");
   const [noCartItems, setNoCartItems] = useState();
+
   const { user: currentUser } = useSelector((state) => state.auth);
   console.log(currentUser);
 
@@ -36,6 +37,7 @@ const Menu = () => {
     //   // setProducts(response.data.items)
     //   setNoCartItems(response.data.itemCount)
     // })
+
   }, []);
 
 

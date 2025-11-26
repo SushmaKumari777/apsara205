@@ -23,7 +23,7 @@ import Slider from "react-slick";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { IoIosArrowDropleftCircle } from "react-icons/io";
 import { IoIosArrowDroprightCircle } from "react-icons/io";
-
+import { useNavigate } from 'react-router'
 
 
 const settings = {
@@ -44,10 +44,12 @@ const setting = {
   arrows: true,
 };
 
+
 const Home = () => {
 
   const [womenProducts, setWomenProducts] = useState([]);
   const [products, setProducts] = useState([]);
+  let navigate = useNavigate();
 
   useEffect(() => {
     axios.get('http://localhost:8090/api/ssproducts/new/women').then((response) => {
@@ -64,6 +66,16 @@ const Home = () => {
       setProducts(response.data)
     })
   }, []);
+
+  const { user: currentUser } = useSelector((state) => state.auth);
+  console.log(currentUser)
+  if(currentUser && currentUser.roles[0]==="ROLE_ADMIN"){
+    console.log(currentUser.roles[0]);
+  
+      navigate("/AdminDashboard")
+      
+    }
+
 
   const AddCart = (product) => {
     // console.log(pooh)
@@ -89,8 +101,8 @@ const Home = () => {
       alert("Failed add to cart");
     }
   }
-  const { user: currentUser } = useSelector((state) => state.auth);
-  console.log(currentUser)
+  // const { user: currentUser } = useSelector((state) => state.auth);
+  // console.log(currentUser)
 
 
 

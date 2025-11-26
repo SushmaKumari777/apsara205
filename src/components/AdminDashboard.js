@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from 'react'
 import { Row, Col, Container, Table } from 'react-bootstrap'
 import { Link } from 'react-router'
 import Menu from "./Menu";
@@ -19,6 +19,8 @@ import {
 } from 'chart.js';
 import { Bar, Pie } from 'react-chartjs-2';
 
+import { useNavigate } from 'react-router'
+import { useSelector } from "react-redux";
 
 
 ChartJS.register(
@@ -124,7 +126,24 @@ const Dataset = {
 };
 
 
+
 const AdminDashboard = (props) => {
+
+  let navigate = useNavigate();
+
+    const { user: currentUser } = useSelector((state) => state.auth);
+    console.log(currentUser)
+
+    useEffect(() => {
+      if(currentUser && currentUser.roles[0] !== "ROLE_ADMIN"){
+        console.log(currentUser.roles[0]);
+      
+          navigate("/")
+          
+        }
+    }, [currentUser,navigate]);
+
+
   return (
 
     <div style={{ backgroundColor: "#EAEAEA" }}>
