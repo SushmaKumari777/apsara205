@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router'
 import { IoIosHeartEmpty } from "react-icons/io";
 import axios from 'axios';
-// import { useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 const AllProducts = () => {
     const [products, setProducts] = useState();

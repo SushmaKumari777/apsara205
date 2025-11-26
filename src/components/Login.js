@@ -14,7 +14,7 @@ import { Link } from 'react-router'
 
 
 const LoginSchema = Yup.object().shape({
-  mobile: Yup.string()
+  username: Yup.string()
     .matches(/^[6-9]\d{9}$/, 'Enter a valid 10-digit mobile number')
     .required('Mobile number is required'),
   password: Yup.string()
@@ -36,10 +36,10 @@ const Login = () => {
   }, [dispatch]);
 
   const handleLogin = (formValue) => {
-    const { mobile, password } = formValue;
+    const { username, password } = formValue;
     setLoading(true);
 
-    dispatch(login({ mobile, password }))
+    dispatch(login({ username, password }))
       .unwrap()
       .then(() => {
         navigate("/home");
@@ -87,7 +87,7 @@ const Login = () => {
           )}
 
           <Formik
-            initialValues={{ mobile: '', password: '' }}
+            initialValues={{ username: '', password: '' }}
             validationSchema={LoginSchema}
             onSubmit={handleLogin}
           >
@@ -102,9 +102,9 @@ const Login = () => {
                   <Row className="mb-3">
                     {/* <Col md={3}><b>Mobile</b></Col> */}
                     <Col >
-                      <Field name="mobile" className="form-control" placeholder="Enter Mobile number" />
-                      {errors.mobile && touched.mobile && (
-                        <div className="error">{errors.mobile}</div>
+                      <Field name="username" className="form-control" placeholder="Enter username number" />
+                      {errors.username && touched.username && (
+                        <div className="error">{errors.username}</div>
                       )}
                     </Col>
                   </Row>

@@ -165,7 +165,9 @@ const Menu = () => {
                 currentUser && currentUser.id !== "" ?
                   <Nav.Link onClick={handleLogout}>
                     <FontAwesomeIcon icon={faSignOut} />
-                  </Nav.Link> : ""
+                  </Nav.Link> 
+                  
+                  : ""
               }
             </Nav>
           </Navbar.Collapse>
