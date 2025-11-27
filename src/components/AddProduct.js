@@ -355,6 +355,7 @@ import Menu from './Menu'
 import { FaArrowCircleLeft } from "react-icons/fa";
 import { Link } from 'react-router'
 
+import { useNavigate } from "react-router-dom";
 
 const SignupSchema = Yup.object().shape({
     productName: Yup.string()
@@ -381,6 +382,17 @@ const SignupSchema = Yup.object().shape({
 // ];
 
 const AddProduct = () => {
+    const navigate = useNavigate();
+
+    const { user: currentUser } = useSelector((state) => state.auth);
+    console.log(currentUser)
+
+    useEffect(() => {
+        if (currentUser && currentUser.roles[0] !== "ROLE_ADMIN") {
+            console.log(currentUser.roles[0]);
+            navigate("/")
+        }
+    }, [currentUser, navigate]);
 
     const [selectedImages, setSelectedImages] = useState([]);
     const [categories, setCategories] = useState();
@@ -396,8 +408,8 @@ const AddProduct = () => {
     const handleFileChange = (e) => {
         setSelectedImages(e.target.files);
     };
-    const { user: currentUser } = useSelector((state) => state.auth);
-    console.log(currentUser)
+    // const { user: currentUser } = useSelector((state) => state.auth);
+    // console.log(currentUser)
     if (!currentUser) {
         return <Navigate to="/login" />;
     }

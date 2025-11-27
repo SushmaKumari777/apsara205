@@ -4,10 +4,38 @@ import { Col, Row, Table } from 'react-bootstrap';
 import { Formik, Form, Field } from 'formik';
 import Menu from "./Menu";
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
+import { useSelector } from "react-redux";
 
 const AdminOrders = () => {
 
+  const navigate = useNavigate();
+
+  const { user: currentUser } = useSelector((state) => state.auth);
+  console.log(currentUser)
+
+  useEffect(() => {
+    if (currentUser && currentUser.roles[0] !== "ROLE_ADMIN") {
+      console.log(currentUser.roles[0]);
+      navigate("/")
+    }
+  }, [currentUser, navigate]);
+
+
+
+  const [orders, setOrders] = useState([]);
+
+  useEffect(() => {
+    axios.get("http://localhost:8090/api/ssorders")
+      .then((res) => {
+        console.log("Fetched Orders:", res.data);
+        setOrders(res.data);
+      })
+      .catch((err) => {
+        console.log("Failed to fetch orders", err);
+      });
+  }, []);
   // const [orders, setOrders] = useState();
 
   // useEffect(() => {
@@ -17,57 +45,57 @@ const AdminOrders = () => {
   //   })
   // }, []);
 
-  const orders = [
-    {
-      id: "1",
-      items: [
-        {
-          productName: "Noorika Full-sleeves",
-          ProductCategory: "",
-          productPrice: 599,
-          productQuantity: 2
-        },
-        {
-          productName: "Noorika Full-sleeves",
-          ProductCategory: "",
-          productPrice: 599,
-          productQuantity: 2
+  // const orders = [
+  //   {
+  //     id: "1",
+  //     items: [
+  //       {
+  //         productName: "Noorika Full-sleeves",
+  //         ProductCategory: "",
+  //         productPrice: 599,
+  //         productQuantity: 2
+  //       },
+  //       {
+  //         productName: "Noorika Full-sleeves",
+  //         ProductCategory: "",
+  //         productPrice: 599,
+  //         productQuantity: 2
 
-        }
+  //       }
 
-      ],
-      total: 499,
-      discount: 10,
-      grandTotal: 500,
-      status: 0
-    },
-    {
-      id: "2",
-      items: [
-        {
-          productName: "Full-sleeves",
-          ProductCategory: "",
-          productPrice: 399,
-          productQuantity: 3
+  //     ],
+  //     total: 499,
+  //     discount: 10,
+  //     grandTotal: 500,
+  //     status: 0
+  //   },
+  //   {
+  //     id: "2",
+  //     items: [
+  //       {
+  //         productName: "Full-sleeves",
+  //         ProductCategory: "",
+  //         productPrice: 399,
+  //         productQuantity: 3
 
-        },
-        {
-          productName: "Full-sleeves",
-          ProductCategory: "",
-          productPrice: 399,
-          productQuantity: 4
+  //       },
+  //       {
+  //         productName: "Full-sleeves",
+  //         ProductCategory: "",
+  //         productPrice: 399,
+  //         productQuantity: 4
 
-        }
+  //       }
 
-      ],
-      total: 599,
-      discount: 10,
-      grandTotal: 500,
-      status: 0
-    }
+  //     ],
+  //     total: 599,
+  //     discount: 10,
+  //     grandTotal: 500,
+  //     status: 0
+  //   }
 
 
-  ]
+  // ]
   const status = [
     "Order Placed",
     "Processing",
@@ -103,20 +131,20 @@ const AdminOrders = () => {
       </Row>
       <Row>
         <Col>
-          <h1 className='text-center'>My Orders</h1>
+          <h1 className='text-center'>Orders</h1>
         </Col>
       </Row>
       <Table>
         <tbody>
-          {/* {
+          {
             orders.map((order, index) => {
               return (
                 <tr key={index}>
-                  <td>
+                  {/* <td>
                     {order.id}
-                  </td>
+                  </td> */}
                   <td>
-                    {
+                    {/* {
                       order.items.map((item, index) => {
                         return (
                           <p key={index}>  {item.productName}   Rs. {item.productPrice} X {item.productQuantity} = {item.productPrice * item.productQuantity}
@@ -126,7 +154,21 @@ const AdminOrders = () => {
                         )
                       }
                       )
-                    }
+                    } */}
+                    {orders && orders.length > 0 ? (
+                      orders.map((order, index) => (
+                        <tr key={index}>
+                          <td>{order?.id}</td>
+                          <td>
+                            {order?.items?.map((item, index) => (
+                              <p key={index}>{item.productName} Rs. {item.productPrice} X {item.productQuantity} = {item.productPrice * item.productQuantity}</p>
+                            ))}
+                          </td>
+                        </tr>
+                      ))
+                    ) : (
+                      <p>No orders found</p>
+                    )}
                     <hr />
                     <p>Total : {order.total}</p>
                     <p>Grand Total : {order.grandTotal}</p>
@@ -150,7 +192,7 @@ const AdminOrders = () => {
                             <Row >
 
                               <Field name="orderStatus" as="select" className="inputbox" onChange={() => orderStatusUpdate(order.id)}>
-                            
+
                                 {
                                   status.map((data, index) => {
                                     return (
@@ -175,8 +217,8 @@ const AdminOrders = () => {
             }
 
             )
-          } */}
-          {orders && orders.length > 0 ? (
+          }
+          {/* {orders && orders.length > 0 ? (
             orders.map((order, index) => (
               <tr key={index}>
                 <td>{order?.id}</td>
@@ -189,7 +231,7 @@ const AdminOrders = () => {
             ))
           ) : (
             <p>No orders found</p>
-          )}
+          )} */}
         </tbody>
       </Table>
     </div>

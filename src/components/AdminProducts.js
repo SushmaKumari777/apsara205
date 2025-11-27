@@ -16,9 +16,20 @@ import { Link } from 'react-router'
 
 
 const AdminProducts = () => {
+     const navigate = useNavigate();
+    
+      const { user: currentUser } = useSelector((state) => state.auth);
+      console.log(currentUser)
+    
+      useEffect(() => {
+          if (currentUser && currentUser.roles[0] !== "ROLE_ADMIN") {
+              console.log(currentUser.roles[0]);
+              navigate("/")
+          }
+      }, [currentUser, navigate]);
 
     const dispatch = useDispatch();
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const [products, setProducts] = useState();
     const [loading, setLoading] = useState(false);
     const { isLoggedIn } = useSelector((state) => state.auth);

@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { Row, Col, Container, Table } from 'react-bootstrap'
 import { Link } from 'react-router'
 import Menu from "./Menu";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; import { FaArrowCircleLeft } from "react-icons/fa";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; 
+import { FaArrowCircleLeft } from "react-icons/fa";
 import { faSignOut } from "@fortawesome/free-solid-svg-icons";
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
 import { Doughnut } from "react-chartjs-2";
@@ -21,6 +22,7 @@ import { Bar, Pie } from 'react-chartjs-2';
 
 import { useNavigate } from 'react-router'
 import { useSelector } from "react-redux";
+import axios from "axios";
 
 
 ChartJS.register(
@@ -144,6 +146,21 @@ const AdminDashboard = (props) => {
     }, [currentUser,navigate]);
 
 
+
+    const [summary, setSummary] = useState();
+
+    useEffect(() => {
+      axios.get("http://localhost:8090/api/ssorders/reports/summary")
+        .then((res) => {
+          setSummary(res.data);
+        })
+        .catch((err) => {
+          console.log("Error:", err);
+        });
+    }, []);
+
+
+
   return (
 
     <div style={{ backgroundColor: "#EAEAEA" }}>
@@ -199,8 +216,8 @@ const AdminDashboard = (props) => {
                 </Col>
                 <Col>
                   <div className='order'>
-                    <p>Total Orders</p>
-                    <h6>	₹ 110,019</h6>
+                    <p>Total Orders: ({summary?.totalOrders ?? 0})</p>
+                    <h6>	₹ {summary?.totalRevenue ?? 0} </h6>
                   </div>
                 </Col>
                 <Col>

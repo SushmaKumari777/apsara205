@@ -6,11 +6,16 @@ import Menu from "./Menu";
 const OrderConfirm = () => {
     return (
         <div>
+            <div>
+                <Row>
+                    <Col>
+                        <Menu></Menu>
+                    </Col>
+                </Row>
+            </div>
             <section>
                 <Container>
-                    {/* <Row>
-                        <Col><Menu></Menu></Col>
-                    </Row> */}
+
                     <Row>
                         <Col style={{ backgroundColor: "#D4D4D4", borderRadius: "10px", margin: "30px" }}>
                             <p className='text-center' style={{ color: "#641E16", fontSize: "80px" }}><BsCheck2Circle /></p>

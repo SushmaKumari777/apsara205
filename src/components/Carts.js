@@ -153,8 +153,11 @@ const Carts = () => {
     try {
         const res = await axios.post("http://localhost:8090/api/ssorders", orderData);
         console.log("order succesfully added:", res.data);
-        alert("order added successfully!");
-        navigate("/home");
+        // alert("order added successfully!");
+        axios.delete(`http://localhost:8090/api/carts/user/${currentUser.id}`).then((response) => {
+          console.log('cart successfully deleted')
+        })
+        navigate("/OrderConfirm");
 
         // resetForm();
     

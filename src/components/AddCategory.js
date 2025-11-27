@@ -15,7 +15,8 @@ import { FaArrowCircleLeft } from "react-icons/fa";
 import { Link } from 'react-router'
 
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
-
+// import { useNavigate } from 'react-router'
+// import { useSelector } from "react-redux";
 
 const checkNameExists = async (name) => {
     // Replace this with your actual API call
@@ -37,10 +38,22 @@ const CategorySchema = Yup.object().shape({
             }
         ),
 });
+
 const AddCategory = () => {
+    // let navigate = useNavigate();
+    const navigate = useNavigate();
+
+    const { user: currentUser } = useSelector((state) => state.auth);
+    console.log(currentUser)
+
+    useEffect(() => {
+        if (currentUser && currentUser.roles[0] !== "ROLE_ADMIN") {
+            console.log(currentUser.roles[0]);
+            navigate("/")
+        }
+    }, [currentUser, navigate]);
 
     const dispatch = useDispatch();
-    const navigate = useNavigate();
     const [categories, setCategories] = useState();
     const [loading, setLoading] = useState(false);
     const { isLoggedIn } = useSelector((state) => state.auth);
@@ -99,7 +112,7 @@ const AddCategory = () => {
                             <Breadcrumb>
                                 <Breadcrumb.Item href="#">Home</Breadcrumb.Item>
                                 <Breadcrumb.Item href="adminDashboard"> Admin Dashboard </Breadcrumb.Item>
-               
+
                             </Breadcrumb>
                         </Col>
                     </Row>
@@ -131,24 +144,24 @@ const AddCategory = () => {
                                     {({ errors, touched }) => (
                                         <Form>
                                             <div>
-                                                
+
                                                 <Row>
                                                     <Col style={{ margin: "10px" }}>
                                                         {/* <h5>Add New</h5> */}
                                                         {/* <br></br> */}
-                                                        <Field name="name" className="inputbox" autoComplete="off" placeholder="Add new category name" style={{ width:"100%",height:"50px"}} />
+                                                        <Field name="name" className="inputbox" autoComplete="off" placeholder="Add new category name" style={{ width: "100%", height: "50px" }} />
                                                         {errors.name && touched.name ? <div className='error'>{errors.name}</div> : null}
                                                     </Col>
                                                 </Row>
                                                 <Row>
-                                                <Col className='text-center'>
-                                                    
-                                                    <Button
+                                                    <Col className='text-center'>
+
+                                                        <Button
                                                             type="submit"
                                                             disabled={loading}
                                                             variant="secondary"
-                                                           
-                                                            style={{ margin:"10px",borderRadius:"5px",  fontSize: "20px",width:"40%",}}
+
+                                                            style={{ margin: "10px", borderRadius: "5px", fontSize: "20px", width: "40%", }}
                                                         >
                                                             {loading ? 'Please wait...' : ' Submit'}
                                                         </Button></Col>
