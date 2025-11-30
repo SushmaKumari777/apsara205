@@ -450,6 +450,21 @@
   margin: 10px;
 }
 
+.dashboard1{
+  color:#641E16;
+  text-decoration: none;
+  font-weight: 20px;
+}
+.dashboard a{
+  color:#641E16;
+  text-decoration: none;
+}
+.dashboard1:hover{
+  color:#641E16;
+
+  text-decoration: underline;
+
+}
 
 /* _______________form___________________________________ */
 .aaa {

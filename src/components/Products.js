@@ -15,6 +15,7 @@ const Products = () => {
     const [addresses, setAddresses] = useState();
 
     const [show, setShow] = useState(false);
+    
     useEffect(() => {
         axios.get(`http://localhost:8090/api/ssproducts/${productId}`).then((response) => {
             console.log(response.data.productName)

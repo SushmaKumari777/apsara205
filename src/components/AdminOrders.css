@@ -1,0 +1,54 @@
+/* MOBILE RESPONSIVE TABLE FIX */
+
+@media (max-width: 780px) {
+  table thead {
+    display: none;
+  }
+
+  .table-responsive {
+    display: flex;
+    justify-content: center;
+  }
+
+  table {
+        width: 100% !important;
+    max-width: 550px; 
+  }
+
+
+  table tbody tr {
+    display: block;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+  }
+
+  table tbody tr td {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 10px;
+    font-size: 14px;
+  }
+
+  table tbody tr td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    color: #641E16;
+    
+  }
+
+  /* Image responsive */
+  table tbody tr td img {
+    width: 70px !important;
+    height: 70px !important;
+  }
+
+  /* Fix for rowspan columns */
+  td[rowspan] {
+    display: block !important;
+    width: 100% !important;
+    text-align: left !important;
+  }
+}

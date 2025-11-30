@@ -174,7 +174,7 @@ const AdminDashboard = (props) => {
           <Row>
             <Col md={10}>
               <Breadcrumb>
-                <Breadcrumb.Item href="#">Dashboard</Breadcrumb.Item>
+                <Breadcrumb.Item href="#"><h5>Dashboard</h5></Breadcrumb.Item>
               </Breadcrumb>
             </Col>
             <Col md={2}>
@@ -196,13 +196,12 @@ const AdminDashboard = (props) => {
             <Col md={2}>
               <Table Striped rows hover>
                 <tbody>
-                  <tr><td><Link to={'/AddCategory'} style={{ textDecoration: "none", color: "#641E16", fontWeight: "20px" }}>Add Category</Link></td></tr>
-                  <tr><td><Link to={'/AddProduct'} style={{ textDecoration: "none", color: "#641E16", fontWeight: "20px" }}>Add Product</Link></td></tr>
-                  <tr><td><Link to={'/AdminProduct'} style={{ textDecoration: "none", color: "#641E16", fontWeight: "20px" }}>Admin Product</Link></td></tr>
-                  <tr><td><Link to={'/AdminOrders'} style={{ textDecoration: "none", color: "#641E16", fontWeight: "20px" }}>Admin Orders</Link></td></tr>
-                  <tr><td>Setting</td></tr>
-                  <tr><td>Help Cente</td></tr>
-                  <tr><td><FontAwesomeIcon icon={faSignOut} />Logout</td></tr>
+                  <tr><td><Link to={'/AddCategory'} ><h5 className='dashboard1'>Add Category</h5></Link></td></tr>
+                  <tr><td><Link to={'/AddProduct'}><h5 className='dashboard1'>Add Product</h5></Link></td></tr>
+                  <tr><td><Link to={'/AdminProduct'}><h5 className='dashboard1'>Admin Product</h5></Link></td></tr>
+                  <tr><td><Link to={'/AdminOrders'}><h5 className='dashboard1'>Admin Orders</h5></Link></td></tr>
+                  <tr><td><h5 className='dashboard1'>Setting</h5></td></tr>
+                  <tr><td><h5 className='dashboard1'>Help Cente</h5></td></tr>
                 </tbody>
               </Table>
             </Col>
@@ -235,9 +234,40 @@ const AdminDashboard = (props) => {
               </Row>
 
               <Row>
+                <Col 
+                style={{
+                   width: "400px",
+                  height:"500px",
+                  backgroundColor: "#f9f9f9",
+                  padding: "10px",
+                  marginTop: "10px",
+                  borderRadius: "12px",
+                  boxShadow: "0 4px 4px rgba(0, 0, 0, 0.1)",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}>
+                  <Bar options={options} data={data}></Bar>
+                </Col>
+              </Row>
+
+              <Row>
+                <Col md={6}>
+                  <div style={{
+                    width: "400px",
+                    backgroundColor: "#f9f9f9",
+                    padding: "10px",
+                    marginTop: "10px",
+                    borderRadius: "12px",
+                    boxShadow: "0 4px 4px rgba(0, 0, 0, 0.1)",
+                  }}>
+                    Top selling categories
+                    <Doughnut data={Dataset} />
+                  </div>
+                </Col>
                 <Col md={6} style={{
                   backgroundColor: "#f9f9f9",
-                  padding: "20px",
+                  padding: "10px",
                   marginTop: "10px",
                   borderRadius: "12px",
                   boxShadow: "0 4px 4px rgba(0, 0, 0, 0.1)",
@@ -252,37 +282,6 @@ const AdminDashboard = (props) => {
                     data={data}
                     {...props}
                   />
-                </Col>
-                <Col style={{
-                  backgroundColor: "#f9f9f9",
-                  padding: "15px",
-                  marginTop: "10px",
-                  borderRadius: "12px",
-                  boxShadow: "0 4px 4px rgba(0, 0, 0, 0.1)",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  height: "450px",
-                  width: "400px"
-                }}>
-                  <Bar options={options} data={data}></Bar>
-                </Col>
-              </Row>
-
-              <Row>
-                <Col>
-                  <div style={{
-                    width: "300px",
-                    height: "350px",
-                    backgroundColor: "#f9f9f9",
-                    padding: "20px",
-                    marginTop: "10px",
-                    borderRadius: "12px",
-                    boxShadow: "0 4px 4px rgba(0, 0, 0, 0.1)",
-                  }}>
-                    Top selling categories
-                    <Doughnut data={Dataset} />
-                  </div>
                 </Col>
               </Row>
 

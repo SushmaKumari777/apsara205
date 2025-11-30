@@ -3,13 +3,13 @@ import React, { useState, useEffect } from 'react'
 import Menu from "./Menu";
 import Address from "./Address";
 import { Container, Row, Col, Table, Modal } from 'react-bootstrap'
-import { useDispatch, useSelector } from 'react-redux';
-import { clearMessage } from "../slices/message";
+import {  useSelector } from 'react-redux';
+// import { clearMessage } from "../slices/message";
 import axios from 'axios';
-import { CiSquareRemove } from "react-icons/ci";
+// import { CiSquareRemove } from "react-icons/ci";
 import Button from 'react-bootstrap/Button';
 import { MdDelete } from "react-icons/md";
-import { CiCircleRemove } from "react-icons/ci";
+// import { CiCircleRemove } from "react-icons/ci";
 import { Link } from 'react-router'
 import { Formik, Field, Form } from 'formik';
 import Badge from 'react-bootstrap/Badge';
@@ -20,6 +20,7 @@ import { useNavigate, Navigate } from "react-router-dom";
 
 
 const Carts = () => {
+  
 
   // const dispatch = useDispatch();
   const [products, setProducts] = useState();
@@ -208,6 +209,7 @@ const Carts = () => {
                         return (
                           // <Link to={`/products/${product.id}`}>
                           <tr key={index}>
+                            {/* <Link to={`/products/${product.id}`}> */}
                             <td className='text-center'>{index + 1}</td>
                             <td className='text-center'>
                               <img src={`http://localhost:8090/upload/${product.productDetails.images[0]}`}
@@ -261,6 +263,7 @@ const Carts = () => {
                                 }}
                               ><MdDelete /> </button>
                             </td>
+                            {/* </Link> */}
                           </tr>
                           // </Link>
                         )

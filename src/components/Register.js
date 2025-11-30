@@ -14,7 +14,7 @@ const SignupSchema = Yup.object().shape({
   //   .min(3, "Username must be at least 3 characters")
   //   .max(20, "Username must be less than 20 characters")
   //   .required("Username is required"),
-  mobile: Yup.string()
+  username: Yup.string()
     .matches(/^[6-9]\d{9}$/, "Enter a valid 10 Digit Mobile No. ")
     .required("Mobile No. is Mandetory!"),
   email: Yup.string().email("Invalid email").required("E-Mail Id Required"),
@@ -34,11 +34,11 @@ const Register = () => {
   }, [dispatch]);
   const handleRegister = (formValue) => {
     console.log()
-    const {mobile, email, password } = formValue;
+    const {username, email, password } = formValue;
    
     setSuccessful(false);
 
-    dispatch(register({mobile, email, password }))
+    dispatch(register({username, email, password }))
       .unwrap()
       .then(() => {
         setSuccessful(true);
@@ -67,7 +67,7 @@ const Register = () => {
               </Row>
               <Formik
                 initialValues={{
-                  mobile: "",
+                  username: "",
                  
                   email: "",
                   password: "",
@@ -89,10 +89,10 @@ const Register = () => {
                       </Row>
                       <Row>
                         <Col>
-                          <Field name="mobile" className="bbb" placeholder="Enter Mobile no." />
+                          <Field name="username" className="bbb" placeholder="Enter Mobile no." />
                           <div className="error">
-                            {errors.mobile && touched.mobile ? (
-                              <div>{errors.mobile}</div>
+                            {errors.username && touched.username ? (
+                              <div>{errors.username}</div>
                             ) : null}
                           </div>
                         </Col>

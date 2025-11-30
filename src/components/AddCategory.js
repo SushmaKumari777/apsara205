@@ -99,18 +99,18 @@ const AddCategory = () => {
         }
     }
     return (
-        <div style={{ backgroundColor: "#EAEAEA" }}>
+        <div>
             <div>
                 <Row>
                     <Col>
                         <Menu></Menu>
                     </Col>
                 </Row>
-                <Container>
+                <Container fluid>
                     <Row>
                         <Col md={4} style={{ color: "#641E16", }}>
                             <Breadcrumb>
-                                <Breadcrumb.Item href="#">Home</Breadcrumb.Item>
+                                {/* <Breadcrumb.Item href="#">Home</Breadcrumb.Item> */}
                                 <Breadcrumb.Item href="adminDashboard"> Admin Dashboard </Breadcrumb.Item>
 
                             </Breadcrumb>
@@ -118,7 +118,7 @@ const AddCategory = () => {
                     </Row>
                     <Row>
                         <Col>
-                            <h1>Category</h1>
+                            <h2 style={{ color: "#641E16" }}>Category</h2>
                         </Col>
                     </Row>
                     {message && (
@@ -132,7 +132,7 @@ const AddCategory = () => {
                         <Col>
 
 
-                            <div style={{ backgroundColor: "white", borderRadius: "5px" }}>
+                            <div style={{ backgroundColor: "white"}}>
 
                                 <Formik
                                     initialValues={{
@@ -144,29 +144,33 @@ const AddCategory = () => {
                                     {({ errors, touched }) => (
                                         <Form>
                                             <div>
-
                                                 <Row>
                                                     <Col style={{ margin: "10px" }}>
                                                         {/* <h5>Add New</h5> */}
                                                         {/* <br></br> */}
-                                                        <Field name="name" className="inputbox" autoComplete="off" placeholder="Add new category name" style={{ width: "100%", height: "50px" }} />
+                                                        <Field name="name" className="inputbox" autoComplete="off" placeholder=" + Add new category name" style={{ width: "100%", height: "50px" }} />
                                                         {errors.name && touched.name ? <div className='error'>{errors.name}</div> : null}
                                                     </Col>
                                                 </Row>
                                                 <Row>
                                                     <Col className='text-center'>
-
-                                                        <Button
+                                                        <button
                                                             type="submit"
                                                             disabled={loading}
-                                                            variant="secondary"
-
-                                                            style={{ margin: "10px", borderRadius: "5px", fontSize: "20px", width: "40%", }}
+                                                            style={{
+                                                                backgroundColor: "#641E16",
+                                                                color: "white",
+                                                                width: "40%",
+                                                                height: "40px",
+                                                                margin: "10px",
+                                                                borderRadius: "5px",
+                                                                fontSize: "20px"
+                                                            }}
                                                         >
                                                             {loading ? 'Please wait...' : ' Submit'}
-                                                        </Button></Col>
+                                                            </button>
+                                                        </Col>
                                                 </Row>
-
                                             </div>
                                         </Form>
                                     )}
@@ -175,10 +179,10 @@ const AddCategory = () => {
                             <Table striped bordered hover>
                                 <thead>
                                     <tr>
-                                        <th className='text-center'>S.No.</th>
-                                        <th className='text-center'>Category</th>
-                                        <th className='text-center'>Delete</th>
-                                        <th className='text-center'>Edit</th>
+                                        <th className='text-center' style={{ backgroundColor: "#641E16", color: "white" }}>S.No.</th>
+                                        <th className='text-center' style={{ backgroundColor: "#641E16", color: "white" }}>Category</th>
+                                        <th className='text-center' style={{ backgroundColor: "#641E16", color: "white" }}>Delete</th>
+                                        <th className='text-center' style={{ backgroundColor: "#641E16", color: "white" }}>Edit</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -187,12 +191,12 @@ const AddCategory = () => {
                                             categories.map((category, index) => {
                                                 return (
                                                     <tr key={index}>
-                                                        <td className='text-center'>{index + 1}</td>
-                                                        <td>{category.name}</td>
-                                                        <td className='text-center'>
+                                                        <td className='text-center' style={{ color: "#641E16" }} data-label="S No. : ">{index + 1}</td>
+                                                        <td style={{ color: "#641E16" }} data-label="Category Name : ">{category.name}</td>
+                                                        <td className='text-center' style={{ color: "#641E16" }}>
                                                             <button onClick={() => handleDelete(category.id)}> <MdDelete /></button>
                                                         </td>
-                                                        <td className='text-center'><MdModeEdit /></td>
+                                                        <td className='text-center' style={{ color: "#641E16" }}><MdModeEdit /></td>
                                                     </tr>
                                                 )
                                             }

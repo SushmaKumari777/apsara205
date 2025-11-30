@@ -13,20 +13,22 @@ import { MdDelete } from "react-icons/md";
 import { MdModeEdit } from "react-icons/md";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import { Link } from 'react-router'
+import Menu from "./Menu";
+import Breadcrumb from 'react-bootstrap/Breadcrumb';
 
 
 const AdminProducts = () => {
-     const navigate = useNavigate();
-    
-      const { user: currentUser } = useSelector((state) => state.auth);
-      console.log(currentUser)
-    
-      useEffect(() => {
-          if (currentUser && currentUser.roles[0] !== "ROLE_ADMIN") {
-              console.log(currentUser.roles[0]);
-              navigate("/")
-          }
-      }, [currentUser, navigate]);
+    const navigate = useNavigate();
+
+    const { user: currentUser } = useSelector((state) => state.auth);
+    console.log(currentUser)
+
+    useEffect(() => {
+        if (currentUser && currentUser.roles[0] !== "ROLE_ADMIN") {
+            console.log(currentUser.roles[0]);
+            navigate("/")
+        }
+    }, [currentUser, navigate]);
 
     const dispatch = useDispatch();
     // const navigate = useNavigate();
@@ -61,14 +63,29 @@ const AdminProducts = () => {
     }
     return (
         <div>
-            <Container className='login'>
+            <Row>
+                <Col><Menu></Menu></Col>
+            </Row>
+           
+            <Container fluid className='login'>
+            <Row>
+            <Col style={{ color: "#641E16", }}>
+                    <Breadcrumb>
+                        {/* <Breadcrumb.Item href="#">All products</Breadcrumb.Item> */}
+                        <Breadcrumb.Item href="adminDashboard"> Admin Dashboard </Breadcrumb.Item>
+
+                    </Breadcrumb>
+                </Col>
+            </Row>
                 <Row>
-                    <Col md={3}>
-                        <h1 >Products</h1>
+               
+                    <Col>
+                        <h2 className='text-center' style={{ color: "#641E16" }} >All Products</h2>
                     </Col>
-                    <Col md={9} className='addnew'>
+                    {/* <Col className='addnew'>
                         <Button><Link to={'/AddProduct'} >Add new product</Link><IoIosArrowRoundForward /></Button>
-                    </Col>
+                    </Col> */}
+                    
                 </Row>
                 {message && (
                     <Row>
@@ -84,12 +101,12 @@ const AdminProducts = () => {
                         <Table striped bordered hover>
                             <thead>
                                 <tr>
-                                    <th className='text-center'>S.No.</th>
-                                    <th className='text-center'>Product name</th>
-                                    <th className='text-center'>Images</th>
-                                    <th className='text-center'>Product price</th>                                  
-                                    <th className='text-center'>Delete</th>
-                                    <th className='text-center'>Edit</th>
+                                    <th className='text-center' style={{ backgroundColor: "#641E16", color: "white" }}>S.No.</th>
+                                    <th className='text-center' style={{ backgroundColor: "#641E16", color: "white" }}>Product name</th>
+                                    <th className='text-center' style={{ backgroundColor: "#641E16", color: "white" }}>Images</th>
+                                    <th className='text-center' style={{ backgroundColor: "#641E16", color: "white" }}>Product price</th>
+                                    <th className='text-center' style={{ backgroundColor: "#641E16", color: "white" }}>Delete</th>
+                                    <th className='text-center' style={{ backgroundColor: "#641E16", color: "white" }}>Edit</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -98,18 +115,18 @@ const AdminProducts = () => {
                                         products.map((product, index) => {
                                             return (
                                                 <tr key={index}>
-                                                    <td className='text-center'>{index + 1}</td>
-                                                    <td>{product.productName}</td>
+                                                    <td className='text-center' data-label="S No. : " style={{ color: "#641E16" }}>{index + 1}</td>
+                                                    <td data-label="Product: " style={{ color: "#641E16" }}>{product.productName}</td>
                                                     <td className='text-center'>
                                                         <img src={`http://localhost:8090/upload/${product.images[0]}`}
                                                             style={{ width: "80px", height: "80px", objectFit: "cover", borderRadius: "8px" }}
                                                         />
                                                     </td>
-                                                    <td className='text-center'>{product.productPrice}</td>                                                  
+                                                    <td className='text-center' data-label="Price : " style={{ color: "#641E16" }}>  ₹ {product.productPrice}</td>
                                                     <td className='text-center'>
-                                                        <button onClick={() => handleDelete(product.id)}> <MdDelete /></button>
+                                                        <button onClick={() => handleDelete(product.id)}> <MdDelete style={{ color: "#641E16" }} /></button>
                                                     </td>
-                                                    <td className='text-center'><MdModeEdit />
+                                                    <td className='text-center'><MdModeEdit style={{ color: "#641E16" }} />
                                                     </td>
 
                                                 </tr>
