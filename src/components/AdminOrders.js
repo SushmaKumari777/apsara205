@@ -110,12 +110,12 @@ const AdminOrders = () => {
               </tr>
             </thead>
             <tbody>
-              {orders.map((order, orderIndex) => (
+              {
+              orders.map((order, orderIndex) => (
 
                 order.products.map((item, productIndex) => (
 
                   <tr key={`${orderIndex}-${productIndex}`}>
-
                     {productIndex === 0 && (
                       <>
                         <td rowSpan={order.products.length} style={{ color: "#641E16", verticalAlign: "middle" }} data-label="Order ID : ">
@@ -131,7 +131,6 @@ const AdminOrders = () => {
                         </td>
                       </>
                     )}
-
                     <td style={{ color: "#641E16" }} data-label="Product Name : ">
                       {item.productDetails.productName}
                     </td>
@@ -156,7 +155,6 @@ const AdminOrders = () => {
 
                     {
                       productIndex === 0 && (
-
                         <td
                           data-label="Total : "
                           rowSpan={order.products.length}
@@ -165,11 +163,8 @@ const AdminOrders = () => {
                           ₹ {order.totalAmount}
                         </td>
                       )}
-
-
                     {
                       productIndex === 0 && (
-
                         <td
                           rowSpan={order.products.length}
                           style={{ color: "#641E16", fontWeight: "bold", verticalAlign: "middle" }}
@@ -177,10 +172,10 @@ const AdminOrders = () => {
                           {order.status}
                         </td>
                       )}
-
                   </tr>
                 ))
-              ))}
+              ))
+              }
             </tbody>
 
             <tfoot>

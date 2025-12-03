@@ -9,11 +9,6 @@ import { clearMessage } from "../slices/message";
 import { useDispatch, useSelector } from "react-redux";
 
 const SignupSchema = Yup.object().shape({
-  // username: Yup.string()
-  //   .matches(/^[a-zA-Z0-9_]+$/, "Only letters, numbers and underscores allowed")
-  //   .min(3, "Username must be at least 3 characters")
-  //   .max(20, "Username must be less than 20 characters")
-  //   .required("Username is required"),
   username: Yup.string()
     .matches(/^[6-9]\d{9}$/, "Enter a valid 10 Digit Mobile No. ")
     .required("Mobile No. is Mandetory!"),
@@ -23,6 +18,7 @@ const SignupSchema = Yup.object().shape({
     .max(50, "Maximum 50 charecter required")
     .required("Password Required"),
 });
+
 const Register = () => {
   const [successful, setSuccessful] = useState(false);
 
@@ -34,11 +30,9 @@ const Register = () => {
   }, [dispatch]);
   const handleRegister = (formValue) => {
     console.log()
-    const {username, email, password } = formValue;
-   
+    const { username, email, password } = formValue;
     setSuccessful(false);
-
-    dispatch(register({username, email, password }))
+    dispatch(register({ username, email, password }))
       .unwrap()
       .then(() => {
         setSuccessful(true);
@@ -68,7 +62,7 @@ const Register = () => {
               <Formik
                 initialValues={{
                   username: "",
-                 
+
                   email: "",
                   password: "",
                 }}
@@ -83,7 +77,7 @@ const Register = () => {
                   <Form>
                     <div className="background">
                       <Row>
-                      <Col>
+                        <Col>
                           <b>Mobile no.</b>
                         </Col>
                       </Row>
@@ -151,25 +145,6 @@ const Register = () => {
                           </div>
                         </Col>
                       </Row>
-                      {/* <Row>
-                        <Col>
-                          <b>Confirm Password</b>
-                        </Col>
-                      </Row>
-                    
-                    <Row className="mb-3">
-                      <Col>
-                        <Field
-                          name="password"
-                          type="password"
-                          className="form-control"
-                          placeholder="Enter Password"
-                        />
-                        {errors.password && touched.password && (
-                          <div className="error">{errors.password}</div>
-                        )}
-                      </Col>
-                    </Row> */}
                       <Row>
                         <Col>
                           <Button

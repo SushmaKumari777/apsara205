@@ -92,7 +92,8 @@ const Products = () => {
                                 textDecoration: "none",
                                 color: "#641E16",
                                 fontWeight: "bold"
-                            }}><p>Buy now</p></Link></Button>
+                            }}><p>Buy now</p>
+                            </Link></Button>
                             <p className='text-left' style={{ marginTop: "20px", color: "#641E16" }}>{product?.productDescription || "loading"}</p>
                         </Col>
 

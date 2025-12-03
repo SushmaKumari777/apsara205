@@ -120,7 +120,7 @@ const AdminProducts = () => {
                                                     <td className='text-center'>
                                                         <img src={`http://localhost:8090/upload/${product.images[0]}`}
                                                             style={{ width: "80px", height: "80px", objectFit: "cover", borderRadius: "8px" }}
-                                                        />
+                                                         />
                                                     </td>
                                                     <td className='text-center' data-label="Price : " style={{ color: "#641E16" }}>  ₹ {product.productPrice}</td>
                                                     <td className='text-center'>

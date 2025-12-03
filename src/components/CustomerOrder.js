@@ -5,38 +5,32 @@ import { useNavigate, Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
 import axios from 'axios';
+import Badge from 'react-bootstrap/Badge';
 
 
 
 const CustomerOrder = () => {
-  const navigate = useNavigate();
+
+  const [orders, setOrders] = useState([]);
 
   const { user: currentUser } = useSelector((state) => state.auth);
   console.log(currentUser)
 
   useEffect(() => {
-    if (currentUser && currentUser.roles[0] !== "ROLE_USER") {
-      console.log(currentUser.roles[0]);
-      navigate("AdminDashboard")
-    }
-  }, [currentUser, navigate]);
+    if (!currentUser) return;
 
+    const fetchOrders = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8090/api/ssorders/user/${currentUser.id}`);
+        console.log(response.data);
+        setOrders(response.data);
+      } catch (error) {
+        console.log("Error while fetching orders", error);
+      }
+    };
 
-
-  // const [products, setProducts] = useState();
-
-  // useEffect(() => {
-  //   axios.get(`http://localhost:8090/api/ssorders/user/${currentUser.id}`).then((response) => {
-  //     console.log(response.data.items)
-  //     console.log(response.data)
-  //     // setProducts(response.data.items)
-  //     // setNoCartItems(response.data.itemCount)
-  //     // const reversedItems = [...response.data.items].reverse();
-  //     // setProducts(reversedItems);
-  //     // setNoCartItems(response.data.itemCount);
-  //   })
-  // }, []);
-
+    fetchOrders();
+  }, [currentUser]);
 
   return (
     <div>
@@ -49,34 +43,62 @@ const CustomerOrder = () => {
       <div>
         <Container>
           <Row>
-            <Col style={{ color: "#641E16", }}>
-              <Breadcrumb>
-                {/* <Breadcrumb.Item href="#">All products</Breadcrumb.Item> */}
-                <Breadcrumb.Item href="adminDashboard"> Admin Dashboard </Breadcrumb.Item>
-              </Breadcrumb>
-            </Col>
-          </Row>
-          <Row>
             <Col>
-            <h2>My Orders</h2>
+              <h2>My Orders</h2>
             </Col>
           </Row>
           <Table>
             <thead>
               <tr>
+                <th>S no.</th>
                 <th>Image</th>
                 <th>Product Name</th>
+                <th>Quantity</th>
                 <th>Price</th>
+                <th>Total Amount</th>
                 <th>Status</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
+              {
+
+                orders.map((order, index) => {
+                  return (
+                    <tr key={index}>
+                      <td>{index + 1}</td>
+                      <td>
+                        <img
+                          src={`http://localhost:8090/upload/${order.products[0]?.productDetails?.images[0]}`}
+                          style={{
+                            width: "60px",
+                            height: "60px",
+                            objectFit: "cover",
+                            borderRadius: "8px"
+                          }}
+                          alt="product"
+                        />
+                      </td>  
+                      <td>
+                        {order.products[0]?.productDetails?.productName || "N/A"}
+                      </td>
+                      <td>
+                        {order.products[0]?.quantity || "N/A"}
+                      </td>
+                      <td>
+                        ₹{order.products[0]?.productDetails?.productPrice || "N/A"}
+                      </td>
+                      <td>₹ {order.totalAmount}</td>
+                      <td>
+                      <Badge bg="primary">{order.status || "N/A"}</Badge>
+                        </td>
+                    </tr>
+                  )
+                }
+
+                )
+
+              }
+
             </tbody>
           </Table>
         </Container>

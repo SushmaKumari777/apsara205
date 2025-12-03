@@ -25,7 +25,6 @@ import AdminProduct from './components/AdminProducts';
 import AdminOrders from './components/AdminOrders';
 import AddCategory from './components/AddCategory';
 import AdminDashboard from './components/AdminDashboard';
-import Orders from './components/Orders';
 import Contact from './components/Contact';
 import Example2 from './components/Example2';
 import AllProducts from './components/AllProducts';
@@ -66,7 +65,6 @@ function App() {
         <Route path="/adminProduct" element={<AdminProduct />} />
         <Route path="/adminOrders" element={<AdminOrders />} />
         <Route path="/addCategory" element={<AddCategory />} />
-        <Route path="/orders" element={<Orders />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/example2" element={<Example2 />} />
         <Route path="/allProducts" element={<AllProducts />} />

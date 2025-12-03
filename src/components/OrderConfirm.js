@@ -2,6 +2,7 @@ import React from 'react'
 import { Row, Col, Container, Button } from 'react-bootstrap'
 import { BsCheck2Circle } from "react-icons/bs";
 import Menu from "./Menu";
+import { Link } from "react-router";
 
 const OrderConfirm = () => {
     return (
@@ -23,7 +24,7 @@ const OrderConfirm = () => {
                             <h2 className='text-center' style={{ color: "#641E16" }}>Your Order is Confirmed !</h2>
                             <p className='text-center' style={{ color: "#641E16" }}> We will send you a shopping confirmation email as soon as your order ships</p>
                             <div style={{ textAlign: "center", margin: "10px", }}>
-                                <Button style={{ backgroundColor: "#641E16", color: "white", border: "#6C757D", padding: "10px", fontSize: "22px" }}> Check status</Button>
+                                <Button style={{ backgroundColor: "#641E16", color: "white", border: "#6C757D", padding: "10px", fontSize: "22px" }}> <Link to={"/CustomerOrder"}>Check status</Link></Button>
                             </div>
                         </Col>
                     </Row>
